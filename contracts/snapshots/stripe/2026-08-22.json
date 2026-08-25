@@ -1,0 +1,7508 @@
+{
+ "endpoint_count": 589,
+ "endpoints": {
+  "DELETE /v1/accounts/{account}": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/accounts/{account}/bank_accounts/{id}": {
+   "params": [
+    "account",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/accounts/{account}/external_accounts/{id}": {
+   "params": [
+    "account",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/accounts/{account}/people/{person}": {
+   "params": [
+    "account",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/accounts/{account}/persons/{person}": {
+   "params": [
+    "account",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/apple_pay/domains/{domain}": {
+   "params": [
+    "domain"
+   ],
+   "required": [
+    "domain"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/coupons/{coupon}": {
+   "params": [
+    "coupon"
+   ],
+   "required": [
+    "coupon"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/bank_accounts/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/cards/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/discount": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/sources/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount": {
+   "params": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/customers/{customer}/tax_ids/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/ephemeral_keys/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/invoiceitems/{invoiceitem}": {
+   "params": [
+    "invoiceitem"
+   ],
+   "required": [
+    "invoiceitem"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/invoices/{invoice}": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/plans/{plan}": {
+   "params": [
+    "plan"
+   ],
+   "required": [
+    "plan"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/products/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/products/{product}/features/{id}": {
+   "params": [
+    "id",
+    "product"
+   ],
+   "required": [
+    "id",
+    "product"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/radar/value_list_items/{item}": {
+   "params": [
+    "item"
+   ],
+   "required": [
+    "item"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/radar/value_lists/{value_list}": {
+   "params": [
+    "value_list"
+   ],
+   "required": [
+    "value_list"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/subscription_items/{item}": {
+   "params": [
+    "item"
+   ],
+   "required": [
+    "item"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/subscriptions/{subscription_exposed_id}/discount": {
+   "params": [
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/tax_ids/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/terminal/configurations/{configuration}": {
+   "params": [
+    "configuration"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/terminal/locations/{location}": {
+   "params": [
+    "location"
+   ],
+   "required": [
+    "location"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/terminal/readers/{reader}": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/test_helpers/test_clocks/{test_clock}": {
+   "params": [
+    "test_clock"
+   ],
+   "required": [
+    "test_clock"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "DELETE /v1/webhook_endpoints/{webhook_endpoint}": {
+   "params": [
+    "webhook_endpoint"
+   ],
+   "required": [
+    "webhook_endpoint"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/account": {
+   "params": [
+    "expand"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}": {
+   "params": [
+    "account",
+    "expand"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/bank_accounts/{id}": {
+   "params": [
+    "account",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/capabilities": {
+   "params": [
+    "account",
+    "expand"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/capabilities/{capability}": {
+   "params": [
+    "account",
+    "capability",
+    "expand"
+   ],
+   "required": [
+    "account",
+    "capability"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/external_accounts": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "object",
+    "starting_after"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/external_accounts/{id}": {
+   "params": [
+    "account",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/people": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "relationship",
+    "starting_after"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/people/{person}": {
+   "params": [
+    "account",
+    "expand",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/persons": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "relationship",
+    "starting_after"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/accounts/{account}/persons/{person}": {
+   "params": [
+    "account",
+    "expand",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/apple_pay/domains": {
+   "params": [
+    "domain_name",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/apple_pay/domains/{domain}": {
+   "params": [
+    "domain",
+    "expand"
+   ],
+   "required": [
+    "domain"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/application_fees": {
+   "params": [
+    "charge",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/application_fees/{fee}/refunds/{id}": {
+   "params": [
+    "expand",
+    "fee",
+    "id"
+   ],
+   "required": [
+    "fee",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/application_fees/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/application_fees/{id}/refunds": {
+   "params": [
+    "ending_before",
+    "expand",
+    "id",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/apps/secrets": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "scope",
+    "starting_after"
+   ],
+   "required": [
+    "scope"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/apps/secrets/find": {
+   "params": [
+    "expand",
+    "name",
+    "scope"
+   ],
+   "required": [
+    "name",
+    "scope"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance": {
+   "params": [
+    "expand"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance/history": {
+   "params": [
+    "created",
+    "currency",
+    "ending_before",
+    "expand",
+    "limit",
+    "payout",
+    "source",
+    "starting_after",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance/history/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance_settings": {
+   "params": [
+    "expand"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance_transactions": {
+   "params": [
+    "created",
+    "currency",
+    "ending_before",
+    "expand",
+    "limit",
+    "payout",
+    "source",
+    "starting_after",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/balance_transactions/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/alerts": {
+   "params": [
+    "alert_type",
+    "ending_before",
+    "expand",
+    "limit",
+    "meter",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/alerts/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/credit_balance_summary": {
+   "params": [
+    "customer",
+    "customer_account",
+    "expand",
+    "filter"
+   ],
+   "required": [
+    "filter"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/credit_balance_transactions": {
+   "params": [
+    "credit_grant",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/credit_balance_transactions/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/credit_grants": {
+   "params": [
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/credit_grants/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/meters": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/meters/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing/meters/{id}/event_summaries": {
+   "params": [
+    "customer",
+    "end_time",
+    "ending_before",
+    "expand",
+    "id",
+    "limit",
+    "start_time",
+    "starting_after",
+    "value_grouping_window"
+   ],
+   "required": [
+    "customer",
+    "end_time",
+    "id",
+    "start_time"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing_portal/configurations": {
+   "params": [
+    "active",
+    "ending_before",
+    "expand",
+    "is_default",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/billing_portal/configurations/{configuration}": {
+   "params": [
+    "configuration",
+    "expand"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges": {
+   "params": [
+    "created",
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_intent",
+    "starting_after",
+    "transfer_group"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges/{charge}": {
+   "params": [
+    "charge",
+    "expand"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges/{charge}/dispute": {
+   "params": [
+    "charge",
+    "expand"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges/{charge}/refunds": {
+   "params": [
+    "charge",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/charges/{charge}/refunds/{refund}": {
+   "params": [
+    "charge",
+    "expand",
+    "refund"
+   ],
+   "required": [
+    "charge",
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/checkout/sessions": {
+   "params": [
+    "created",
+    "customer",
+    "customer_account",
+    "customer_details",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_intent",
+    "payment_link",
+    "starting_after",
+    "status",
+    "subscription"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/checkout/sessions/{session}": {
+   "params": [
+    "expand",
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/checkout/sessions/{session}/line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "session",
+    "starting_after"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/orders": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/orders/{order}": {
+   "params": [
+    "expand",
+    "order"
+   ],
+   "required": [
+    "order"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/products": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/products/{product}": {
+   "params": [
+    "expand",
+    "product"
+   ],
+   "required": [
+    "product"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/suppliers": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/climate/suppliers/{supplier}": {
+   "params": [
+    "expand",
+    "supplier"
+   ],
+   "required": [
+    "supplier"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/confirmation_tokens/{confirmation_token}": {
+   "params": [
+    "confirmation_token",
+    "expand"
+   ],
+   "required": [
+    "confirmation_token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/country_specs": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/country_specs/{country}": {
+   "params": [
+    "country",
+    "expand"
+   ],
+   "required": [
+    "country"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/coupons": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/coupons/{coupon}": {
+   "params": [
+    "coupon",
+    "expand"
+   ],
+   "required": [
+    "coupon"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/credit_notes": {
+   "params": [
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/credit_notes/preview": {
+   "params": [
+    "amount",
+    "credit_amount",
+    "effective_at",
+    "email_type",
+    "expand",
+    "invoice",
+    "lines",
+    "memo",
+    "metadata",
+    "out_of_band_amount",
+    "reason",
+    "refund_amount",
+    "refunds",
+    "shipping_cost"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/credit_notes/preview/lines": {
+   "params": [
+    "amount",
+    "credit_amount",
+    "effective_at",
+    "email_type",
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "lines",
+    "memo",
+    "metadata",
+    "out_of_band_amount",
+    "reason",
+    "refund_amount",
+    "refunds",
+    "shipping_cost",
+    "starting_after"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/credit_notes/{credit_note}/lines": {
+   "params": [
+    "credit_note",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "credit_note"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/credit_notes/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers": {
+   "params": [
+    "created",
+    "email",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "test_clock"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}": {
+   "params": [
+    "customer",
+    "expand"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/balance_transactions": {
+   "params": [
+    "created",
+    "customer",
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/balance_transactions/{transaction}": {
+   "params": [
+    "customer",
+    "expand",
+    "transaction"
+   ],
+   "required": [
+    "customer",
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/bank_accounts": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/bank_accounts/{id}": {
+   "params": [
+    "customer",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/cards": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/cards/{id}": {
+   "params": [
+    "customer",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/cash_balance": {
+   "params": [
+    "customer",
+    "expand"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/cash_balance_transactions": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/cash_balance_transactions/{transaction}": {
+   "params": [
+    "customer",
+    "expand",
+    "transaction"
+   ],
+   "required": [
+    "customer",
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/discount": {
+   "params": [
+    "customer",
+    "expand"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/payment_methods": {
+   "params": [
+    "allow_redisplay",
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "type"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/payment_methods/{payment_method}": {
+   "params": [
+    "customer",
+    "expand",
+    "payment_method"
+   ],
+   "required": [
+    "customer",
+    "payment_method"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/sources": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "object",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/sources/{id}": {
+   "params": [
+    "customer",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/subscriptions": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "customer",
+    "expand",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount": {
+   "params": [
+    "customer",
+    "expand",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/tax_ids": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/customers/{customer}/tax_ids/{id}": {
+   "params": [
+    "customer",
+    "expand",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/disputes": {
+   "params": [
+    "charge",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_intent",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/disputes/{dispute}": {
+   "params": [
+    "dispute",
+    "expand"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/entitlements/active_entitlements": {
+   "params": [
+    "customer",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/entitlements/active_entitlements/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/entitlements/features": {
+   "params": [
+    "archived",
+    "ending_before",
+    "expand",
+    "limit",
+    "lookup_key",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/entitlements/features/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/events": {
+   "params": [
+    "created",
+    "delivery_success",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "type",
+    "types"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/events/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/exchange_rates": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/exchange_rates/{rate_id}": {
+   "params": [
+    "expand",
+    "rate_id"
+   ],
+   "required": [
+    "rate_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/file_links": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "expired",
+    "file",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/file_links/{link}": {
+   "params": [
+    "expand",
+    "link"
+   ],
+   "required": [
+    "link"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/files": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "purpose",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/files/{file}": {
+   "params": [
+    "expand",
+    "file"
+   ],
+   "required": [
+    "file"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/accounts": {
+   "params": [
+    "account_holder",
+    "ending_before",
+    "expand",
+    "limit",
+    "session",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/accounts/{account}": {
+   "params": [
+    "account",
+    "expand"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/accounts/{account}/owners": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "ownership",
+    "starting_after"
+   ],
+   "required": [
+    "account",
+    "ownership"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/sessions/{session}": {
+   "params": [
+    "expand",
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/transactions": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "transacted_at",
+    "transaction_refresh"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/financial_connections/transactions/{transaction}": {
+   "params": [
+    "expand",
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/forwarding/requests": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/forwarding/requests/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/identity/verification_reports": {
+   "params": [
+    "client_reference_id",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "type",
+    "verification_session"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/identity/verification_reports/{report}": {
+   "params": [
+    "expand",
+    "report"
+   ],
+   "required": [
+    "report"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/identity/verification_sessions": {
+   "params": [
+    "client_reference_id",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "related_customer",
+    "related_customer_account",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/identity/verification_sessions/{session}": {
+   "params": [
+    "expand",
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoice_payments": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "payment",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoice_payments/{invoice_payment}": {
+   "params": [
+    "expand",
+    "invoice_payment"
+   ],
+   "required": [
+    "invoice_payment"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoice_rendering_templates": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoice_rendering_templates/{template}": {
+   "params": [
+    "expand",
+    "template",
+    "version"
+   ],
+   "required": [
+    "template"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoiceitems": {
+   "params": [
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "pending",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoiceitems/{invoiceitem}": {
+   "params": [
+    "expand",
+    "invoiceitem"
+   ],
+   "required": [
+    "invoiceitem"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoices": {
+   "params": [
+    "collection_method",
+    "created",
+    "customer",
+    "customer_account",
+    "due_date",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status",
+    "subscription"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoices/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoices/{invoice}": {
+   "params": [
+    "expand",
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/invoices/{invoice}/lines": {
+   "params": [
+    "ending_before",
+    "expand",
+    "invoice",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/authorizations": {
+   "params": [
+    "card",
+    "cardholder",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/authorizations/{authorization}": {
+   "params": [
+    "authorization",
+    "expand"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/cardholders": {
+   "params": [
+    "created",
+    "email",
+    "ending_before",
+    "expand",
+    "limit",
+    "phone_number",
+    "starting_after",
+    "status",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/cardholders/{cardholder}": {
+   "params": [
+    "cardholder",
+    "expand"
+   ],
+   "required": [
+    "cardholder"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/cards": {
+   "params": [
+    "cardholder",
+    "created",
+    "ending_before",
+    "exp_month",
+    "exp_year",
+    "expand",
+    "last4",
+    "limit",
+    "personalization_design",
+    "starting_after",
+    "status",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/cards/{card}": {
+   "params": [
+    "card",
+    "expand"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/disputes": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status",
+    "transaction"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/disputes/{dispute}": {
+   "params": [
+    "dispute",
+    "expand"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/personalization_designs": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "lookup_keys",
+    "preferences",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/personalization_designs/{personalization_design}": {
+   "params": [
+    "expand",
+    "personalization_design"
+   ],
+   "required": [
+    "personalization_design"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/physical_bundles": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/physical_bundles/{physical_bundle}": {
+   "params": [
+    "expand",
+    "physical_bundle"
+   ],
+   "required": [
+    "physical_bundle"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/settlements/{settlement}": {
+   "params": [
+    "expand",
+    "settlement"
+   ],
+   "required": [
+    "settlement"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/tokens": {
+   "params": [
+    "card",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/tokens/{token}": {
+   "params": [
+    "expand",
+    "token"
+   ],
+   "required": [
+    "token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/transactions": {
+   "params": [
+    "card",
+    "cardholder",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/issuing/transactions/{transaction}": {
+   "params": [
+    "expand",
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/link_account_sessions/{session}": {
+   "params": [
+    "expand",
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/linked_accounts": {
+   "params": [
+    "account_holder",
+    "ending_before",
+    "expand",
+    "limit",
+    "session",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/linked_accounts/{account}": {
+   "params": [
+    "account",
+    "expand"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/linked_accounts/{account}/owners": {
+   "params": [
+    "account",
+    "ending_before",
+    "expand",
+    "limit",
+    "ownership",
+    "starting_after"
+   ],
+   "required": [
+    "account",
+    "ownership"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/mandates/{mandate}": {
+   "params": [
+    "expand",
+    "mandate"
+   ],
+   "required": [
+    "mandate"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_attempt_records": {
+   "params": [
+    "expand",
+    "limit",
+    "payment_record",
+    "starting_after"
+   ],
+   "required": [
+    "payment_record"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_attempt_records/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_intents": {
+   "params": [
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_intents/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_intents/{intent}": {
+   "params": [
+    "client_secret",
+    "expand",
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_intents/{intent}/amount_details_line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "intent",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_links": {
+   "params": [
+    "active",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_links/{payment_link}": {
+   "params": [
+    "expand",
+    "payment_link"
+   ],
+   "required": [
+    "payment_link"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_links/{payment_link}/line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_link",
+    "starting_after"
+   ],
+   "required": [
+    "payment_link"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_method_configurations": {
+   "params": [
+    "active",
+    "application",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_method_configurations/{configuration}": {
+   "params": [
+    "configuration",
+    "expand"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_method_domains": {
+   "params": [
+    "domain_name",
+    "enabled",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_method_domains/{payment_method_domain}": {
+   "params": [
+    "expand",
+    "payment_method_domain"
+   ],
+   "required": [
+    "payment_method_domain"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_methods": {
+   "params": [
+    "allow_redisplay",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_methods/{payment_method}": {
+   "params": [
+    "expand",
+    "payment_method"
+   ],
+   "required": [
+    "payment_method"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_records": {
+   "params": [
+    "created_after",
+    "created_before",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payment_records/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payouts": {
+   "params": [
+    "arrival_date",
+    "created",
+    "destination",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/payouts/{payout}": {
+   "params": [
+    "expand",
+    "payout"
+   ],
+   "required": [
+    "payout"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/plans": {
+   "params": [
+    "active",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "product",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/plans/{plan}": {
+   "params": [
+    "expand",
+    "plan"
+   ],
+   "required": [
+    "plan"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/prices": {
+   "params": [
+    "active",
+    "created",
+    "currency",
+    "ending_before",
+    "expand",
+    "limit",
+    "lookup_keys",
+    "product",
+    "recurring",
+    "starting_after",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/prices/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/prices/{price}": {
+   "params": [
+    "expand",
+    "price"
+   ],
+   "required": [
+    "price"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/products": {
+   "params": [
+    "active",
+    "created",
+    "ending_before",
+    "expand",
+    "ids",
+    "limit",
+    "shippable",
+    "starting_after",
+    "url"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/products/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/products/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/products/{product}/features": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "product",
+    "starting_after"
+   ],
+   "required": [
+    "product"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/products/{product}/features/{id}": {
+   "params": [
+    "expand",
+    "id",
+    "product"
+   ],
+   "required": [
+    "id",
+    "product"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/promotion_codes": {
+   "params": [
+    "active",
+    "code",
+    "coupon",
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/promotion_codes/{promotion_code}": {
+   "params": [
+    "expand",
+    "promotion_code"
+   ],
+   "required": [
+    "promotion_code"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/quotes": {
+   "params": [
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status",
+    "test_clock"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/quotes/{quote}": {
+   "params": [
+    "expand",
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/quotes/{quote}/computed_upfront_line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "quote",
+    "starting_after"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/quotes/{quote}/line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "quote",
+    "starting_after"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/quotes/{quote}/pdf": {
+   "params": [
+    "expand",
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/early_fraud_warnings": {
+   "params": [
+    "charge",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_intent",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/early_fraud_warnings/{early_fraud_warning}": {
+   "params": [
+    "early_fraud_warning",
+    "expand"
+   ],
+   "required": [
+    "early_fraud_warning"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/value_list_items": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "value",
+    "value_list"
+   ],
+   "required": [
+    "value_list"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/value_list_items/{item}": {
+   "params": [
+    "expand",
+    "item"
+   ],
+   "required": [
+    "item"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/value_lists": {
+   "params": [
+    "alias",
+    "contains",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/radar/value_lists/{value_list}": {
+   "params": [
+    "expand",
+    "value_list"
+   ],
+   "required": [
+    "value_list"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/refunds": {
+   "params": [
+    "charge",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_intent",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/refunds/{refund}": {
+   "params": [
+    "expand",
+    "refund"
+   ],
+   "required": [
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reporting/report_runs": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reporting/report_runs/{report_run}": {
+   "params": [
+    "expand",
+    "report_run"
+   ],
+   "required": [
+    "report_run"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reporting/report_types": {
+   "params": [
+    "expand"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reporting/report_types/{report_type}": {
+   "params": [
+    "expand",
+    "report_type"
+   ],
+   "required": [
+    "report_type"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reviews": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/reviews/{review}": {
+   "params": [
+    "expand",
+    "review"
+   ],
+   "required": [
+    "review"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/setup_attempts": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "setup_intent",
+    "starting_after"
+   ],
+   "required": [
+    "setup_intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/setup_intents": {
+   "params": [
+    "attach_to_self",
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "payment_method",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/setup_intents/{intent}": {
+   "params": [
+    "client_secret",
+    "expand",
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/shipping_rates": {
+   "params": [
+    "active",
+    "created",
+    "currency",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/shipping_rates/{shipping_rate_token}": {
+   "params": [
+    "expand",
+    "shipping_rate_token"
+   ],
+   "required": [
+    "shipping_rate_token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sigma/scheduled_query_runs": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sigma/scheduled_query_runs/{scheduled_query_run}": {
+   "params": [
+    "expand",
+    "scheduled_query_run"
+   ],
+   "required": [
+    "scheduled_query_run"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sources/{source}": {
+   "params": [
+    "client_secret",
+    "expand",
+    "source"
+   ],
+   "required": [
+    "source"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sources/{source}/mandate_notifications/{mandate_notification}": {
+   "params": [
+    "expand",
+    "mandate_notification",
+    "source"
+   ],
+   "required": [
+    "mandate_notification",
+    "source"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sources/{source}/source_transactions": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "source",
+    "starting_after"
+   ],
+   "required": [
+    "source"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/sources/{source}/source_transactions/{source_transaction}": {
+   "params": [
+    "expand",
+    "source",
+    "source_transaction"
+   ],
+   "required": [
+    "source",
+    "source_transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscription_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "subscription"
+   ],
+   "required": [
+    "subscription"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscription_items/{item}": {
+   "params": [
+    "expand",
+    "item"
+   ],
+   "required": [
+    "item"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscription_schedules": {
+   "params": [
+    "canceled_at",
+    "completed_at",
+    "created",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "released_at",
+    "scheduled",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscription_schedules/{schedule}": {
+   "params": [
+    "expand",
+    "schedule"
+   ],
+   "required": [
+    "schedule"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscriptions": {
+   "params": [
+    "automatic_tax",
+    "collection_method",
+    "created",
+    "current_period_end",
+    "current_period_start",
+    "customer",
+    "customer_account",
+    "ending_before",
+    "expand",
+    "limit",
+    "price",
+    "starting_after",
+    "status",
+    "test_clock"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscriptions/search": {
+   "params": [
+    "expand",
+    "limit",
+    "page",
+    "query"
+   ],
+   "required": [
+    "query"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "expand",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/associations/find": {
+   "params": [
+    "expand",
+    "payment_intent"
+   ],
+   "required": [
+    "payment_intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/calculations/{calculation}": {
+   "params": [
+    "calculation",
+    "expand"
+   ],
+   "required": [
+    "calculation"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/calculations/{calculation}/line_items": {
+   "params": [
+    "calculation",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "calculation"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/registrations": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/registrations/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/settings": {
+   "params": [
+    "expand"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/transactions/{transaction}": {
+   "params": [
+    "expand",
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax/transactions/{transaction}/line_items": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_codes": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_codes/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_ids": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "owner",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_ids/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_rates": {
+   "params": [
+    "active",
+    "created",
+    "ending_before",
+    "expand",
+    "inclusive",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tax_rates/{tax_rate}": {
+   "params": [
+    "expand",
+    "tax_rate"
+   ],
+   "required": [
+    "tax_rate"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/configurations": {
+   "params": [
+    "ending_before",
+    "expand",
+    "is_account_default",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/configurations/{configuration}": {
+   "params": [
+    "configuration",
+    "expand"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/locations": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/locations/{location}": {
+   "params": [
+    "expand",
+    "location"
+   ],
+   "required": [
+    "location"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/readers": {
+   "params": [
+    "device_type",
+    "ending_before",
+    "expand",
+    "limit",
+    "location",
+    "serial_number",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/terminal/readers/{reader}": {
+   "params": [
+    "expand",
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/test_helpers/test_clocks": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/test_helpers/test_clocks/{test_clock}": {
+   "params": [
+    "expand",
+    "test_clock"
+   ],
+   "required": [
+    "test_clock"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/tokens/{token}": {
+   "params": [
+    "expand",
+    "token"
+   ],
+   "required": [
+    "token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/topups": {
+   "params": [
+    "amount",
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/topups/{topup}": {
+   "params": [
+    "expand",
+    "topup"
+   ],
+   "required": [
+    "topup"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/transfers": {
+   "params": [
+    "created",
+    "destination",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "transfer_group"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/transfers/{id}/reversals": {
+   "params": [
+    "ending_before",
+    "expand",
+    "id",
+    "limit",
+    "starting_after"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/transfers/{transfer}": {
+   "params": [
+    "expand",
+    "transfer"
+   ],
+   "required": [
+    "transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/transfers/{transfer}/reversals/{id}": {
+   "params": [
+    "expand",
+    "id",
+    "transfer"
+   ],
+   "required": [
+    "id",
+    "transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/credit_reversals": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "received_credit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/credit_reversals/{credit_reversal}": {
+   "params": [
+    "credit_reversal",
+    "expand"
+   ],
+   "required": [
+    "credit_reversal"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/debit_reversals": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "received_debit",
+    "resolution",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/debit_reversals/{debit_reversal}": {
+   "params": [
+    "debit_reversal",
+    "expand"
+   ],
+   "required": [
+    "debit_reversal"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/financial_accounts": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/financial_accounts/{financial_account}": {
+   "params": [
+    "expand",
+    "financial_account"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/financial_accounts/{financial_account}/features": {
+   "params": [
+    "expand",
+    "financial_account"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/inbound_transfers": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/inbound_transfers/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/outbound_payments": {
+   "params": [
+    "created",
+    "customer",
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/outbound_payments/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/outbound_transfers": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/outbound_transfers/{outbound_transfer}": {
+   "params": [
+    "expand",
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/received_credits": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "linked_flows",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/received_credits/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/received_debits": {
+   "params": [
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "starting_after",
+    "status"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/received_debits/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/transaction_entries": {
+   "params": [
+    "created",
+    "effective_at",
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "order_by",
+    "starting_after",
+    "transaction"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/transaction_entries/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/transactions": {
+   "params": [
+    "created",
+    "ending_before",
+    "expand",
+    "financial_account",
+    "limit",
+    "order_by",
+    "starting_after",
+    "status",
+    "status_transitions"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/treasury/transactions/{id}": {
+   "params": [
+    "expand",
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/webhook_endpoints": {
+   "params": [
+    "ending_before",
+    "expand",
+    "limit",
+    "starting_after"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "GET /v1/webhook_endpoints/{webhook_endpoint}": {
+   "params": [
+    "expand",
+    "webhook_endpoint"
+   ],
+   "required": [
+    "webhook_endpoint"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/account_links": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/account_sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/bank_accounts": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/bank_accounts/{id}": {
+   "params": [
+    "account",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/capabilities/{capability}": {
+   "params": [
+    "account",
+    "capability"
+   ],
+   "required": [
+    "account",
+    "capability"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/external_accounts": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/external_accounts/{id}": {
+   "params": [
+    "account",
+    "id"
+   ],
+   "required": [
+    "account",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/login_links": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/people": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/people/{person}": {
+   "params": [
+    "account",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/persons": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/persons/{person}": {
+   "params": [
+    "account",
+    "person"
+   ],
+   "required": [
+    "account",
+    "person"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/reject": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/accounts/{account}/unreject": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/apple_pay/domains": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/application_fees/{fee}/refunds/{id}": {
+   "params": [
+    "fee",
+    "id"
+   ],
+   "required": [
+    "fee",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/application_fees/{id}/refund": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/application_fees/{id}/refunds": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/apps/secrets": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/apps/secrets/delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/balance_settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/alerts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/alerts/{id}/activate": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/alerts/{id}/archive": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/alerts/{id}/deactivate": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/credit_grants": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/credit_grants/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/credit_grants/{id}/expire": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/credit_grants/{id}/void": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meter_event_adjustments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meter_events": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meters": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meters/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meters/{id}/deactivate": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing/meters/{id}/reactivate": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing_portal/configurations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing_portal/configurations/{configuration}": {
+   "params": [
+    "configuration"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/billing_portal/sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/capture": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/dispute": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/dispute/close": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/refund": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/refunds": {
+   "params": [
+    "charge"
+   ],
+   "required": [
+    "charge"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/charges/{charge}/refunds/{refund}": {
+   "params": [
+    "charge",
+    "refund"
+   ],
+   "required": [
+    "charge",
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/checkout/sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/checkout/sessions/{session}": {
+   "params": [
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/checkout/sessions/{session}/expire": {
+   "params": [
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/climate/orders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/climate/orders/{order}": {
+   "params": [
+    "order"
+   ],
+   "required": [
+    "order"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/climate/orders/{order}/cancel": {
+   "params": [
+    "order"
+   ],
+   "required": [
+    "order"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/coupons": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/coupons/{coupon}": {
+   "params": [
+    "coupon"
+   ],
+   "required": [
+    "coupon"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/credit_notes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/credit_notes/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/credit_notes/{id}/void": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customer_sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/balance_transactions": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/balance_transactions/{transaction}": {
+   "params": [
+    "customer",
+    "transaction"
+   ],
+   "required": [
+    "customer",
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/bank_accounts": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/bank_accounts/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/bank_accounts/{id}/verify": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/cards": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/cards/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/cash_balance": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/funding_instructions": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/sources": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/sources/{id}": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/sources/{id}/verify": {
+   "params": [
+    "customer",
+    "id"
+   ],
+   "required": [
+    "customer",
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/subscriptions": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "customer",
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/customers/{customer}/tax_ids": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/disputes/{dispute}": {
+   "params": [
+    "dispute"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/disputes/{dispute}/close": {
+   "params": [
+    "dispute"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/entitlements/features": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/entitlements/features/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/ephemeral_keys": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/external_accounts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/file_links": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/file_links/{link}": {
+   "params": [
+    "link"
+   ],
+   "required": [
+    "link"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/files": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/financial_connections/accounts/{account}/disconnect": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/financial_connections/accounts/{account}/refresh": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/financial_connections/accounts/{account}/subscribe": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/financial_connections/accounts/{account}/unsubscribe": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/financial_connections/sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/forwarding/requests": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/identity/verification_sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/identity/verification_sessions/{session}": {
+   "params": [
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/identity/verification_sessions/{session}/cancel": {
+   "params": [
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/identity/verification_sessions/{session}/redact": {
+   "params": [
+    "session"
+   ],
+   "required": [
+    "session"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoice_rendering_templates/{template}/archive": {
+   "params": [
+    "template"
+   ],
+   "required": [
+    "template"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoice_rendering_templates/{template}/unarchive": {
+   "params": [
+    "template"
+   ],
+   "required": [
+    "template"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoiceitems": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoiceitems/{invoiceitem}": {
+   "params": [
+    "invoiceitem"
+   ],
+   "required": [
+    "invoiceitem"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/create_preview": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/add_lines": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/attach_payment": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/finalize": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/lines/{line_item_id}": {
+   "params": [
+    "invoice",
+    "line_item_id"
+   ],
+   "required": [
+    "invoice",
+    "line_item_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/mark_uncollectible": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/pay": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/remove_lines": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/send": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/update_lines": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/invoices/{invoice}/void": {
+   "params": [
+    "invoice"
+   ],
+   "required": [
+    "invoice"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/authorizations/{authorization}": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/authorizations/{authorization}/approve": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/authorizations/{authorization}/decline": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/cardholders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/cardholders/{cardholder}": {
+   "params": [
+    "cardholder"
+   ],
+   "required": [
+    "cardholder"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/cards": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/cards/{card}": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/disputes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/disputes/{dispute}": {
+   "params": [
+    "dispute"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/disputes/{dispute}/submit": {
+   "params": [
+    "dispute"
+   ],
+   "required": [
+    "dispute"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/personalization_designs": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/personalization_designs/{personalization_design}": {
+   "params": [
+    "personalization_design"
+   ],
+   "required": [
+    "personalization_design"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/settlements/{settlement}": {
+   "params": [
+    "settlement"
+   ],
+   "required": [
+    "settlement"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/tokens/{token}": {
+   "params": [
+    "token"
+   ],
+   "required": [
+    "token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/issuing/transactions/{transaction}": {
+   "params": [
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/link_account_sessions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/linked_accounts/{account}/disconnect": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/linked_accounts/{account}/refresh": {
+   "params": [
+    "account"
+   ],
+   "required": [
+    "account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/apply_customer_balance": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/cancel": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/capture": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/confirm": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/increment_authorization": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_intents/{intent}/verify_microdeposits": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_links": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_links/{payment_link}": {
+   "params": [
+    "payment_link"
+   ],
+   "required": [
+    "payment_link"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_method_configurations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_method_configurations/{configuration}": {
+   "params": [
+    "configuration"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_method_domains": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_method_domains/{payment_method_domain}": {
+   "params": [
+    "payment_method_domain"
+   ],
+   "required": [
+    "payment_method_domain"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_method_domains/{payment_method_domain}/validate": {
+   "params": [
+    "payment_method_domain"
+   ],
+   "required": [
+    "payment_method_domain"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_methods": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_methods/{payment_method}": {
+   "params": [
+    "payment_method"
+   ],
+   "required": [
+    "payment_method"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_methods/{payment_method}/attach": {
+   "params": [
+    "payment_method"
+   ],
+   "required": [
+    "payment_method"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_methods/{payment_method}/detach": {
+   "params": [
+    "payment_method"
+   ],
+   "required": [
+    "payment_method"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/report_payment": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_payment_attempt": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_payment_attempt_canceled": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_payment_attempt_failed": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_payment_attempt_guaranteed": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_payment_attempt_informational": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payment_records/{id}/report_refund": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payouts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payouts/{payout}": {
+   "params": [
+    "payout"
+   ],
+   "required": [
+    "payout"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payouts/{payout}/cancel": {
+   "params": [
+    "payout"
+   ],
+   "required": [
+    "payout"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/payouts/{payout}/reverse": {
+   "params": [
+    "payout"
+   ],
+   "required": [
+    "payout"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/plans": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/plans/{plan}": {
+   "params": [
+    "plan"
+   ],
+   "required": [
+    "plan"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/prices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/prices/{price}": {
+   "params": [
+    "price"
+   ],
+   "required": [
+    "price"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/products": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/products/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/products/{product}/features": {
+   "params": [
+    "product"
+   ],
+   "required": [
+    "product"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/promotion_codes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/promotion_codes/{promotion_code}": {
+   "params": [
+    "promotion_code"
+   ],
+   "required": [
+    "promotion_code"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/quotes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/quotes/{quote}": {
+   "params": [
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/quotes/{quote}/accept": {
+   "params": [
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/quotes/{quote}/cancel": {
+   "params": [
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/quotes/{quote}/finalize": {
+   "params": [
+    "quote"
+   ],
+   "required": [
+    "quote"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/radar/payment_evaluations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/radar/value_list_items": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/radar/value_lists": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/radar/value_lists/{value_list}": {
+   "params": [
+    "value_list"
+   ],
+   "required": [
+    "value_list"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/refunds": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/refunds/{refund}": {
+   "params": [
+    "refund"
+   ],
+   "required": [
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/refunds/{refund}/cancel": {
+   "params": [
+    "refund"
+   ],
+   "required": [
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/reporting/report_runs": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/reviews/{review}/approve": {
+   "params": [
+    "review"
+   ],
+   "required": [
+    "review"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/setup_intents": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/setup_intents/{intent}": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/setup_intents/{intent}/cancel": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/setup_intents/{intent}/confirm": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/setup_intents/{intent}/verify_microdeposits": {
+   "params": [
+    "intent"
+   ],
+   "required": [
+    "intent"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/shipping_rates": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/shipping_rates/{shipping_rate_token}": {
+   "params": [
+    "shipping_rate_token"
+   ],
+   "required": [
+    "shipping_rate_token"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/sigma/saved_queries/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/sources": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/sources/{source}": {
+   "params": [
+    "source"
+   ],
+   "required": [
+    "source"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/sources/{source}/verify": {
+   "params": [
+    "source"
+   ],
+   "required": [
+    "source"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_items": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_items/{item}": {
+   "params": [
+    "item"
+   ],
+   "required": [
+    "item"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_schedules": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_schedules/{schedule}": {
+   "params": [
+    "schedule"
+   ],
+   "required": [
+    "schedule"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_schedules/{schedule}/cancel": {
+   "params": [
+    "schedule"
+   ],
+   "required": [
+    "schedule"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscription_schedules/{schedule}/release": {
+   "params": [
+    "schedule"
+   ],
+   "required": [
+    "schedule"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscriptions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscriptions/{subscription_exposed_id}": {
+   "params": [
+    "subscription_exposed_id"
+   ],
+   "required": [
+    "subscription_exposed_id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscriptions/{subscription}/migrate": {
+   "params": [
+    "subscription"
+   ],
+   "required": [
+    "subscription"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/subscriptions/{subscription}/resume": {
+   "params": [
+    "subscription"
+   ],
+   "required": [
+    "subscription"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/calculations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/registrations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/registrations/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/transactions/create_from_calculation": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax/transactions/create_reversal": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax_ids": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax_rates": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tax_rates/{tax_rate}": {
+   "params": [
+    "tax_rate"
+   ],
+   "required": [
+    "tax_rate"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/configurations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/configurations/{configuration}": {
+   "params": [
+    "configuration"
+   ],
+   "required": [
+    "configuration"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/connection_tokens": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/locations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/locations/{location}": {
+   "params": [
+    "location"
+   ],
+   "required": [
+    "location"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/onboarding_links": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/cancel_action": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/collect_inputs": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/collect_payment_method": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/confirm_payment_intent": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/process_payment_intent": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/process_setup_intent": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/refund_payment": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/readers/{reader}/set_reader_display": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/terminal/refunds": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/confirmation_tokens": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/customers/{customer}/fund_cash_balance": {
+   "params": [
+    "customer"
+   ],
+   "required": [
+    "customer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/capture": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/expire": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/finalize_amount": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/fraud_challenges/respond": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/increment": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/authorizations/{authorization}/reverse": {
+   "params": [
+    "authorization"
+   ],
+   "required": [
+    "authorization"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/cards/{card}/shipping/deliver": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/cards/{card}/shipping/fail": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/cards/{card}/shipping/return": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/cards/{card}/shipping/ship": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/cards/{card}/shipping/submit": {
+   "params": [
+    "card"
+   ],
+   "required": [
+    "card"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/personalization_designs/{personalization_design}/activate": {
+   "params": [
+    "personalization_design"
+   ],
+   "required": [
+    "personalization_design"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/personalization_designs/{personalization_design}/deactivate": {
+   "params": [
+    "personalization_design"
+   ],
+   "required": [
+    "personalization_design"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/personalization_designs/{personalization_design}/reject": {
+   "params": [
+    "personalization_design"
+   ],
+   "required": [
+    "personalization_design"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/settlements": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/settlements/{settlement}/complete": {
+   "params": [
+    "settlement"
+   ],
+   "required": [
+    "settlement"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/transactions/create_force_capture": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/transactions/create_unlinked_refund": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/issuing/transactions/{transaction}/refund": {
+   "params": [
+    "transaction"
+   ],
+   "required": [
+    "transaction"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/refunds/{refund}/expire": {
+   "params": [
+    "refund"
+   ],
+   "required": [
+    "refund"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/terminal/readers/{reader}/present_payment_method": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/terminal/readers/{reader}/succeed_input_collection": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/terminal/readers/{reader}/timeout_input_collection": {
+   "params": [
+    "reader"
+   ],
+   "required": [
+    "reader"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/test_clocks": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/test_clocks/{test_clock}/advance": {
+   "params": [
+    "test_clock"
+   ],
+   "required": [
+    "test_clock"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/inbound_transfers/{id}/fail": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/inbound_transfers/{id}/return": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/inbound_transfers/{id}/succeed": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_payments/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_payments/{id}/fail": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_payments/{id}/post": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_payments/{id}/return": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}": {
+   "params": [
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail": {
+   "params": [
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post": {
+   "params": [
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return": {
+   "params": [
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/received_credits": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/test_helpers/treasury/received_debits": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/tokens": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/topups": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/topups/{topup}": {
+   "params": [
+    "topup"
+   ],
+   "required": [
+    "topup"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/topups/{topup}/cancel": {
+   "params": [
+    "topup"
+   ],
+   "required": [
+    "topup"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/transfers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/transfers/{id}/reversals": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/transfers/{transfer}": {
+   "params": [
+    "transfer"
+   ],
+   "required": [
+    "transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/transfers/{transfer}/reversals/{id}": {
+   "params": [
+    "id",
+    "transfer"
+   ],
+   "required": [
+    "id",
+    "transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/credit_reversals": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/debit_reversals": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/financial_accounts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/financial_accounts/{financial_account}": {
+   "params": [
+    "financial_account"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/financial_accounts/{financial_account}/close": {
+   "params": [
+    "financial_account"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/financial_accounts/{financial_account}/features": {
+   "params": [
+    "financial_account"
+   ],
+   "required": [
+    "financial_account"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/inbound_transfers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/inbound_transfers/{inbound_transfer}/cancel": {
+   "params": [
+    "inbound_transfer"
+   ],
+   "required": [
+    "inbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/outbound_payments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/outbound_payments/{id}/cancel": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/outbound_transfers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/treasury/outbound_transfers/{outbound_transfer}/cancel": {
+   "params": [
+    "outbound_transfer"
+   ],
+   "required": [
+    "outbound_transfer"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/webhook_endpoints": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "default"
+   ]
+  },
+  "POST /v1/webhook_endpoints/{webhook_endpoint}": {
+   "params": [
+    "webhook_endpoint"
+   ],
+   "required": [
+    "webhook_endpoint"
+   ],
+   "responses": [
+    "200",
+    "default"
+   ]
+  }
+ },
+ "fetched_at": "2026-08-22T15:43:57+00:00",
+ "name": "Stripe",
+ "raw_bytes": 7967776,
+ "raw_sha256": "3653ad45bbec54fcbe461c541c908355b715018bdf455a0e11b27bedb2cbdee5",
+ "spec_title": "Stripe API",
+ "spec_url": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json",
+ "spec_version": "2026-07-29.dahlia",
+ "vendor": "stripe"
+}

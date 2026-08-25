@@ -1,0 +1,45 @@
+{
+  "_comment": "The four vendors Maya's shop runs on. Each is a contract she does not control and did not agree to. She calls them by what they do for her, which is the only name she has for them. Verified reachable 22 and 25 August 2026.",
+  "vendors": [
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "what_maya_calls_it": "how customers pay me",
+      "spec_url": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json",
+      "spec_format": "json",
+      "verified_on": "2026-08-22",
+      "verified_endpoints": 589,
+      "verified_version": "2026-07-29.dahlia"
+    },
+    {
+      "id": "square",
+      "name": "Square",
+      "what_maya_calls_it": "my till and my bookings",
+      "spec_url": "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json",
+      "spec_format": "json",
+      "verified_on": "2026-08-22",
+      "verified_endpoints": 334,
+      "verified_version": "2.0"
+    },
+    {
+      "id": "xero",
+      "name": "Xero Accounting",
+      "what_maya_calls_it": "my accounts, where my bookkeeper works",
+      "spec_url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
+      "spec_format": "yaml",
+      "verified_on": "2026-08-25",
+      "verified_endpoints": 235,
+      "verified_version": "17.0.0"
+    },
+    {
+      "id": "shipengine",
+      "name": "ShipEngine",
+      "what_maya_calls_it": "how I print labels",
+      "spec_url": "https://raw.githubusercontent.com/ShipEngine/shipengine-openapi/master/openapi.json",
+      "spec_format": "json",
+      "verified_on": "2026-08-22",
+      "verified_endpoints": 97,
+      "verified_version": "1.1.202604070904"
+    }
+  ]
+}

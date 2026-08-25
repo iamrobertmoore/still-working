@@ -1,0 +1,114 @@
+name: still working
+
+# Fetches the contracts of the four companies Maya's shop depends on, every morning,
+# records what moved, and raises an alarm only when a change can break somebody.
+#
+# This job answers "did anything change". It deliberately does not answer "does that
+# matter to Maya"; tools/impact.py and the agent do that, and they are tested separately.
+#
+# Two rules this workflow exists to obey, both learned by getting them wrong:
+#
+#  1. The alarm is gated on `steps.snapshot.outputs.breaking`, never on `failure()`.
+#     A broken job must never announce itself as a vendor changing their API.
+#  2. Nothing here is gated on a secret. Every spec is public. A job that skips its own
+#     work for want of a credential still goes green, and nothing draws attention to it.
+#
+# The self-test step runs first and fails the job loudly if the detector has stopped
+# detecting. A check nobody has watched fail asserts nothing.
+
+on:
+  schedule:
+    - cron: "40 5 * * *"   # 05:40 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: still-working
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prove the detector still detects
+        run: python tools/snapshot.py --self-test
+
+      - name: Prove the right things still reach Maya
+        run: python tools/impact.py --self-test
+
+      - name: Prove the agent still runs end to end
+        run: python agent/still_working.py --demo
+
+      - name: Snapshot the contracts
+        id: snapshot
+        continue-on-error: true
+        run: python tools/snapshot.py
+
+      - name: Commit today's snapshot
+        run: |
+          git config user.name  "contract-watch"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contracts/
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "contracts: snapshot $(date -u +%F)"
+            git push
+          fi
+
+      - name: Raise an alarm, but only on a change that can break a caller
+        if: steps.snapshot.outputs.breaking == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY' > /tmp/issue.md
+          import json, os
+          rows = [json.loads(l) for l in open("contracts/changes.jsonl")]
+          latest = rows[-1]["date"]
+          todays = [r for r in rows if r["date"] == latest and r["breaking_count"]]
+          print(f"Detected on {latest}.\n")
+          for r in todays:
+              print(f"## {r['vendor']}\n")
+              print(f"Contract version `{r['from_version']}` to `{r['to_version']}`.\n")
+              for c in r["changes"]:
+                  if not c["breaking"]:
+                      continue
+                  if c["kind"] == "endpoint_removed":
+                      print(f"- **Endpoint removed**: `{c['endpoint']}`")
+                  elif c["kind"] == "param_removed":
+                      print(f"- **Parameter removed**: `{c['param']}` from `{c['endpoint']}`")
+                  elif c["kind"] == "param_became_required":
+                      print(f"- **Parameter now required**: `{c['param']}` on `{c['endpoint']}`")
+              print()
+          print("Raised because a change matched one of the three shapes that break an existing")
+          print("caller. Additive changes do not raise this issue.")
+          PY
+          # Create the label only if it is genuinely absent. Do not hide a real
+          # failure behind "|| true"; that is how a job goes green having done nothing.
+          if ! gh label list --json name -q '.[].name' | grep -qx contract-drift; then
+            gh label create contract-drift \
+              --color B60205 \
+              --description "A vendor changed their contract in a way that can break a caller"
+          fi
+
+          gh issue create \
+            --title "Contract change that can break a caller ($(date -u +%F))" \
+            --body-file /tmp/issue.md \
+            --label contract-drift
+
+      - name: Fail the run if a vendor was unreachable
+        if: steps.snapshot.outcome == 'failure'
+        run: |
+          echo "The snapshot step could not reach at least one vendor."
+          echo "This is a job problem, not a contract change, which is why it is reported"
+          echo "here and not as a drift issue."
+          exit 1

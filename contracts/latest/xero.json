@@ -1,0 +1,1926 @@
+{
+ "endpoint_count": 235,
+ "endpoints": {
+  "DELETE /Accounts/{AccountID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "DELETE /ContactGroups/{ContactGroupID}/Contacts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204"
+   ]
+  },
+  "DELETE /ContactGroups/{ContactGroupID}/Contacts/{ContactID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204",
+    "400"
+   ]
+  },
+  "DELETE /CreditNotes/{CreditNoteID}/Allocations/{AllocationID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /Items/{ItemID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204",
+    "400"
+   ]
+  },
+  "DELETE /LinkedTransactions/{LinkedTransactionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204",
+    "400"
+   ]
+  },
+  "DELETE /Overpayments/{OverpaymentID}/Allocations/{AllocationID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /Prepayments/{PrepaymentID}/Allocations/{AllocationID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /TrackingCategories/{TrackingCategoryID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "DELETE /TrackingCategories/{TrackingCategoryID}/Options/{TrackingOptionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "GET /Accounts": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Accounts/{AccountID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Accounts/{AccountID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Accounts/{AccountID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Accounts/{AccountID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions": {
+   "params": [
+    "References",
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions/{BankTransactionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions/{BankTransactionID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions/{BankTransactionID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions/{BankTransactionID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransactions/{BankTransactionID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers": {
+   "params": [
+    "includeDeleted",
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers/{BankTransferID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers/{BankTransferID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers/{BankTransferID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers/{BankTransferID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BankTransfers/{BankTransferID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BatchPayments": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BatchPayments/{BatchPaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BatchPayments/{BatchPaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BrandingThemes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BrandingThemes/{BrandingThemeID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /BrandingThemes/{BrandingThemeID}/PaymentServices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Budgets": {
+   "params": [
+    "DateFrom",
+    "DateTo",
+    "IDs"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Budgets/{BudgetID}": {
+   "params": [
+    "DateFrom",
+    "DateTo"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ContactGroups": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ContactGroups/{ContactGroupID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts": {
+   "params": [
+    "IDs",
+    "includeArchived",
+    "order",
+    "page",
+    "searchTerm",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}/CISSettings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Contacts/{ContactNumber}": {
+   "params": [
+    "ContactNumber"
+   ],
+   "required": [
+    "ContactNumber"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes": {
+   "params": [
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /CreditNotes/{CreditNoteID}/pdf": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Currencies": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ExpenseClaims": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ExpenseClaims/{ExpenseClaimID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ExpenseClaims/{ExpenseClaimID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /InvoiceReminders/Settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices": {
+   "params": [
+    "ContactIDs",
+    "IDs",
+    "InvoiceNumbers",
+    "Statuses",
+    "createdByMyApp",
+    "includeArchived",
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/OnlineInvoice": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Invoices/{InvoiceID}/pdf": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Items": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Items/{ItemID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Items/{ItemID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Journals": {
+   "params": [
+    "offset",
+    "paymentsOnly"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Journals/{JournalID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Journals/{JournalNumber}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /LinkedTransactions": {
+   "params": [
+    "ContactID",
+    "LinkedTransactionID",
+    "SourceTransactionID",
+    "Status",
+    "TargetTransactionID",
+    "page"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /LinkedTransactions/{LinkedTransactionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals": {
+   "params": [
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals/{ManualJournalID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals/{ManualJournalID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals/{ManualJournalID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals/{ManualJournalID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /ManualJournals/{ManualJournalID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Organisation": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Organisation/Actions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Organisation/{OrganisationID}/CISSettings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Overpayments": {
+   "params": [
+    "References",
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Overpayments/{OverpaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Overpayments/{OverpaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PaymentServices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Payments": {
+   "params": [
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Payments/{PaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Payments/{PaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Prepayments": {
+   "params": [
+    "InvoiceNumbers",
+    "References",
+    "order",
+    "page",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Prepayments/{PrepaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Prepayments/{PrepaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders": {
+   "params": [
+    "DateFrom",
+    "DateTo",
+    "Status",
+    "order",
+    "page"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderID}/pdf": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /PurchaseOrders/{PurchaseOrderNumber}": {
+   "params": [
+    "PurchaseOrderNumber"
+   ],
+   "required": [
+    "PurchaseOrderNumber"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes": {
+   "params": [
+    "ContactID",
+    "DateFrom",
+    "DateTo",
+    "ExpiryDateFrom",
+    "ExpiryDateTo",
+    "QuoteNumber",
+    "Status",
+    "order",
+    "page"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Quotes/{QuoteID}/pdf": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts/{ReceiptID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts/{ReceiptID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts/{ReceiptID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts/{ReceiptID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Receipts/{ReceiptID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices/{RepeatingInvoiceID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices/{RepeatingInvoiceID}/Attachments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{AttachmentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /RepeatingInvoices/{RepeatingInvoiceID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/AgedPayablesByContact": {
+   "params": [
+    "contactId",
+    "date"
+   ],
+   "required": [
+    "contactId"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/AgedReceivablesByContact": {
+   "params": [
+    "contactId",
+    "date"
+   ],
+   "required": [
+    "contactId"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/BalanceSheet": {
+   "params": [
+    "date",
+    "paymentsOnly",
+    "periods",
+    "standardLayout",
+    "timeframe",
+    "trackingOptionID1",
+    "trackingOptionID2"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/BankSummary": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/BudgetSummary": {
+   "params": [
+    "date",
+    "periods",
+    "timeframe"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/ExecutiveSummary": {
+   "params": [
+    "date"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/ProfitAndLoss": {
+   "params": [
+    "paymentsOnly",
+    "periods",
+    "standardLayout",
+    "timeframe",
+    "trackingCategoryID",
+    "trackingCategoryID2",
+    "trackingOptionID",
+    "trackingOptionID2"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/TenNinetyNine": {
+   "params": [
+    "reportYear"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/TrialBalance": {
+   "params": [
+    "date",
+    "paymentsOnly"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Reports/{ReportID}": {
+   "params": [
+    "ReportID"
+   ],
+   "required": [
+    "ReportID"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /TaxRates": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /TaxRates/{TaxType}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /TrackingCategories": {
+   "params": [
+    "includeArchived",
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /TrackingCategories/{TrackingCategoryID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Users": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Users/{UserID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /Accounts/{AccountID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Accounts/{AccountID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransactions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransactions/{BankTransactionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransactions/{BankTransactionID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransfers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransfers/{BankTransferID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BankTransfers/{BankTransferID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BatchPayments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BatchPayments/{BatchPaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /BrandingThemes/{BrandingThemeID}/PaymentServices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /ContactGroups/{ContactGroupID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Contacts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Contacts/{ContactID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Contacts/{ContactID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /CreditNotes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /CreditNotes/{CreditNoteID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /CreditNotes/{CreditNoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /ExpenseClaims/{ExpenseClaimID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Invoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Invoices/{InvoiceID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Invoices/{InvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Invoices/{InvoiceID}/Email": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204",
+    "400"
+   ]
+  },
+  "POST /Items": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Items/{ItemID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /LinkedTransactions/{LinkedTransactionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /ManualJournals": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /ManualJournals/{ManualJournalID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /ManualJournals/{ManualJournalID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Payments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Payments/{PaymentID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /PurchaseOrders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /PurchaseOrders/{PurchaseOrderID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Quotes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Quotes/{QuoteID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Quotes/{QuoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Receipts/{ReceiptID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Receipts/{ReceiptID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /RepeatingInvoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /RepeatingInvoices/{RepeatingInvoiceID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Setup": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /TaxRates": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /TrackingCategories/{TrackingCategoryID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /TrackingCategories/{TrackingCategoryID}/Options/{TrackingOptionID}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Accounts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Accounts/{AccountID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransactions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransactions/{BankTransactionID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransactions/{BankTransactionID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransfers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransfers/{BankTransferID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BankTransfers/{BankTransferID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BatchPayments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /BatchPayments/{BatchPaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ContactGroups": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ContactGroups/{ContactGroupID}/Contacts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Contacts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Contacts/{ContactID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Contacts/{ContactID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /CreditNotes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /CreditNotes/{CreditNoteID}/Allocations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /CreditNotes/{CreditNoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /CreditNotes/{CreditNoteID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Currencies": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /ExpenseClaims": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ExpenseClaims/{ExpenseClaimID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /Invoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Invoices/{InvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Invoices/{InvoiceID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Items": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Items/{ItemID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /LinkedTransactions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ManualJournals": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ManualJournals/{ManualJournalID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /ManualJournals/{ManualJournalID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Overpayments/{OverpaymentID}/Allocations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Overpayments/{OverpaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /PaymentServices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Payments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Payments/{PaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Prepayments/{PrepaymentID}/Allocations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Prepayments/{PrepaymentID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /PurchaseOrders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /PurchaseOrders/{PurchaseOrderID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /PurchaseOrders/{PurchaseOrderID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Quotes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Quotes/{QuoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Quotes/{QuoteID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Receipts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Receipts/{ReceiptID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /Receipts/{ReceiptID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /RepeatingInvoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /RepeatingInvoices/{RepeatingInvoiceID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /RepeatingInvoices/{RepeatingInvoiceID}/History": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /TaxRates": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /TrackingCategories": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "PUT /TrackingCategories/{TrackingCategoryID}/Options": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  }
+ },
+ "fetched_at": "2026-08-25T12:06:44+00:00",
+ "name": "Xero Accounting",
+ "raw_bytes": 929720,
+ "raw_sha256": "f980dbcfc317b9ea60c5095f1861f9e60fe05e5f8059781c4f2c2a816e918746",
+ "spec_title": "Xero Accounting API",
+ "spec_url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
+ "spec_version": "17.0.0",
+ "vendor": "xero",
+ "what_maya_calls_it": "my accounts, where my bookkeeper works"
+}

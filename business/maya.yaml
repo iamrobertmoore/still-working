@@ -1,0 +1,133 @@
+# Maya's shop, in Maya's words.
+#
+# This file is the whole difference between a tool for developers and a product for a
+# business owner. Everything above the line in each routine is how Maya describes her
+# own business. Everything below it was worked out by the agent during setup and she
+# has never read it.
+#
+# She did not write any of the vendor call names. She could not. She answered five
+# questions about what happens in her week, and the setup conversation turned those
+# answers into calls to watch. That mapping is recorded here so it can be checked,
+# corrected, and blamed when it is wrong.
+
+owner: Maya
+business: A twelve-person online shop. Homeware, mostly. Sells online and at one counter.
+who_fixes_things: Priya, a freelance developer, two days a month, not on retainer
+how_maya_finds_out_today: Someone tells her. Usually a customer, sometimes her bookkeeper.
+
+routines:
+
+  - id: orders-into-accounts
+    what_maya_calls_it: Orders going into the accounts
+    in_her_words: >
+      Every night the day's orders are supposed to turn up in my accounting software so
+      Ines can reconcile them in the morning. I do not look at it. It either happened or
+      Ines tells me it did not.
+    how_often: every night
+    if_it_stops: >
+      Ines reconciles from this. Nothing looks wrong on my side, the shop keeps taking
+      orders, the money still arrives. The gap only shows up when someone adds it up.
+    how_late_would_she_notice: three weeks, that is what happened last time
+    what_it_costs: >
+      Three weeks of manual reconciliation for Ines, at her hourly rate, plus a VAT return
+      built on numbers nobody trusts.
+    # ---- derived by the agent during setup, 2026-08-25. Maya has not read this part. ----
+    derived:
+      confidence: high
+      why: >
+        She named the accounting software and said orders move nightly. A nightly push of
+        orders into Xero can only be reading orders from the till and writing invoices or
+        payments into the accounts.
+      depends_on:
+        - vendor: square
+          calls: ["GET /v2/orders", "POST /v2/orders/search", "GET /v2/locations"]
+        - vendor: xero
+          calls: ["POST /Invoices", "PUT /Invoices", "POST /Payments", "GET /Contacts"]
+
+  - id: taking-payment
+    what_maya_calls_it: Taking payment
+    in_her_words: >
+      People pay on the website with a card. If that stops I know within about four minutes
+      because the orders stop and someone emails me.
+    how_often: continuously
+    if_it_stops: obvious and immediate
+    how_late_would_she_notice: minutes
+    what_it_costs: every hour of downtime is a day of trading in December
+    derived:
+      confidence: high
+      why: Card payments on the website, she names Stripe on her invoices.
+      depends_on:
+        - vendor: stripe
+          calls: ["POST /v1/payment_intents", "POST /v1/charges", "GET /v1/payment_intents/{intent}"]
+
+  - id: refunding-someone
+    what_maya_calls_it: Refunding someone
+    in_her_words: >
+      Returns come back, my team refunds them from the admin screen. It is fiddly already.
+    how_often: ten or twenty a week
+    if_it_stops: >
+      The team cannot refund. They will do it by bank transfer instead and not tell me, and
+      then the accounts will not match.
+    how_late_would_she_notice: a week, when the accounts stop matching
+    what_it_costs: chargebacks, and a customer who was already annoyed
+    derived:
+      confidence: medium
+      why: >
+        She said "from the admin screen", which is her own admin, not Stripe's dashboard.
+        That means her code calls the refund endpoint. Medium because she may be refunding
+        through Square for counter sales too and did not mention it.
+      depends_on:
+        - vendor: stripe
+          calls: ["POST /v1/refunds", "GET /v1/refunds/{refund}"]
+
+  - id: labels-and-tracking
+    what_maya_calls_it: Getting parcels out and telling people where they are
+    in_her_words: >
+      We print labels in the morning. The tracking number goes into the email the customer
+      gets. If the tracking is wrong they email us and we lose an hour.
+    how_often: every weekday morning
+    if_it_stops: labels still print, tracking emails go out wrong or empty
+    how_late_would_she_notice: two days, when the emails start coming in
+    what_it_costs: an hour a day of someone answering "where is my parcel"
+    derived:
+      confidence: medium
+      why: >
+        Label printing plus a tracking number written back into her email template. Medium
+        because she did not say who sends the email, so the tracking read may be hers or
+        her email provider's.
+      depends_on:
+        - vendor: shipengine
+          calls: ["POST /v1/labels", "GET /v1/tracking", "POST /v1/rates"]
+
+  - id: monday-figure
+    what_maya_calls_it: The Monday morning number
+    in_her_words: >
+      I look at last week's sales on Monday. It is one number. If it is wrong I will make a
+      decision on it and not know I did.
+    how_often: weekly
+    if_it_stops: >
+      The worst one. It does not stop, it just quietly becomes wrong, and she acts on it.
+    how_late_would_she_notice: possibly never
+    what_it_costs: unknowable, which is the problem
+    derived:
+      confidence: low
+      why: >
+        She did not say where the number comes from. It could be Square's own reporting,
+        in which case nothing here touches it, or a spreadsheet her developer built that
+        totals the week's payments. Low confidence is recorded rather than guessed. The
+        agent should ask her again.
+        NOTE, 25 Aug: this routine originally listed only calls that
+        orders-into-accounts also uses. A routine whose calls are a strict subset of a
+        more confident routine's can never trigger its own confirmation, because the
+        confident one always answers first. Caught by a test that could not be made to
+        fail. GET /v2/payments is the call the weekly total would plausibly use on its
+        own, and it is the one that makes this routine independently observable.
+      depends_on:
+        - vendor: square
+          calls: ["POST /v2/orders/search", "GET /v2/locations", "GET /v2/payments"]
+
+# What Maya is never shown unless it reaches her:
+#   - the word endpoint
+#   - the word parameter
+#   - the name of any vendor's API
+#   - a diff

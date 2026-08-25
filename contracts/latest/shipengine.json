@@ -1,0 +1,1293 @@
+{
+ "endpoint_count": 97,
+ "endpoints": {
+  "DELETE /v1/account/settings/images/{label_image_id}": {
+   "params": [
+    "label_image_id"
+   ],
+   "required": [
+    "label_image_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/batches/{batch_id}": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/carriers/{carrier_id}": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/connections/carriers/{carrier_name}/{carrier_id}": {
+   "params": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "required": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "responses": [
+    "204",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/connections/insurance/shipsurance": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "DELETE /v1/environment/webhooks/{webhook_id}": {
+   "params": [
+    "webhook_id"
+   ],
+   "required": [
+    "webhook_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/packages/{package_id}": {
+   "params": [
+    "package_id"
+   ],
+   "required": [
+    "package_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/pickups/{pickup_id}": {
+   "params": [
+    "pickup_id"
+   ],
+   "required": [
+    "pickup_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/shipments/{shipment_id}/tags/{tag_name}": {
+   "params": [
+    "shipment_id",
+    "tag_name"
+   ],
+   "required": [
+    "shipment_id",
+    "tag_name"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/tags/{tag_name}": {
+   "params": [
+    "tag_name"
+   ],
+   "required": [
+    "tag_name"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "DELETE /v1/warehouses/{warehouse_id}": {
+   "params": [
+    "warehouse_id"
+   ],
+   "required": [
+    "warehouse_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/account/settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/account/settings/images": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/account/settings/images/{label_image_id}": {
+   "params": [
+    "label_image_id"
+   ],
+   "required": [
+    "label_image_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/batches": {
+   "params": [
+    "batch_number",
+    "created_at_end",
+    "created_at_start",
+    "page",
+    "page_size",
+    "processed_at_end",
+    "processed_at_start",
+    "sort_by",
+    "sort_dir",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/batches/external_batch_id/{external_batch_id}": {
+   "params": [
+    "external_batch_id"
+   ],
+   "required": [
+    "external_batch_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/batches/{batch_id}": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/batches/{batch_id}/errors": {
+   "params": [
+    "batch_id",
+    "page",
+    "pagesize"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/carriers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "207",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/carriers/{carrier_id}": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/carriers/{carrier_id}/options": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/carriers/{carrier_id}/packages": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/carriers/{carrier_id}/services": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/connections/carriers/{carrier_name}/{carrier_id}/settings": {
+   "params": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "required": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "responses": [
+    "200",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/downloads/{dir}/{subdir}/{filename}": {
+   "params": [
+    "dir",
+    "download",
+    "filename",
+    "rotation",
+    "subdir"
+   ],
+   "required": [
+    "dir",
+    "filename",
+    "subdir"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/environment/webhooks": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "GET /v1/environment/webhooks/{webhook_id}": {
+   "params": [
+    "webhook_id"
+   ],
+   "required": [
+    "webhook_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/insurance/shipsurance/balance": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "GET /v1/labels": {
+   "params": [
+    "batch_id",
+    "carrier_id",
+    "created_at_end",
+    "created_at_start",
+    "label_status",
+    "page",
+    "page_size",
+    "rate_id",
+    "refund_status",
+    "service_code",
+    "shipment_id",
+    "sort_by",
+    "sort_dir",
+    "tracking_number",
+    "warehouse_id"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "GET /v1/labels/external_shipment_id/{external_shipment_id}": {
+   "params": [
+    "external_shipment_id",
+    "label_download_type"
+   ],
+   "required": [
+    "external_shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/labels/{label_id}": {
+   "params": [
+    "label_download_type",
+    "label_id"
+   ],
+   "required": [
+    "label_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/labels/{label_id}/track": {
+   "params": [
+    "label_id"
+   ],
+   "required": [
+    "label_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/manifests": {
+   "params": [
+    "carrier_id",
+    "created_at_end",
+    "created_at_start",
+    "label_ids",
+    "page",
+    "page_size",
+    "ship_date_end",
+    "ship_date_start",
+    "warehouse_id"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/manifests/requests/{manifest_request_id}": {
+   "params": [
+    "manifest_request_id"
+   ],
+   "required": [
+    "manifest_request_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/manifests/{manifest_id}": {
+   "params": [
+    "manifest_id"
+   ],
+   "required": [
+    "manifest_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/packages": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/packages/{package_id}": {
+   "params": [
+    "package_id"
+   ],
+   "required": [
+    "package_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/pickups": {
+   "params": [
+    "carrier_id",
+    "created_at_end",
+    "created_at_start",
+    "page",
+    "page_size",
+    "warehouse_id"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/pickups/{pickup_id}": {
+   "params": [
+    "pickup_id"
+   ],
+   "required": [
+    "pickup_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/rates/{rate_id}": {
+   "params": [
+    "rate_id"
+   ],
+   "required": [
+    "rate_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/service_points/{carrier_code}/{country_code}/{service_point_id}": {
+   "params": [
+    "carrier_code",
+    "country_code",
+    "service_point_id"
+   ],
+   "required": [
+    "carrier_code",
+    "country_code",
+    "service_point_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/shipments": {
+   "params": [
+    "batch_id",
+    "created_at_end",
+    "created_at_start",
+    "modified_at_end",
+    "modified_at_start",
+    "page",
+    "page_size",
+    "sales_order_id",
+    "shipment_status",
+    "sort_by",
+    "sort_dir",
+    "tag"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/shipments/external_shipment_id/{external_shipment_id}": {
+   "params": [
+    "external_shipment_id"
+   ],
+   "required": [
+    "external_shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/shipments/{shipment_id}": {
+   "params": [
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/shipments/{shipment_id}/rates": {
+   "params": [
+    "created_at_start",
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/shipments/{shipment_id}/tags": {
+   "params": [
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/tags": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/tracking": {
+   "params": [
+    "carrier_code",
+    "carrier_id",
+    "tracking_number"
+   ],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/warehouses": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "GET /v1/warehouses/{warehouse_id}": {
+   "params": [
+    "warehouse_id"
+   ],
+   "required": [
+    "warehouse_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PATCH /v1/insurance/shipsurance/add_funds": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/account/settings/images": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/addresses/validate": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/batches": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "207",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/batches/{batch_id}/add": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/batches/{batch_id}/process/labels": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/batches/{batch_id}/remove": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/connections/carriers/{carrier_name}": {
+   "params": [
+    "carrier_name"
+   ],
+   "required": [
+    "carrier_name"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/connections/insurance/shipsurance": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/documents/combined_labels": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/environment/webhooks": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "409",
+    "500"
+   ]
+  },
+  "POST /v1/labels": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/labels/rate_shopper_id/{rate_shopper_id}": {
+   "params": [
+    "rate_shopper_id"
+   ],
+   "required": [
+    "rate_shopper_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/labels/rates/{rate_id}": {
+   "params": [
+    "rate_id"
+   ],
+   "required": [
+    "rate_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/labels/shipment/{shipment_id}": {
+   "params": [
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/labels/{label_id}/cancel_refund": {
+   "params": [
+    "label_id"
+   ],
+   "required": [
+    "label_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/labels/{label_id}/return": {
+   "params": [
+    "label_id"
+   ],
+   "required": [
+    "label_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/manifests": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/packages": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/pickups": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/rates": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/rates/bulk": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/rates/estimate": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/service_points/list": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/shipments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "POST /v1/shipments/{shipment_id}/tags/{tag_name}": {
+   "params": [
+    "shipment_id",
+    "tag_name"
+   ],
+   "required": [
+    "shipment_id",
+    "tag_name"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/tags": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/tags/{tag_name}": {
+   "params": [
+    "tag_name"
+   ],
+   "required": [
+    "tag_name"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/tokens/ephemeral": {
+   "params": [
+    "redirect"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v1/tracking/start": {
+   "params": [
+    "carrier_code",
+    "carrier_id",
+    "tracking_number"
+   ],
+   "required": [],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/tracking/stop": {
+   "params": [
+    "carrier_code",
+    "carrier_id",
+    "tracking_number"
+   ],
+   "required": [],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "POST /v1/warehouses": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/account/settings/images/{label_image_id}": {
+   "params": [
+    "label_image_id"
+   ],
+   "required": [
+    "label_image_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/addresses/recognize": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "PUT /v1/batches/{batch_id}": {
+   "params": [
+    "batch_id"
+   ],
+   "required": [
+    "batch_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/carriers/{carrier_id}/add_funds": {
+   "params": [
+    "carrier_id"
+   ],
+   "required": [
+    "carrier_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/connections/carriers/{carrier_name}/{carrier_id}/settings": {
+   "params": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "required": [
+    "carrier_id",
+    "carrier_name"
+   ],
+   "responses": [
+    "204",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/environment/webhooks/{webhook_id}": {
+   "params": [
+    "webhook_id"
+   ],
+   "required": [
+    "webhook_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/labels/{label_id}/void": {
+   "params": [
+    "label_id"
+   ],
+   "required": [
+    "label_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/packages/{package_id}": {
+   "params": [
+    "package_id"
+   ],
+   "required": [
+    "package_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/shipments/recognize": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400",
+    "500"
+   ]
+  },
+  "PUT /v1/shipments/tags": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/shipments/{shipment_id}": {
+   "params": [
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "200",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/shipments/{shipment_id}/cancel": {
+   "params": [
+    "shipment_id"
+   ],
+   "required": [
+    "shipment_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/tags/{tag_name}/{new_tag_name}": {
+   "params": [
+    "new_tag_name",
+    "tag_name"
+   ],
+   "required": [
+    "new_tag_name",
+    "tag_name"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/warehouses/{warehouse_id}": {
+   "params": [
+    "warehouse_id"
+   ],
+   "required": [
+    "warehouse_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  },
+  "PUT /v1/warehouses/{warehouse_id}/settings": {
+   "params": [
+    "warehouse_id"
+   ],
+   "required": [
+    "warehouse_id"
+   ],
+   "responses": [
+    "204",
+    "400",
+    "404",
+    "500"
+   ]
+  }
+ },
+ "fetched_at": "2026-08-25T12:06:45+00:00",
+ "name": "ShipEngine",
+ "raw_bytes": 16969622,
+ "raw_sha256": "9238cae675ac2e3e8d3c00e50276c1deca63f053bbff83b11913d37001a866b6",
+ "spec_title": "ShipEngine API",
+ "spec_url": "https://raw.githubusercontent.com/ShipEngine/shipengine-openapi/master/openapi.json",
+ "spec_version": "1.1.202604070904",
+ "vendor": "shipengine",
+ "what_maya_calls_it": "how I print labels"
+}

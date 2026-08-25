@@ -1,0 +1,3386 @@
+{
+ "endpoint_count": 334,
+ "endpoints": {
+  "DELETE /v2/bookings/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/bookings/{booking_id}/custom-attributes/{key}": {
+   "params": [
+    "booking_id",
+    "key"
+   ],
+   "required": [
+    "booking_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/catalog/object/{object_id}": {
+   "params": [
+    "object_id"
+   ],
+   "required": [
+    "object_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/groups/{group_id}": {
+   "params": [
+    "group_id"
+   ],
+   "required": [
+    "group_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/{customer_id}": {
+   "params": [
+    "customer_id",
+    "version"
+   ],
+   "required": [
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/{customer_id}/cards/{card_id}": {
+   "params": [
+    "card_id",
+    "customer_id"
+   ],
+   "required": [
+    "card_id",
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/{customer_id}/custom-attributes/{key}": {
+   "params": [
+    "customer_id",
+    "key"
+   ],
+   "required": [
+    "customer_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/customers/{customer_id}/groups/{group_id}": {
+   "params": [
+    "customer_id",
+    "group_id"
+   ],
+   "required": [
+    "customer_id",
+    "group_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/disputes/{dispute_id}/evidence/{evidence_id}": {
+   "params": [
+    "dispute_id",
+    "evidence_id"
+   ],
+   "required": [
+    "dispute_id",
+    "evidence_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/invoices/{invoice_id}": {
+   "params": [
+    "invoice_id",
+    "version"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/invoices/{invoice_id}/attachments/{attachment_id}": {
+   "params": [
+    "attachment_id",
+    "invoice_id"
+   ],
+   "required": [
+    "attachment_id",
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/labor/break-types/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/labor/shifts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/labor/timecards/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/locations/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/locations/{location_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "location_id"
+   ],
+   "required": [
+    "key",
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/loyalty/rewards/{reward_id}": {
+   "params": [
+    "reward_id"
+   ],
+   "required": [
+    "reward_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/merchants/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/merchants/{merchant_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "merchant_id"
+   ],
+   "required": [
+    "key",
+    "merchant_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/online-checkout/payment-links/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/orders/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/orders/{order_id}/custom-attributes/{custom_attribute_key}": {
+   "params": [
+    "custom_attribute_key",
+    "order_id"
+   ],
+   "required": [
+    "custom_attribute_key",
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/sites/{site_id}/snippet": {
+   "params": [
+    "site_id"
+   ],
+   "required": [
+    "site_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/subscriptions/{subscription_id}/actions/{action_id}": {
+   "params": [
+    "action_id",
+    "subscription_id"
+   ],
+   "required": [
+    "action_id",
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/transfer-orders/{transfer_order_id}": {
+   "params": [
+    "transfer_order_id",
+    "version"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "DELETE /v2/webhooks/subscriptions/{subscription_id}": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v1/{location_id}/orders": {
+   "params": [
+    "batch_token",
+    "limit",
+    "location_id",
+    "order"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v1/{location_id}/orders/{order_id}": {
+   "params": [
+    "location_id",
+    "order_id"
+   ],
+   "required": [
+    "location_id",
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bank-accounts": {
+   "params": [
+    "cursor",
+    "customer_id",
+    "limit",
+    "location_id"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bank-accounts/by-v1-id/{v1_bank_account_id}": {
+   "params": [
+    "v1_bank_account_id"
+   ],
+   "required": [
+    "v1_bank_account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bank-accounts/{bank_account_id}": {
+   "params": [
+    "bank_account_id"
+   ],
+   "required": [
+    "bank_account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings": {
+   "params": [
+    "cursor",
+    "customer_id",
+    "limit",
+    "location_id",
+    "start_at_max",
+    "start_at_min",
+    "team_member_id"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/business-booking-profile": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/custom-attribute-definitions": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/custom-attribute-definitions/{key}": {
+   "params": [
+    "key",
+    "version"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/location-booking-profiles": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/location-booking-profiles/{location_id}": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/team-member-booking-profiles": {
+   "params": [
+    "bookable_only",
+    "cursor",
+    "limit",
+    "location_id"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/team-member-booking-profiles/{team_member_id}": {
+   "params": [
+    "team_member_id"
+   ],
+   "required": [
+    "team_member_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/{booking_id}": {
+   "params": [
+    "booking_id"
+   ],
+   "required": [
+    "booking_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/{booking_id}/custom-attributes": {
+   "params": [
+    "booking_id",
+    "cursor",
+    "limit",
+    "with_definitions"
+   ],
+   "required": [
+    "booking_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/bookings/{booking_id}/custom-attributes/{key}": {
+   "params": [
+    "booking_id",
+    "key",
+    "version",
+    "with_definition"
+   ],
+   "required": [
+    "booking_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/cards": {
+   "params": [
+    "cursor",
+    "customer_id",
+    "include_disabled",
+    "reference_id",
+    "sort_order"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/cards/{card_id}": {
+   "params": [
+    "card_id"
+   ],
+   "required": [
+    "card_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/cash-drawers/shifts": {
+   "params": [
+    "begin_time",
+    "cursor",
+    "end_time",
+    "limit",
+    "location_id",
+    "sort_order"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/cash-drawers/shifts/{shift_id}": {
+   "params": [
+    "location_id",
+    "shift_id"
+   ],
+   "required": [
+    "location_id",
+    "shift_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/cash-drawers/shifts/{shift_id}/events": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id",
+    "shift_id"
+   ],
+   "required": [
+    "location_id",
+    "shift_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/catalog/info": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/catalog/list": {
+   "params": [
+    "catalog_version",
+    "cursor",
+    "types"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/catalog/object/{object_id}": {
+   "params": [
+    "catalog_version",
+    "include_category_path_to_root",
+    "include_related_objects",
+    "object_id"
+   ],
+   "required": [
+    "object_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/channels": {
+   "params": [
+    "cursor",
+    "limit",
+    "reference_id",
+    "reference_type",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/channels/{channel_id}": {
+   "params": [
+    "channel_id"
+   ],
+   "required": [
+    "channel_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers": {
+   "params": [
+    "count",
+    "cursor",
+    "limit",
+    "sort_field",
+    "sort_order"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/custom-attribute-definitions": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/custom-attribute-definitions/{key}": {
+   "params": [
+    "key",
+    "version"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/groups": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/groups/{group_id}": {
+   "params": [
+    "group_id"
+   ],
+   "required": [
+    "group_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/segments": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/segments/{segment_id}": {
+   "params": [
+    "segment_id"
+   ],
+   "required": [
+    "segment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/{customer_id}": {
+   "params": [
+    "customer_id"
+   ],
+   "required": [
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/{customer_id}/custom-attributes": {
+   "params": [
+    "cursor",
+    "customer_id",
+    "limit",
+    "with_definitions"
+   ],
+   "required": [
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/customers/{customer_id}/custom-attributes/{key}": {
+   "params": [
+    "customer_id",
+    "key",
+    "version",
+    "with_definition"
+   ],
+   "required": [
+    "customer_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/devices": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id",
+    "sort_order"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/devices/codes": {
+   "params": [
+    "cursor",
+    "location_id",
+    "product_type",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/devices/codes/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/devices/{device_id}": {
+   "params": [
+    "device_id"
+   ],
+   "required": [
+    "device_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/disputes": {
+   "params": [
+    "cursor",
+    "location_id",
+    "states"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/disputes/{dispute_id}": {
+   "params": [
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/disputes/{dispute_id}/evidence": {
+   "params": [
+    "cursor",
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/disputes/{dispute_id}/evidence/{evidence_id}": {
+   "params": [
+    "dispute_id",
+    "evidence_id"
+   ],
+   "required": [
+    "dispute_id",
+    "evidence_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/employees": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/employees/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/events/types": {
+   "params": [
+    "api_version"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/gift-cards": {
+   "params": [
+    "cursor",
+    "customer_id",
+    "limit",
+    "state",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/gift-cards/activities": {
+   "params": [
+    "begin_time",
+    "cursor",
+    "end_time",
+    "gift_card_id",
+    "limit",
+    "location_id",
+    "sort_order",
+    "type"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/gift-cards/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/adjustment-reasons": {
+   "params": [
+    "include_deleted",
+    "include_system_codes"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/adjustment/{adjustment_id}": {
+   "params": [
+    "adjustment_id"
+   ],
+   "required": [
+    "adjustment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/adjustments/{adjustment_id}": {
+   "params": [
+    "adjustment_id"
+   ],
+   "required": [
+    "adjustment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/physical-count/{physical_count_id}": {
+   "params": [
+    "physical_count_id"
+   ],
+   "required": [
+    "physical_count_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/physical-counts/{physical_count_id}": {
+   "params": [
+    "physical_count_id"
+   ],
+   "required": [
+    "physical_count_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/{catalog_object_id}": {
+   "params": [
+    "catalog_object_id",
+    "cursor",
+    "location_ids"
+   ],
+   "required": [
+    "catalog_object_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/inventory/{catalog_object_id}/changes": {
+   "params": [
+    "catalog_object_id",
+    "cursor",
+    "location_ids"
+   ],
+   "required": [
+    "catalog_object_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/invoices": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/invoices/{invoice_id}": {
+   "params": [
+    "invoice_id"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/break-types": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/break-types/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/employee-wages": {
+   "params": [
+    "cursor",
+    "employee_id",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/employee-wages/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/scheduled-shifts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/shifts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/team-member-wages": {
+   "params": [
+    "cursor",
+    "limit",
+    "team_member_id"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/team-member-wages/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/timecards/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/labor/workweek-configs": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/custom-attribute-definitions": {
+   "params": [
+    "cursor",
+    "limit",
+    "visibility_filter"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/custom-attribute-definitions/{key}": {
+   "params": [
+    "key",
+    "version"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/{location_id}": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/{location_id}/custom-attributes": {
+   "params": [
+    "cursor",
+    "limit",
+    "location_id",
+    "visibility_filter",
+    "with_definitions"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/{location_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "location_id",
+    "version",
+    "with_definition"
+   ],
+   "required": [
+    "key",
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/{location_id}/transactions": {
+   "params": [
+    "begin_time",
+    "cursor",
+    "end_time",
+    "location_id",
+    "sort_order"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/locations/{location_id}/transactions/{transaction_id}": {
+   "params": [
+    "location_id",
+    "transaction_id"
+   ],
+   "required": [
+    "location_id",
+    "transaction_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/accounts/{account_id}": {
+   "params": [
+    "account_id"
+   ],
+   "required": [
+    "account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/programs": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/programs/{program_id}": {
+   "params": [
+    "program_id"
+   ],
+   "required": [
+    "program_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/programs/{program_id}/promotions": {
+   "params": [
+    "cursor",
+    "limit",
+    "program_id",
+    "status"
+   ],
+   "required": [
+    "program_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/programs/{program_id}/promotions/{promotion_id}": {
+   "params": [
+    "program_id",
+    "promotion_id"
+   ],
+   "required": [
+    "program_id",
+    "promotion_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/loyalty/rewards/{reward_id}": {
+   "params": [
+    "reward_id"
+   ],
+   "required": [
+    "reward_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants": {
+   "params": [
+    "cursor"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants/custom-attribute-definitions": {
+   "params": [
+    "cursor",
+    "limit",
+    "visibility_filter"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants/custom-attribute-definitions/{key}": {
+   "params": [
+    "key",
+    "version"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants/{merchant_id}": {
+   "params": [
+    "merchant_id"
+   ],
+   "required": [
+    "merchant_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants/{merchant_id}/custom-attributes": {
+   "params": [
+    "cursor",
+    "limit",
+    "merchant_id",
+    "visibility_filter",
+    "with_definitions"
+   ],
+   "required": [
+    "merchant_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/merchants/{merchant_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "merchant_id",
+    "version",
+    "with_definition"
+   ],
+   "required": [
+    "key",
+    "merchant_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/online-checkout/location-settings/{location_id}": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/online-checkout/merchant-settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/online-checkout/payment-links": {
+   "params": [
+    "cursor",
+    "limit"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/online-checkout/payment-links/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/orders/custom-attribute-definitions": {
+   "params": [
+    "cursor",
+    "limit",
+    "visibility_filter"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/orders/custom-attribute-definitions/{key}": {
+   "params": [
+    "key",
+    "version"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/orders/{order_id}": {
+   "params": [
+    "order_id"
+   ],
+   "required": [
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/orders/{order_id}/custom-attributes": {
+   "params": [
+    "cursor",
+    "limit",
+    "order_id",
+    "visibility_filter",
+    "with_definitions"
+   ],
+   "required": [
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/orders/{order_id}/custom-attributes/{custom_attribute_key}": {
+   "params": [
+    "custom_attribute_key",
+    "order_id",
+    "version",
+    "with_definition"
+   ],
+   "required": [
+    "custom_attribute_key",
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/payments": {
+   "params": [
+    "begin_time",
+    "card_brand",
+    "cursor",
+    "end_time",
+    "is_offline_payment",
+    "last_4",
+    "limit",
+    "location_id",
+    "offline_begin_time",
+    "offline_end_time",
+    "sort_field",
+    "sort_order",
+    "total",
+    "updated_at_begin_time",
+    "updated_at_end_time"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/payments/{payment_id}": {
+   "params": [
+    "payment_id"
+   ],
+   "required": [
+    "payment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/payouts": {
+   "params": [
+    "begin_time",
+    "cursor",
+    "end_time",
+    "limit",
+    "location_id",
+    "sort_order",
+    "status"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/payouts/{payout_id}": {
+   "params": [
+    "payout_id"
+   ],
+   "required": [
+    "payout_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/payouts/{payout_id}/payout-entries": {
+   "params": [
+    "cursor",
+    "limit",
+    "payout_id",
+    "sort_order"
+   ],
+   "required": [
+    "payout_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/refunds": {
+   "params": [
+    "begin_time",
+    "cursor",
+    "end_time",
+    "limit",
+    "location_id",
+    "sort_field",
+    "sort_order",
+    "source_type",
+    "status",
+    "updated_at_begin_time",
+    "updated_at_end_time"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/refunds/{refund_id}": {
+   "params": [
+    "refund_id"
+   ],
+   "required": [
+    "refund_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/sites": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/sites/{site_id}/snippet": {
+   "params": [
+    "site_id"
+   ],
+   "required": [
+    "site_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/subscriptions/{subscription_id}": {
+   "params": [
+    "include",
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/subscriptions/{subscription_id}/events": {
+   "params": [
+    "cursor",
+    "limit",
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/team-members/jobs": {
+   "params": [
+    "cursor"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/team-members/jobs/{job_id}": {
+   "params": [
+    "job_id"
+   ],
+   "required": [
+    "job_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/team-members/{team_member_id}": {
+   "params": [
+    "team_member_id"
+   ],
+   "required": [
+    "team_member_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/team-members/{team_member_id}/wage-setting": {
+   "params": [
+    "team_member_id"
+   ],
+   "required": [
+    "team_member_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/terminals/actions/{action_id}": {
+   "params": [
+    "action_id"
+   ],
+   "required": [
+    "action_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/terminals/checkouts/{checkout_id}": {
+   "params": [
+    "checkout_id"
+   ],
+   "required": [
+    "checkout_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/terminals/refunds/{terminal_refund_id}": {
+   "params": [
+    "terminal_refund_id"
+   ],
+   "required": [
+    "terminal_refund_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/transfer-orders/{transfer_order_id}": {
+   "params": [
+    "transfer_order_id"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/vendors/{vendor_id}": {
+   "params": [
+    "vendor_id"
+   ],
+   "required": [
+    "vendor_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/webhooks/event-types": {
+   "params": [
+    "api_version"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/webhooks/subscriptions": {
+   "params": [
+    "cursor",
+    "include_disabled",
+    "limit",
+    "sort_order"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /v2/webhooks/subscriptions/{subscription_id}": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /oauth2/revoke": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /oauth2/token": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /oauth2/token/status": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/apple-pay/domains": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bank-accounts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bank-accounts/{bank_account_id}/disable": {
+   "params": [
+    "bank_account_id"
+   ],
+   "required": [
+    "bank_account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/availability/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/bulk-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/custom-attribute-definitions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/custom-attributes/bulk-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/custom-attributes/bulk-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/team-member-booking-profiles/bulk-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/bookings/{booking_id}/cancel": {
+   "params": [
+    "booking_id"
+   ],
+   "required": [
+    "booking_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/cards": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/cards/{card_id}/disable": {
+   "params": [
+    "card_id"
+   ],
+   "required": [
+    "card_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/batch-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/batch-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/batch-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/images": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/object": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/search-catalog-items": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/update-item-modifier-lists": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/catalog/update-item-taxes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/channels/bulk-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/bulk-create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/bulk-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/bulk-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/bulk-update": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/custom-attribute-definitions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/custom-attributes/bulk-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/groups": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/{customer_id}/cards": {
+   "params": [
+    "customer_id"
+   ],
+   "required": [
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/customers/{customer_id}/custom-attributes/{key}": {
+   "params": [
+    "customer_id",
+    "key"
+   ],
+   "required": [
+    "customer_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/devices/codes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/disputes/{dispute_id}/accept": {
+   "params": [
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/disputes/{dispute_id}/evidence-files": {
+   "params": [
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/disputes/{dispute_id}/evidence-text": {
+   "params": [
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/disputes/{dispute_id}/submit-evidence": {
+   "params": [
+    "dispute_id"
+   ],
+   "required": [
+    "dispute_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/events": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards/activities": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards/from-gan": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards/from-nonce": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards/{gift_card_id}/link-customer": {
+   "params": [
+    "gift_card_id"
+   ],
+   "required": [
+    "gift_card_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/gift-cards/{gift_card_id}/unlink-customer": {
+   "params": [
+    "gift_card_id"
+   ],
+   "required": [
+    "gift_card_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/adjustment-reasons/create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/adjustment-reasons/delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/adjustment-reasons/restore": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/adjustment-reasons/retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/batch-change": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/batch-retrieve-changes": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/batch-retrieve-counts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/changes/batch-create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/changes/batch-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/inventory/counts/batch-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/invoices": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/invoices/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/invoices/{invoice_id}/attachments": {
+   "params": [
+    "invoice_id"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/invoices/{invoice_id}/cancel": {
+   "params": [
+    "invoice_id"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/invoices/{invoice_id}/publish": {
+   "params": [
+    "invoice_id"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/break-types": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/scheduled-shifts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/scheduled-shifts/bulk-publish": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/scheduled-shifts/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/scheduled-shifts/{id}/publish": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/shifts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/shifts/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/timecards": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/labor/timecards/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/custom-attribute-definitions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/custom-attributes/bulk-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/custom-attributes/bulk-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/{location_id}/checkouts": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/{location_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "location_id"
+   ],
+   "required": [
+    "key",
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/{location_id}/transactions/{transaction_id}/capture": {
+   "params": [
+    "location_id",
+    "transaction_id"
+   ],
+   "required": [
+    "location_id",
+    "transaction_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/locations/{location_id}/transactions/{transaction_id}/void": {
+   "params": [
+    "location_id",
+    "transaction_id"
+   ],
+   "required": [
+    "location_id",
+    "transaction_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/accounts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/accounts/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/accounts/{account_id}/accumulate": {
+   "params": [
+    "account_id"
+   ],
+   "required": [
+    "account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/accounts/{account_id}/adjust": {
+   "params": [
+    "account_id"
+   ],
+   "required": [
+    "account_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/events/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/programs/{program_id}/calculate": {
+   "params": [
+    "program_id"
+   ],
+   "required": [
+    "program_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/programs/{program_id}/promotions": {
+   "params": [
+    "program_id"
+   ],
+   "required": [
+    "program_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/programs/{program_id}/promotions/{promotion_id}/cancel": {
+   "params": [
+    "program_id",
+    "promotion_id"
+   ],
+   "required": [
+    "program_id",
+    "promotion_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/rewards": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/rewards/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/loyalty/rewards/{reward_id}/redeem": {
+   "params": [
+    "reward_id"
+   ],
+   "required": [
+    "reward_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/merchants/custom-attribute-definitions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/merchants/custom-attributes/bulk-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/merchants/custom-attributes/bulk-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/merchants/{merchant_id}/custom-attributes/{key}": {
+   "params": [
+    "key",
+    "merchant_id"
+   ],
+   "required": [
+    "key",
+    "merchant_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/online-checkout/payment-links": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/batch-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/calculate": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/clone": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/custom-attribute-definitions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/custom-attributes/bulk-delete": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/custom-attributes/bulk-upsert": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/{order_id}/custom-attributes/{custom_attribute_key}": {
+   "params": [
+    "custom_attribute_key",
+    "order_id"
+   ],
+   "required": [
+    "custom_attribute_key",
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/orders/{order_id}/pay": {
+   "params": [
+    "order_id"
+   ],
+   "required": [
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/payments": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/payments/cancel": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/payments/{payment_id}/cancel": {
+   "params": [
+    "payment_id"
+   ],
+   "required": [
+    "payment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/payments/{payment_id}/complete": {
+   "params": [
+    "payment_id"
+   ],
+   "required": [
+    "payment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/refunds": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/sites/{site_id}/snippet": {
+   "params": [
+    "site_id"
+   ],
+   "required": [
+    "site_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/bulk-swap-plan": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/{subscription_id}/billing-anchor": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/{subscription_id}/cancel": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/{subscription_id}/pause": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/{subscription_id}/resume": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/subscriptions/{subscription_id}/swap-plan": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/team-members": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/team-members/bulk-create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/team-members/bulk-update": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/team-members/jobs": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/team-members/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/actions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/actions/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/actions/{action_id}/cancel": {
+   "params": [
+    "action_id"
+   ],
+   "required": [
+    "action_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/actions/{action_id}/dismiss": {
+   "params": [
+    "action_id"
+   ],
+   "required": [
+    "action_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/checkouts": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/checkouts/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/checkouts/{checkout_id}/cancel": {
+   "params": [
+    "checkout_id"
+   ],
+   "required": [
+    "checkout_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/checkouts/{checkout_id}/dismiss": {
+   "params": [
+    "checkout_id"
+   ],
+   "required": [
+    "checkout_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/refunds": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/refunds/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/refunds/{terminal_refund_id}/cancel": {
+   "params": [
+    "terminal_refund_id"
+   ],
+   "required": [
+    "terminal_refund_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/terminals/refunds/{terminal_refund_id}/dismiss": {
+   "params": [
+    "terminal_refund_id"
+   ],
+   "required": [
+    "terminal_refund_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/transfer-orders": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/transfer-orders/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/transfer-orders/{transfer_order_id}/cancel": {
+   "params": [
+    "transfer_order_id"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/transfer-orders/{transfer_order_id}/receive": {
+   "params": [
+    "transfer_order_id"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/transfer-orders/{transfer_order_id}/start": {
+   "params": [
+    "transfer_order_id"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/vendors/bulk-create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/vendors/bulk-retrieve": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/vendors/create": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/vendors/search": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/webhooks/subscriptions": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/webhooks/subscriptions/{subscription_id}/signature-key": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "POST /v2/webhooks/subscriptions/{subscription_id}/test": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v1/{location_id}/orders/{order_id}": {
+   "params": [
+    "location_id",
+    "order_id"
+   ],
+   "required": [
+    "location_id",
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/bookings/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/bookings/{booking_id}": {
+   "params": [
+    "booking_id"
+   ],
+   "required": [
+    "booking_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/bookings/{booking_id}/custom-attributes/{key}": {
+   "params": [
+    "booking_id",
+    "key"
+   ],
+   "required": [
+    "booking_id",
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/catalog/images/{image_id}": {
+   "params": [
+    "image_id"
+   ],
+   "required": [
+    "image_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/customers/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/customers/groups/{group_id}": {
+   "params": [
+    "group_id"
+   ],
+   "required": [
+    "group_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/customers/{customer_id}": {
+   "params": [
+    "customer_id"
+   ],
+   "required": [
+    "customer_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/customers/{customer_id}/groups/{group_id}": {
+   "params": [
+    "customer_id",
+    "group_id"
+   ],
+   "required": [
+    "customer_id",
+    "group_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/events/disable": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/events/enable": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/inventory/adjustment-reasons/update": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/inventory/adjustments/update": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/invoices/{invoice_id}": {
+   "params": [
+    "invoice_id"
+   ],
+   "required": [
+    "invoice_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/labor/break-types/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/labor/scheduled-shifts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/labor/shifts/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/labor/timecards/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/labor/workweek-configs/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/locations/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/locations/{location_id}": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/merchants/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/online-checkout/location-settings/{location_id}": {
+   "params": [
+    "location_id"
+   ],
+   "required": [
+    "location_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/online-checkout/merchant-settings": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/online-checkout/payment-links/{id}": {
+   "params": [
+    "id"
+   ],
+   "required": [
+    "id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/orders/custom-attribute-definitions/{key}": {
+   "params": [
+    "key"
+   ],
+   "required": [
+    "key"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/orders/{order_id}": {
+   "params": [
+    "order_id"
+   ],
+   "required": [
+    "order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/payments/{payment_id}": {
+   "params": [
+    "payment_id"
+   ],
+   "required": [
+    "payment_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/subscriptions/{subscription_id}": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/team-members/jobs/{job_id}": {
+   "params": [
+    "job_id"
+   ],
+   "required": [
+    "job_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/team-members/{team_member_id}": {
+   "params": [
+    "team_member_id"
+   ],
+   "required": [
+    "team_member_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/team-members/{team_member_id}/wage-setting": {
+   "params": [
+    "team_member_id"
+   ],
+   "required": [
+    "team_member_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/transfer-orders/{transfer_order_id}": {
+   "params": [
+    "transfer_order_id"
+   ],
+   "required": [
+    "transfer_order_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/vendors/bulk-update": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/vendors/{vendor_id}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "PUT /v2/webhooks/subscriptions/{subscription_id}": {
+   "params": [
+    "subscription_id"
+   ],
+   "required": [
+    "subscription_id"
+   ],
+   "responses": [
+    "200"
+   ]
+  }
+ },
+ "fetched_at": "2026-08-25T12:06:41+00:00",
+ "name": "Square",
+ "raw_bytes": 3279392,
+ "raw_sha256": "a0d0db22c202f68282fd359772461697b3f635df03d3b19b11bb60add7f8ff7c",
+ "spec_title": "Square",
+ "spec_url": "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json",
+ "spec_version": "2.0",
+ "vendor": "square",
+ "what_maya_calls_it": "my till and my bookings"
+}
