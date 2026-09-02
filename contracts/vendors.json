@@ -1,5 +1,5 @@
 {
-  "_comment": "The four vendors Maya's shop runs on. Each is a contract she does not control and did not agree to. She calls them by what they do for her, which is the only name she has for them. Verified reachable 22 and 25 August 2026.",
+  "_comment": "The four vendors Maya's shop runs on. Each is a contract she does not control and did not agree to. She calls them by what they do for her, which is the only name she has for them. spec_repo and spec_path are where each vendor publishes their own change history, which is what tools/backfill.py reads to reconstruct the series. Verified 22, 25 August and 2 September 2026.",
   "vendors": [
     {
       "id": "stripe",
@@ -9,7 +9,9 @@
       "spec_format": "json",
       "verified_on": "2026-08-22",
       "verified_endpoints": 589,
-      "verified_version": "2026-07-29.dahlia"
+      "verified_version": "2026-07-29.dahlia",
+      "spec_repo": "https://github.com/stripe/openapi.git",
+      "spec_path": "openapi/spec3.json"
     },
     {
       "id": "square",
@@ -19,7 +21,9 @@
       "spec_format": "json",
       "verified_on": "2026-08-22",
       "verified_endpoints": 334,
-      "verified_version": "2.0"
+      "verified_version": "2.0",
+      "spec_repo": "https://github.com/square/connect-api-specification.git",
+      "spec_path": "api.json"
     },
     {
       "id": "xero",
@@ -29,7 +33,9 @@
       "spec_format": "yaml",
       "verified_on": "2026-08-25",
       "verified_endpoints": 235,
-      "verified_version": "17.0.0"
+      "verified_version": "17.0.0",
+      "spec_repo": "https://github.com/XeroAPI/Xero-OpenAPI.git",
+      "spec_path": "xero_accounting.yaml"
     },
     {
       "id": "shipengine",
@@ -39,7 +45,9 @@
       "spec_format": "json",
       "verified_on": "2026-08-22",
       "verified_endpoints": 97,
-      "verified_version": "1.1.202604070904"
+      "verified_version": "1.1.202604070904",
+      "spec_repo": "https://github.com/ShipEngine/shipengine-openapi.git",
+      "spec_path": "openapi.json"
     }
   ]
 }

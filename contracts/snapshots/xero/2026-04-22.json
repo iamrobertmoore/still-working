@@ -1,5 +1,5 @@
 {
- "endpoint_count": 235,
+ "endpoint_count": 237,
  "endpoints": {
   "DELETE /Accounts/{AccountID}": {
    "params": [],
@@ -117,7 +117,6 @@
   },
   "GET /BankTransactions": {
    "params": [
-    "References",
     "order",
     "page",
     "where"
@@ -164,7 +163,6 @@
   },
   "GET /BankTransfers": {
    "params": [
-    "includeDeleted",
     "order",
     "where"
    ],
@@ -416,6 +414,23 @@
     "order",
     "where"
    ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Employees": {
+   "params": [
+    "order",
+    "where"
+   ],
+   "required": [],
+   "responses": [
+    "200"
+   ]
+  },
+  "GET /Employees/{EmployeeID}": {
+   "params": [],
    "required": [],
    "responses": [
     "200"
@@ -715,7 +730,6 @@
   "GET /Prepayments": {
    "params": [
     "InvoiceNumbers",
-    "References",
     "order",
     "page",
     "where"
@@ -1165,22 +1179,6 @@
     "400"
    ]
   },
-  "POST /BankTransfers": {
-   "params": [],
-   "required": [],
-   "responses": [
-    "200",
-    "400"
-   ]
-  },
-  "POST /BankTransfers/{BankTransferID}": {
-   "params": [],
-   "required": [],
-   "responses": [
-    "200",
-    "400"
-   ]
-  },
   "POST /BankTransfers/{BankTransferID}/Attachments/{FileName}": {
    "params": [],
    "required": [],
@@ -1262,6 +1260,14 @@
    ]
   },
   "POST /CreditNotes/{CreditNoteID}/Attachments/{FileName}": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
+  "POST /Employees": {
    "params": [],
    "required": [],
    "responses": [
@@ -1651,6 +1657,14 @@
     "200"
    ]
   },
+  "PUT /Employees": {
+   "params": [],
+   "required": [],
+   "responses": [
+    "200",
+    "400"
+   ]
+  },
   "PUT /ExpenseClaims": {
    "params": [],
    "required": [],
@@ -1914,13 +1928,14 @@
    ]
   }
  },
- "fetched_at": "2026-09-02T17:14:30+00:00",
+ "fetched_at": "2026-04-22T00:00:00+00:00",
  "name": "Xero Accounting",
- "raw_bytes": 929720,
- "raw_sha256": "6652aef3f96e485947be52a557c74628837c19b560c135ef74cb475e4be7e9f3",
+ "raw_bytes": 922569,
+ "raw_sha256": "03d458bb10a0721c03c7b9dea2e0e3460470831f7904b504440cdde64241706e",
+ "source": "reconstructed from https://github.com/XeroAPI/Xero-OpenAPI.git at 3aaf2f0d5b75",
  "spec_title": "Xero Accounting API",
  "spec_url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
- "spec_version": "18.0.0",
+ "spec_version": "12.0.1",
  "vendor": "xero",
  "what_maya_calls_it": "my accounts, where my bookkeeper works"
 }

@@ -188,9 +188,61 @@ def self_test() -> int:
     return 0
 
 
+def measure() -> int:
+    """The number the pitch rests on: of everything the vendors did, how much reached Maya."""
+    business = load_business()
+    path = os.path.join(ROOT, "contracts", "changes.jsonl")
+    rows = [json.loads(l) for l in open(path, encoding="utf-8")]
+    if not rows:
+        print("no change history yet, run tools/backfill.py")
+        return 1
+
+    dates = sorted(r["date"] for r in rows)
+    days = (__import__("datetime").date.fromisoformat(dates[-1])
+            - __import__("datetime").date.fromisoformat(dates[0])).days
+
+    total_changes = sum(r["total_count"] for r in rows)
+    total_breaking = sum(r["breaking_count"] for r in rows)
+    revisions_with_breaking = sum(1 for r in rows if r["breaking_count"])
+
+    touched, reached, per_routine = 0, 0, {}
+    reaching_rows = []
+    for r in rows:
+        a = assess(business, r)
+        if a["routines_touched"]:
+            touched += 1
+        if a["reaches_maya"]:
+            reached += 1
+            reaching_rows.append((r["date"], r["vendor"],
+                                  [x["what_maya_calls_it"] for x in a["routines_touched"]
+                                   if x["has_breaking_change"]]))
+            for x in a["routines_touched"]:
+                if x["has_breaking_change"]:
+                    per_routine[x["what_maya_calls_it"]] = per_routine.get(x["what_maya_calls_it"], 0) + 1
+
+    print(f"Window            {dates[0]} to {dates[-1]}, {days} days")
+    print(f"Vendors           4")
+    print(f"Revisions         {len(rows)} days on which a contract changed shape")
+    print(f"Changes           {total_changes}")
+    print(f"Breaking          {total_breaking}, across {revisions_with_breaking} of those days")
+    print(f"Touched Maya      {touched} days landed on a call one of her routines uses")
+    print(f"REACHED MAYA      {reached} days would have interrupted her")
+    print()
+    if reaching_rows:
+        print("What she would have been told, in five months:")
+        for d, v, rs in reaching_rows:
+            print(f"  {d}  {v:11s} {', '.join(rs)}")
+    print()
+    print(f"Signal ratio      {reached} interruptions from {total_changes} vendor changes"
+          f" ({reached/total_changes*100:.1f}%)")
+    return 0
+
+
 def main() -> int:
     if "--self-test" in sys.argv:
         return self_test()
+    if "--measure" in sys.argv:
+        return measure()
     path = os.path.join(ROOT, "contracts", "changes.jsonl")
     if not os.path.exists(path):
         print("no changes recorded yet, nothing to assess")

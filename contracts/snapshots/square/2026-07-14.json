@@ -3374,10 +3374,11 @@
    ]
   }
  },
- "fetched_at": "2026-09-02T17:14:28+00:00",
+ "fetched_at": "2026-07-14T00:00:00+00:00",
  "name": "Square",
- "raw_bytes": 3279392,
- "raw_sha256": "a0d0db22c202f68282fd359772461697b3f635df03d3b19b11bb60add7f8ff7c",
+ "raw_bytes": 3269568,
+ "raw_sha256": "101fca4d5346611a487542085c91bc66eb953e10224e442b275becbba5c10d6b",
+ "source": "reconstructed from https://github.com/square/connect-api-specification.git at e695f0162c05",
  "spec_title": "Square",
  "spec_url": "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json",
  "spec_version": "2.0",

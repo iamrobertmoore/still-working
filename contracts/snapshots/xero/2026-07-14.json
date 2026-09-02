@@ -117,7 +117,6 @@
   },
   "GET /BankTransactions": {
    "params": [
-    "References",
     "order",
     "page",
     "where"
@@ -715,7 +714,6 @@
   "GET /Prepayments": {
    "params": [
     "InvoiceNumbers",
-    "References",
     "order",
     "page",
     "where"
@@ -1914,13 +1912,14 @@
    ]
   }
  },
- "fetched_at": "2026-09-02T17:14:30+00:00",
+ "fetched_at": "2026-07-14T00:00:00+00:00",
  "name": "Xero Accounting",
- "raw_bytes": 929720,
- "raw_sha256": "6652aef3f96e485947be52a557c74628837c19b560c135ef74cb475e4be7e9f3",
+ "raw_bytes": 926459,
+ "raw_sha256": "57750919b9570d1cadc4af82e50e7b2d66c4f306a5670fd8b0771cec82d43cfe",
+ "source": "reconstructed from https://github.com/XeroAPI/Xero-OpenAPI.git at 58616f48ca21",
  "spec_title": "Xero Accounting API",
  "spec_url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
- "spec_version": "18.0.0",
+ "spec_version": "16.0.0",
  "vendor": "xero",
  "what_maya_calls_it": "my accounts, where my bookkeeper works"
 }

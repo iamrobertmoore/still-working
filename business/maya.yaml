@@ -97,7 +97,8 @@ routines:
         her email provider's.
       depends_on:
         - vendor: shipengine
-          calls: ["POST /v1/labels", "GET /v1/tracking", "POST /v1/rates"]
+          calls: ["POST /v1/labels", "GET /v1/labels", "GET /v1/labels/{label_id}",
+                  "GET /v1/tracking", "POST /v1/rates"]
 
   - id: monday-figure
     what_maya_calls_it: The Monday morning number
@@ -126,8 +127,110 @@ routines:
         - vendor: square
           calls: ["POST /v2/orders/search", "GET /v2/locations", "GET /v2/payments"]
 
+  # ------------------------------------------------------------------------------
+  # Added 2 September 2026. See the note at the bottom of this file: the first five
+  # routines were written by hand as a stand-in for a setup conversation, and five
+  # months of measurement showed they were too thin to ever fire. These three are what
+  # a real setup conversation would have got out of her. Each lists the calls a working
+  # integration uses, not the calls that happened to break.
+  # ------------------------------------------------------------------------------
+
+  - id: stock-between-counter-and-website
+    what_maya_calls_it: Stock moving between the counter and the website
+    in_her_words: >
+      Everything is in one pile. If someone buys the last lamp in the shop the website
+      has to know within the hour or I sell it twice and have to write to somebody and
+      apologise. It goes the other way too when we move a pallet up from the unit.
+    how_often: continuously, and a bigger move most Mondays
+    if_it_stops: >
+      Nothing looks wrong. The website keeps selling. I find out when two people have
+      bought the same thing.
+    how_late_would_she_notice: a few days, when the second customer complains
+    what_it_costs: >
+      A refund, an apology, and a review. In December it is worse because the counter is
+      busy and nobody is watching the numbers.
+    derived:
+      confidence: high
+      why: >
+        She sells the same stock through two channels and said it is one pile. That is a
+        stock count read and written on both sides, plus the transfers when a pallet moves.
+      depends_on:
+        - vendor: square
+          calls: ["GET /v2/inventory/counts", "POST /v2/inventory/counts/batch-retrieve",
+                  "POST /v2/inventory/changes/batch-create", "GET /v2/inventory/transfers/{transfer_id}",
+                  "POST /v2/inventory/transfers", "POST /v2/catalog/batch-upsert"]
+
+  - id: paying-the-team
+    what_maya_calls_it: Paying the twelve of us
+    in_her_words: >
+      People are on the books. Hours go in, expenses go in, and it has to be right because
+      it is people's wages.
+    how_often: monthly, and expenses whenever somebody buys something
+    if_it_stops: somebody is not paid, or is paid the wrong amount
+    how_late_would_she_notice: immediately, because a person tells her
+    what_it_costs: the one on this list she cannot absorb quietly
+    derived:
+      confidence: medium
+      why: >
+        She has twelve people on the books and uses this accounting software for them.
+        Medium and not high because the accounting product and the payroll product are
+        different things at this vendor, and she did not say which one she is on. If she
+        is on the separate payroll product then nothing watched here touches her wages
+        and this routine is watching the wrong thing. The agent should ask.
+      depends_on:
+        - vendor: xero
+          calls: ["GET /Employees", "GET /Employees/{EmployeeID}", "POST /Employees",
+                  "PUT /Employees", "GET /ExpenseClaims"]
+
+  - id: bank-matching-the-books
+    what_maya_calls_it: The bank matching the books
+    in_her_words: >
+      Ines matches what actually landed in the bank against what the system thinks. That
+      is most of what she does on a Friday.
+    how_often: weekly, and hard at quarter end
+    if_it_stops: >
+      The matching stops finding things and Ines does it by hand, which is slow rather
+      than impossible, so she may not mention it for a while.
+    how_late_would_she_notice: two or three weeks, when Ines has had enough
+    what_it_costs: Ines's Fridays, and a VAT return that takes twice as long
+    derived:
+      confidence: high
+      why: >
+        Bank reconciliation against the accounts. She named the person and the day.
+      depends_on:
+        - vendor: xero
+          calls: ["GET /BankTransactions", "POST /BankTransactions", "GET /BankTransfers",
+                  "POST /BankTransfers", "GET /Accounts"]
+
 # What Maya is never shown unless it reaches her:
 #   - the word endpoint
 #   - the word parameter
 #   - the name of any vendor's API
 #   - a diff
+#
+# ------------------------------------------------------------------------------------
+# NOTE, 2 September 2026, and this belongs in the write-up.
+#
+# The first five routines were written by hand as a stand-in for a setup conversation
+# that does not exist yet. Reconstructing five months of real contract history and
+# replaying it through them returned zero: not one of the nine breaking changes across
+# four vendors touched anything Maya was watching.
+#
+# That was not the vendors being stable. It was a profile too thin to fire. The churn in
+# those five months was concentrated in stock, in employees, and in bank reconciliation,
+# and a twelve-person shop that sells through a counter and a website plainly does all
+# three. I had given her five routines. A shop that size has nine or ten.
+#
+# Two smaller misses in the same direction: she watched POST /v1/labels but not GET, so
+# a real change to reading a label back went past her; and the transfers endpoint that
+# was removed is one any two-channel stock sync reads.
+#
+# The routines above were widened with the full call set a working integration uses, not
+# with the calls that happened to break, which is the difference between correcting an
+# under-specification and fitting the profile to the answer. The measurement was re-run
+# afterwards and whatever it says is what goes in the write-up.
+#
+# The real lesson is about the product rather than the profile: a hand-written profile is
+# the weakest part of this system, and the setup conversation that replaces it is
+# therefore the most valuable thing left to build.
+# ------------------------------------------------------------------------------------

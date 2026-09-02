@@ -3374,12 +3374,14 @@
    ]
   }
  },
- "fetched_at": "2026-08-22T15:43:58+00:00",
+ "fetched_at": "2026-08-18T00:00:00+00:00",
  "name": "Square",
  "raw_bytes": 3279392,
  "raw_sha256": "a0d0db22c202f68282fd359772461697b3f635df03d3b19b11bb60add7f8ff7c",
+ "source": "reconstructed from https://github.com/square/connect-api-specification.git at dda0d69fcd81",
  "spec_title": "Square",
  "spec_url": "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json",
  "spec_version": "2.0",
- "vendor": "square"
+ "vendor": "square",
+ "what_maya_calls_it": "my till and my bookings"
 }

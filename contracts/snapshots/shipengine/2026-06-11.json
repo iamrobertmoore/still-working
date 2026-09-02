@@ -1281,10 +1281,11 @@
    ]
   }
  },
- "fetched_at": "2026-09-02T17:14:30+00:00",
+ "fetched_at": "2026-06-11T00:00:00+00:00",
  "name": "ShipEngine",
  "raw_bytes": 16969622,
  "raw_sha256": "9238cae675ac2e3e8d3c00e50276c1deca63f053bbff83b11913d37001a866b6",
+ "source": "reconstructed from https://github.com/ShipEngine/shipengine-openapi.git at 94eb2757b1f4",
  "spec_title": "ShipEngine API",
  "spec_url": "https://raw.githubusercontent.com/ShipEngine/shipengine-openapi/master/openapi.json",
  "spec_version": "1.1.202604070904",

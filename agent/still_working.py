@@ -68,6 +68,7 @@ class OnlyWhenItCostsHer(InterventionHandler):
         self.denied: list[str] = []
         self.asked: list[str] = []
         self.sent: list[str] = []
+        self.flagged_uncertain: list[str] = []
 
     def before_tool_call(self, event: BeforeToolCallEvent, **kwargs):
         if event.tool_use["name"] != "send_to_maya":
@@ -85,10 +86,18 @@ class OnlyWhenItCostsHer(InterventionHandler):
 
         confident = [r for r in breaking if r["mapping_confidence"] != "low"]
         if confident:
-            self.sent.append(confident[0]["routine_id"])
+            top = confident[0]
+            self.sent.append(top["routine_id"])
+            if top["mapping_confidence"] == "medium":
+                self.flagged_uncertain.append(top["routine_id"])
+                return Proceed(reason=(
+                    f"'{top['what_maya_calls_it']}' is broken. Send it, but the mapping is "
+                    "medium confidence, so the note must say what we are unsure about. "
+                    "Telling her something is wrong and sounding certain when we are not is "
+                    "how she stops believing the next one."))
             return Proceed(reason=(
-                f"'{confident[0]['what_maya_calls_it']}' is broken and we are confident the "
-                "routine really leans on that call. Send it now."))
+                f"'{top['what_maya_calls_it']}' is broken and we are confident the routine "
+                "really leans on that call. Send it now."))
 
         low = breaking[0]
         self.asked.append(low["routine_id"])

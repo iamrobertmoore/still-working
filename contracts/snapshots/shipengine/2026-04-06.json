@@ -1,5 +1,5 @@
 {
- "endpoint_count": 97,
+ "endpoint_count": 96,
  "endpoints": {
   "DELETE /v1/account/settings/images/{label_image_id}": {
    "params": [
@@ -395,7 +395,6 @@
     "page",
     "page_size",
     "rate_id",
-    "refund_status",
     "service_code",
     "shipment_id",
     "sort_by",
@@ -892,20 +891,6 @@
     "500"
    ]
   },
-  "POST /v1/labels/{label_id}/cancel_refund": {
-   "params": [
-    "label_id"
-   ],
-   "required": [
-    "label_id"
-   ],
-   "responses": [
-    "200",
-    "400",
-    "404",
-    "500"
-   ]
-  },
   "POST /v1/labels/{label_id}/return": {
    "params": [
     "label_id"
@@ -1281,12 +1266,14 @@
    ]
   }
  },
- "fetched_at": "2026-08-22T15:43:59+00:00",
+ "fetched_at": "2026-04-06T00:00:00+00:00",
  "name": "ShipEngine",
- "raw_bytes": 16969622,
- "raw_sha256": "9238cae675ac2e3e8d3c00e50276c1deca63f053bbff83b11913d37001a866b6",
+ "raw_bytes": 16200670,
+ "raw_sha256": "696c48296169dfa2724401aacabd80bcbdc78a261d82cc58b662e13cc3ec96c1",
+ "source": "reconstructed from https://github.com/ShipEngine/shipengine-openapi.git at d7f0dbe68df7",
  "spec_title": "ShipEngine API",
  "spec_url": "https://raw.githubusercontent.com/ShipEngine/shipengine-openapi/master/openapi.json",
- "spec_version": "1.1.202604070904",
- "vendor": "shipengine"
+ "spec_version": "1.1.202604060604",
+ "vendor": "shipengine",
+ "what_maya_calls_it": "how I print labels"
 }

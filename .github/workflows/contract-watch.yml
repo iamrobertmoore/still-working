@@ -12,6 +12,8 @@ name: still working
 #     A broken job must never announce itself as a vendor changing their API.
 #  2. Nothing here is gated on a secret. Every spec is public. A job that skips its own
 #     work for want of a credential still goes green, and nothing draws attention to it.
+#  3. Dependencies are installed before anything imports them. Obvious, and it still
+#     took a red run to notice, because the workflow was written and never executed.
 #
 # The self-test step runs first and fails the job loudly if the detector has stopped
 # detecting. A check nobody has watched fail asserts nothing.
@@ -33,11 +35,18 @@ jobs:
   watch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+          cache: pip
+
+      # This step did not exist on the first run and the whole job died in twelve
+      # seconds on `import yaml`. The self tests below never executed. Worth keeping
+      # the note: a workflow that has never been run is not a workflow.
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Prove the detector still detects
         run: python tools/snapshot.py --self-test

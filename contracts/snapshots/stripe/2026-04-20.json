@@ -1,5 +1,5 @@
 {
- "endpoint_count": 594,
+ "endpoint_count": 587,
  "endpoints": {
   "DELETE /v1/accounts/{account}": {
    "params": [
@@ -870,33 +870,6 @@
    ]
   },
   "GET /v1/billing/credit_grants/{id}": {
-   "params": [
-    "expand",
-    "id"
-   ],
-   "required": [
-    "id"
-   ],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "GET /v1/billing/feedback_options": {
-   "params": [
-    "ending_before",
-    "expand",
-    "limit",
-    "starting_after",
-    "status"
-   ],
-   "required": [],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "GET /v1/billing/feedback_options/{id}": {
    "params": [
     "expand",
     "id"
@@ -2698,7 +2671,6 @@
   },
   "GET /v1/payment_method_configurations": {
    "params": [
-    "active",
     "application",
     "ending_before",
     "expand",
@@ -2777,21 +2749,6 @@
    "required": [
     "payment_method"
    ],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "GET /v1/payment_records": {
-   "params": [
-    "created_after",
-    "created_before",
-    "ending_before",
-    "expand",
-    "limit",
-    "starting_after"
-   ],
-   "required": [],
    "responses": [
     "200",
     "default"
@@ -4501,18 +4458,6 @@
     "default"
    ]
   },
-  "POST /v1/accounts/{account}/unreject": {
-   "params": [
-    "account"
-   ],
-   "required": [
-    "account"
-   ],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
   "POST /v1/apple_pay/domains": {
    "params": [],
    "required": [],
@@ -4660,38 +4605,6 @@
    ]
   },
   "POST /v1/billing/credit_grants/{id}/void": {
-   "params": [
-    "id"
-   ],
-   "required": [
-    "id"
-   ],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "POST /v1/billing/feedback_options": {
-   "params": [],
-   "required": [],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "POST /v1/billing/feedback_options/{id}": {
-   "params": [
-    "id"
-   ],
-   "required": [
-    "id"
-   ],
-   "responses": [
-    "200",
-    "default"
-   ]
-  },
-  "POST /v1/billing/feedback_options/{id}/deactivate": {
    "params": [
     "id"
    ],
@@ -7556,13 +7469,14 @@
    ]
   }
  },
- "fetched_at": "2026-09-02T17:14:28+00:00",
+ "fetched_at": "2026-04-20T00:00:00+00:00",
  "name": "Stripe",
- "raw_bytes": 8028700,
- "raw_sha256": "f0e0fc8fffbffda45bf5f3df59846443c1d47a3cfcbfae232eedf4743124ebee",
+ "raw_bytes": 7753660,
+ "raw_sha256": "6f7c5c122b98ccca6218b3980cbbf48773ffd40dc2fc9a09c4783143b9261915",
+ "source": "reconstructed from https://github.com/stripe/openapi.git at d771243fbfea",
  "spec_title": "Stripe API",
  "spec_url": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json",
- "spec_version": "2026-08-26.dahlia",
+ "spec_version": "2026-04-22.dahlia",
  "vendor": "stripe",
  "what_maya_calls_it": "how customers pay me"
 }

@@ -35,7 +35,7 @@ developer, two days a month and not on retainer. Priya is who fixes things. Maya
 has to know there is something to fix, and right now she has no way of knowing.
 
 Her whole business is written down, in her own words, in
-[`business/maya.yaml`](business/maya.yaml). Five routines. What she calls each one, what
+[`business/maya.yaml`](business/maya.yaml). Eight routines. What she calls each one, what
 happens if it stops, how late she would normally notice, and what it costs her. She did
 not write a single vendor call name in that file and could not have. She answered five
 questions about her week and the agent worked the rest out during setup, which is recorded
@@ -54,11 +54,56 @@ the day it happened. There was nothing secret about it. It just had nobody readi
 knew what her shop needed.
 
 And the reason nobody builds this for her is that the obvious version is useless. A tool
-that forwards every vendor change gets switched off in week two. Over four simulated days
-in the demo below, the companies Maya uses made eight changes, three of which would break
-somebody. She is told about two of them. That ratio is the product.
+that forwards every supplier change gets switched off in week two.
+
+So I measured it, against five months of real history rather than a demo.
+
+## The measurement
+
+All four of these companies publish their contract in a public git repository, so their
+change history is already there, timestamped by them. `tools/backfill.py` reads it and
+replays it through Maya's profile. Anyone can re-run it and get the same answer.
+
+**145 days. 22 days on which a contract changed shape. 55 individual changes. 9 of those
+could break somebody. 7 landed on a call one of Maya's routines actually uses.**
+
+**Three would have interrupted her.**
+
+| When | Who | What she would have been told |
+|---|---|---|
+| 24 April | her accounts | Paying the twelve of us |
+| 29 April | her accounts | Paying the twelve of us |
+| 14 July | her till | Stock moving between the counter and the website |
+
+Three interruptions in five months. Not zero, which would mean she does not need this. Not
+weekly, which is why she would turn it off. That ratio is the product, and it is 5.5% of
+what the suppliers actually did.
+
+The two in April are the same thing twice: her accounting software deleted its entire
+employee section, put it back, and deleted it again five days later. Maya has twelve people
+on the books. Nobody wrote to her about it either time.
 
 ---
+
+### What the measurement caught in my own work
+
+The first version of Maya's profile had five routines and returned **zero**. Not one of the
+nine breaking changes touched anything she was watching.
+
+That was not the suppliers being stable. It was a profile too thin to ever fire. The churn
+was concentrated in stock, in employees and in bank reconciliation, and a twelve-person shop
+selling through both a counter and a website plainly does all three. Two smaller misses in
+the same direction: she watched `POST /v1/labels` but not `GET`, so a real change to reading
+a label back went straight past her.
+
+The routines were widened with the full call set a working integration uses, not with the
+calls that happened to break, which is the difference between fixing an under-specification
+and fitting the profile to the answer. The reasoning is recorded in
+[`business/maya.yaml`](business/maya.yaml) with dates.
+
+**The real lesson is about the product, not the profile.** A hand-written profile is the
+weakest part of this system. The setup conversation that replaces it is the most valuable
+thing left to build, and now I can say why with a number.
 
 ## What it does
 
@@ -140,6 +185,10 @@ pip install -r requirements.txt
 python tools/snapshot.py --self-test    # prove the change detector fires
 python tools/impact.py   --self-test    # prove the right things reach Maya
 python agent/still_working.py --demo    # four days, end to end
+
+python tools/backfill.py --since 2026-04-01   # reconstruct five months from vendor history
+python tools/impact.py --measure              # what would have reached Maya, and when
+
 python tools/snapshot.py                # take today's snapshot
 ```
 
@@ -164,6 +213,15 @@ A green tick is not evidence, so being exact about this:
   profile, and that **every routine has at least one call no other routine watches**. That
   last test exists because one did not, which made its own behaviour untestable and which
   nothing else would have caught.
+- The reconstruction takes **one revision per calendar day**, the last one. Suppliers push
+  more than once a day and sometimes revert within the day: Stripe did exactly that on
+  1 July, forward to one version and back again. Counting both would report changes nobody
+  outside Stripe ever saw. A daily poller sees the last state of each day, so that is what
+  is reconstructed.
+- **The daily job was written and never run, and its first real run failed in twelve
+  seconds** on a missing dependency, because there was no install step. The self tests it
+  runs first had never executed. It is fixed, and the note is left in the workflow, because
+  the whole product is about failures that report nothing.
 - The scheduled job runs the self tests **first** and fails loudly if they stop passing. A
   check that has quietly stopped checking still goes green.
 - A company being unreachable is reported as a job failure, never as a change. The alarm is
@@ -180,7 +238,8 @@ contracts/snapshots/        one normalised snapshot per company per day
 contracts/latest/           the running head
 contracts/changes.jsonl     append only, one record per detected change
 tools/snapshot.py           fetch, normalise, classify. Deterministic
-tools/impact.py             which routines a change touches. Deterministic
+tools/backfill.py           reconstruct the series from the vendors' own git history
+tools/impact.py             which routines a change touches, and --measure. Deterministic
 agent/still_working.py      the Strands agent, its tools, and the interruption rule
 agent/notes.py              the only format Maya ever sees
 agent/model_double.py       a scripted Strands model provider, for credential-free tests
