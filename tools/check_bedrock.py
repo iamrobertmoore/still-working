@@ -36,10 +36,17 @@ HINTS = {
         "      eval \"$(aws configure export-credentials --format env)\"\n"
         "  then run this again. Temporary credentials, nothing stored, expires on its own."),
     "UnrecognizedClientException": (
-        "Credentials resolved but the token is not valid for this account or region.\n"
-        "  Re-run `aws login`, then export them as above."),
+        "Credentials resolved but the token is not valid for this account or region:\n"
+        "      unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN \\\n"
+        "            AWS_CREDENTIAL_EXPIRATION\n"
+        "      aws login\n"
+        "      eval \"$(aws configure export-credentials --format env)\""),
     "ExpiredTokenException": (
-        "The temporary credentials have expired. Re-run `aws login` and re-export."),
+        "The temporary credentials have expired:\n"
+        "      unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN \\\n"
+        "            AWS_CREDENTIAL_EXPIRATION\n"
+        "      aws login\n"
+        "      eval \"$(aws configure export-credentials --format env)\""),
     "still expired": (
         "The `aws login` session itself has expired, not just the exported copy.\n"
         "  Exported variables are a snapshot and never refresh. Stale ones in the shell\n"

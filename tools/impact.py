@@ -59,17 +59,43 @@ def watched_calls(business: dict) -> dict[str, list[dict]]:
     return index
 
 
-def vendor_labels() -> dict[str, str]:
-    """What Maya calls each supplier. She has no other name for them."""
+def vendor_labels() -> dict[str, dict]:
+    """How to name each supplier to Maya.
+
+    Two forms, because they are not the same job. `what_maya_calls_it` is her own
+    first-person phrasing and belongs in her profile. `how_to_address_it` is a second
+    person noun phrase, because the first form collapses the moment it is used as the
+    subject of a sentence: "how customers pay me removed a feature" is not English.
+    """
     path = os.path.join(ROOT, "contracts", "vendors.json")
     with open(path, "r", encoding="utf-8") as fh:
-        return {v["id"]: v.get("what_maya_calls_it") or v["name"] for v in json.load(fh)["vendors"]}
+        return {v["id"]: {"hers": v.get("what_maya_calls_it") or v["name"],
+                          "address_as": v.get("how_to_address_it") or v["name"]}
+                for v in json.load(fh)["vendors"]}
 
 
-def assess(business: dict, change_record: dict) -> dict[str, Any]:
+def days_ago(date: str | None, today: str | None = None) -> int | None:
+    """How long ago the supplier changed it.
+
+    Without this the model has a date and no sense of distance from now, and fills the gap
+    itself. The first live run said "this morning" about a change from 14 July.
+    """
+    import datetime as dt
+    if not date:
+        return None
+    try:
+        then = dt.date.fromisoformat(date)
+        now = dt.date.fromisoformat(today) if today else dt.date.today()
+    except ValueError:
+        return None
+    return (now - then).days
+
+
+def assess(business: dict, change_record: dict, today: str | None = None) -> dict[str, Any]:
     """Split one day of vendor changes into what reaches Maya and what does not."""
     index = watched_calls(business)
     vendor = change_record["vendor"]
+    labels = vendor_labels().get(vendor, {"hers": vendor, "address_as": vendor})
 
     touched: dict[str, dict] = {}
     ignored: list[dict] = []
@@ -102,7 +128,9 @@ def assess(business: dict, change_record: dict) -> dict[str, Any]:
     return {
         "date": change_record.get("date"),
         "vendor": vendor,
-        "vendor_in_her_words": vendor_labels().get(vendor, vendor),
+        "vendor_in_her_words": labels["hers"],
+        "vendor_address_as": labels["address_as"],
+        "days_ago": days_ago(change_record.get("date"), today),
         "business": {
             "owner": business.get("owner"),
             "who_fixes_things": business.get("who_fixes_things"),
@@ -133,6 +161,10 @@ def self_test() -> int:
     got = assess(business, real)
     assert got["reaches_maya"] is True, got
     assert got["vendor_in_her_words"] == "my till and my bookings", got["vendor_in_her_words"]
+    assert got["vendor_address_as"] == "your till and bookings", got["vendor_address_as"]
+    assert assess(business, real, today="2026-09-03")["days_ago"] == 1, "fixture is dated 2026-09-02"
+    assert assess(business, {"date": "2026-07-14", "vendor": "square", "changes": []},
+                  today="2026-09-03")["days_ago"] == 51
     assert "Priya" in (got["business"]["who_fixes_things"] or ""), got["business"]
     assert [e["routine_id"] for e in got["routines_touched"]] == ["orders-into-accounts"], got
     assert got["ignored_count"] == 3, got
@@ -201,6 +233,8 @@ def self_test() -> int:
             "so it can never be the only thing broken and its own path is untestable")
     print("  every routine has at least one call no other routine watches")
     print("  the supplier's name in her words and who fixes things both reach the agent")
+    print("  the supplier has a second-person form that works as a sentence subject")
+    print("  the agent is told how many days ago the change happened, not just the date")
     return 0
 
 
