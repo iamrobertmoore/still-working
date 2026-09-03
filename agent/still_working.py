@@ -53,8 +53,10 @@ Writing to Maya:
 
 * Never use the words endpoint, parameter, API or version. She does not have those words
   and does not need them. All of that goes in the part addressed to whoever fixes things.
-* Call each supplier what she calls it. `vendor_in_her_words` in the input is her name for
-  the one that changed. Use that, not the company's product name.
+* Call each supplier what she calls it. Use `vendor_address_as` when the supplier is the
+  subject or object of a sentence, because it is phrased to fit one. `vendor_in_her_words`
+  is her own first-person wording and only works when you are quoting how she talks about
+  it. Never use the company's product name.
 * Address the forwarded section to the person named in `business.who_fixes_things`, by
   name. Never write "your developer" when you have been given a name.
 * Read `business.who_fixes_things` before telling her when something will be fixed. If that
@@ -62,6 +64,22 @@ Writing to Maya:
 * `business.how_maya_finds_out_today` is how she would otherwise have learned about this.
   It is usually worth one line, because it is the whole value of telling her now.
 * No em dashes and no en dashes. Use a comma or start a new sentence.
+
+Timing. Use `days_ago`, which is how long ago the supplier made the change. Say it plainly
+in her terms, "seven weeks ago", "on Tuesday". Never invent recency. If you do not know
+when something happened, do not imply that you do.
+
+Certainty, and this is the one that decides whether she keeps reading these.
+
+* That the supplier changed something is a FACT. It is in their own published record.
+* That her routine is affected is an INFERENCE, from a mapping that was worked out during
+  setup and carries a confidence.
+* Say each at its real strength. At high confidence "this will have stopped working" is
+  fair. At medium, write it as conditional: what the routine relies on, and what will have
+  happened if it does. Never write "your X is broken" as a flat statement of fact when what
+  you have is a contract change plus a mapping.
+* The forwarded section is read by someone who can check. Give them the fact and the
+  inference separately so they can verify the second one rather than trusting it.
 
 If the mapping between her routine and the changed call is uncertain, say so plainly rather
 than sounding sure."""
@@ -318,6 +336,26 @@ def demo() -> int:
     return 0
 
 
+def explain_aws_failure(exc: Exception) -> int:
+    """Say the one thing that matters, not eighty lines of stack.
+
+    A credentials problem surfaces from deep inside botocore, and the default is a
+    traceback whose last line is the only useful part. Reusing the hints from
+    tools/check_bedrock.py so there is one place that knows what these errors mean.
+    """
+    from tools.check_bedrock import HINTS
+
+    name = type(exc).__name__
+    text = str(exc)
+    print(f"\n{name}: {text}\n", file=sys.stderr)
+    hint = next((h for k, h in HINTS.items() if k in name or k in text), None)
+    if hint:
+        print(hint, file=sys.stderr)
+    else:
+        print("Run `python tools/check_bedrock.py` to diagnose this properly.", file=sys.stderr)
+    return 2
+
+
 def live_once(date: str | None = None) -> int:
     """Run one real recorded change through the real model, and print what Maya gets."""
     business = load_business()
@@ -333,7 +371,11 @@ def live_once(date: str | None = None) -> int:
     print(f"model  {BEDROCK_MODEL} in {AWS_REGION}")
     print(f"event  {row['date']} {row['vendor']}, {row['total_count']} changes that day\n")
 
-    impact, handler, agent = run(row, live=True)
+    try:
+        impact, handler, agent = run(row, live=True)
+    except Exception as exc:                       # noqa: BLE001, we re-raise the meaning
+        return explain_aws_failure(exc)
+
     notes = [b["toolResult"] for m in agent.messages for b in m.get("content", [])
              if isinstance(b, dict) and "toolResult" in b]
 

@@ -1,5 +1,5 @@
 {
-  "_comment": "The four vendors Maya's shop runs on. Each is a contract she does not control and did not agree to. She calls them by what they do for her, which is the only name she has for them. spec_repo and spec_path are where each vendor publishes their own change history, which is what tools/backfill.py reads to reconstruct the series. Verified 22, 25 August and 2 September 2026.",
+  "_comment": "The four vendors Maya's shop runs on. Each is a contract she does not control and did not agree to. She calls them by what they do for her, which is the only name she has for them. spec_repo and spec_path are where each vendor publishes their own change history, which is what tools/backfill.py reads to reconstruct the series. Verified 22, 25 August and 2 September 2026. what_maya_calls_it is her own first-person phrasing and reads correctly in a profile. how_to_address_it is the second-person noun phrase the agent puts in a sentence, because 'how customers pay me removed a feature' is not a sentence.",
   "vendors": [
     {
       "id": "stripe",
@@ -11,7 +11,8 @@
       "verified_endpoints": 589,
       "verified_version": "2026-07-29.dahlia",
       "spec_repo": "https://github.com/stripe/openapi.git",
-      "spec_path": "openapi/spec3.json"
+      "spec_path": "openapi/spec3.json",
+      "how_to_address_it": "your card payments"
     },
     {
       "id": "square",
@@ -23,7 +24,8 @@
       "verified_endpoints": 334,
       "verified_version": "2.0",
       "spec_repo": "https://github.com/square/connect-api-specification.git",
-      "spec_path": "api.json"
+      "spec_path": "api.json",
+      "how_to_address_it": "your till and bookings"
     },
     {
       "id": "xero",
@@ -35,7 +37,8 @@
       "verified_endpoints": 235,
       "verified_version": "17.0.0",
       "spec_repo": "https://github.com/XeroAPI/Xero-OpenAPI.git",
-      "spec_path": "xero_accounting.yaml"
+      "spec_path": "xero_accounting.yaml",
+      "how_to_address_it": "your accounts"
     },
     {
       "id": "shipengine",
@@ -47,7 +50,8 @@
       "verified_endpoints": 97,
       "verified_version": "1.1.202604070904",
       "spec_repo": "https://github.com/ShipEngine/shipengine-openapi.git",
-      "spec_path": "openapi.json"
+      "spec_path": "openapi.json",
+      "how_to_address_it": "your label printing"
     }
   ]
 }
