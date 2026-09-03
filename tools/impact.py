@@ -59,6 +59,13 @@ def watched_calls(business: dict) -> dict[str, list[dict]]:
     return index
 
 
+def vendor_labels() -> dict[str, str]:
+    """What Maya calls each supplier. She has no other name for them."""
+    path = os.path.join(ROOT, "contracts", "vendors.json")
+    with open(path, "r", encoding="utf-8") as fh:
+        return {v["id"]: v.get("what_maya_calls_it") or v["name"] for v in json.load(fh)["vendors"]}
+
+
 def assess(business: dict, change_record: dict) -> dict[str, Any]:
     """Split one day of vendor changes into what reaches Maya and what does not."""
     index = watched_calls(business)
@@ -95,6 +102,12 @@ def assess(business: dict, change_record: dict) -> dict[str, Any]:
     return {
         "date": change_record.get("date"),
         "vendor": vendor,
+        "vendor_in_her_words": vendor_labels().get(vendor, vendor),
+        "business": {
+            "owner": business.get("owner"),
+            "who_fixes_things": business.get("who_fixes_things"),
+            "how_maya_finds_out_today": business.get("how_maya_finds_out_today"),
+        },
         "vendor_total_changes": len(change_record.get("changes", [])),
         "ignored_count": len(ignored),
         "routines_touched": sorted(touched.values(), key=lambda e: e["routine_id"]),
@@ -119,6 +132,8 @@ def self_test() -> int:
     }
     got = assess(business, real)
     assert got["reaches_maya"] is True, got
+    assert got["vendor_in_her_words"] == "my till and my bookings", got["vendor_in_her_words"]
+    assert "Priya" in (got["business"]["who_fixes_things"] or ""), got["business"]
     assert [e["routine_id"] for e in got["routines_touched"]] == ["orders-into-accounts"], got
     assert got["ignored_count"] == 3, got
 
@@ -185,6 +200,7 @@ def self_test() -> int:
             f"routine {routine['id']!r} shares every one of its calls with another routine, "
             "so it can never be the only thing broken and its own path is untestable")
     print("  every routine has at least one call no other routine watches")
+    print("  the supplier's name in her words and who fixes things both reach the agent")
     return 0
 
 

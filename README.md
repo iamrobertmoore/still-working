@@ -190,11 +190,20 @@ python tools/backfill.py --since 2026-04-01   # reconstruct five months from ven
 python tools/impact.py --measure              # what would have reached Maya, and when
 
 python tools/snapshot.py                # take today's snapshot
+
+# with AWS credentials, to run the judgement layer on the real model
+python tools/check_bedrock.py                 # find a model id this account can invoke
+export STILL_WORKING_MODEL="<the id it prints>"
+python agent/still_working.py --live          # one real recorded change, end to end
 ```
 
-Nothing above needs an AWS account, a key, or a network call to a model. The agent runs
-against a scripted model provider so the harness is testable on its own. Swapping in
-`BedrockModel` is a one line change and no agent code moves.
+Everything above the divider runs with no AWS account, no key and no call to a model. The
+agent runs against a scripted model provider so the harness is testable on its own, which
+is why the CI job can run the whole thing on every push.
+
+Below the divider is the same agent against Bedrock. `--live` swaps the model and nothing
+else moves, because the agent was written against the Strands `Model` interface rather than
+against Bedrock.
 
 ## What the checks actually assert
 
@@ -243,6 +252,7 @@ tools/impact.py             which routines a change touches, and --measure. Dete
 agent/still_working.py      the Strands agent, its tools, and the interruption rule
 agent/notes.py              the only format Maya ever sees
 agent/model_double.py       a scripted Strands model provider, for credential-free tests
+tools/check_bedrock.py      which Bedrock model ids this account can actually invoke
 .github/workflows/          the daily job
 ```
 

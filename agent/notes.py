@@ -13,7 +13,18 @@ Rules this format exists to enforce:
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
+
+# Maya's note has a house style. A model asked nicely to follow one will mostly follow it,
+# which is not the same as following it. Style is a property of the format, so it is
+# enforced where the format is produced rather than requested in a prompt and hoped for.
+_DASHES = re.compile(r"\s*[\u2014\u2013]\s*")
+
+
+def house_style(text: str) -> str:
+    """Normalise typography. Currently: no em or en dashes anywhere in Maya's note."""
+    return _DASHES.sub(", ", text or "")
 
 
 @dataclass
@@ -34,6 +45,12 @@ class MayaNote:
         if self.still_working:
             return "Still working.\nNothing that matters to you changed."
 
+        out = self._render_raw()
+        cleaned = house_style(out)
+        assert "\u2014" not in cleaned and "\u2013" not in cleaned, "house style not applied"
+        return cleaned
+
+    def _render_raw(self) -> str:
         lines = [
             self.headline,
             "",
