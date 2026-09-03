@@ -1,0 +1,34 @@
+{
+  "date": "2026-07-14",
+  "vendor": "square",
+  "vendor_in_her_words": "my till and my bookings",
+  "vendor_address_as": "your till and bookings",
+  "days_ago": 51,
+  "business": {
+    "owner": "Maya",
+    "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+    "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+  },
+  "vendor_total_changes": 8,
+  "ignored_count": 7,
+  "routines_touched": [
+    {
+      "routine_id": "stock-between-counter-and-website",
+      "what_maya_calls_it": "Stock moving between the counter and the website",
+      "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+      "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+      "how_late_would_she_notice": "a few days, when the second customer complains",
+      "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+      "mapping_confidence": "high",
+      "changes": [
+        {
+          "breaking": true,
+          "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+          "kind": "endpoint_removed"
+        }
+      ],
+      "has_breaking_change": true
+    }
+  ],
+  "reaches_maya": true
+}
