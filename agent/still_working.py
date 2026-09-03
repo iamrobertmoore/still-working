@@ -356,7 +356,25 @@ def explain_aws_failure(exc: Exception) -> int:
     return 2
 
 
-def live_once(date: str | None = None) -> int:
+NOTES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     "contracts", "notes")
+
+
+def save_note(row: dict, text: str) -> str:
+    """Keep the note the model actually wrote.
+
+    The page Maya looks at has to show what she was told, not a placeholder. Storing the
+    real generated note means the published page is the product's own output rather than
+    a mock of it, and the file is diffable so a bad note is visible in review.
+    """
+    os.makedirs(NOTES, exist_ok=True)
+    path = os.path.join(NOTES, f"{row['date']}-{row['vendor']}.md")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(text.rstrip() + "\n")
+    return path
+
+
+def live_once(date: str | None = None, save: bool = False) -> int:
     """Run one real recorded change through the real model, and print what Maya gets."""
     business = load_business()
     rows = [json.loads(l) for l in open(os.path.join(
@@ -382,7 +400,10 @@ def live_once(date: str | None = None) -> int:
     print("WHAT MAYA SEES")
     print("-" * 70)
     if handler.sent and notes:
-        print(notes[-1]["content"][0]["text"])
+        text = notes[-1]["content"][0]["text"]
+        print(text)
+        if save:
+            print(f"\n(saved to {os.path.relpath(save_note(row, text), os.path.dirname(NOTES))})")
     else:
         print(MayaNote(still_working=True, routine="", headline="", what_happened="",
                        what_it_costs="", how_late_normally="", what_to_do="",
@@ -401,7 +422,8 @@ if __name__ == "__main__":
     ap.add_argument("--demo", action="store_true", help="four scripted days, no credentials")
     ap.add_argument("--live", action="store_true", help="one real recorded change, via Bedrock")
     ap.add_argument("--date", default=None, help="which recorded change to use with --live")
+    ap.add_argument("--save", action="store_true", help="store the note under contracts/notes/")
     args = ap.parse_args()
     if args.live:
-        raise SystemExit(live_once(args.date))
+        raise SystemExit(live_once(args.date, save=args.save))
     raise SystemExit(demo())
