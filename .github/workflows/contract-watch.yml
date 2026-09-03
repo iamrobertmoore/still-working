@@ -57,6 +57,9 @@ jobs:
       - name: Prove the agent still runs end to end
         run: python agent/still_working.py --demo
 
+      - name: Prove the deployed bundle does not reach into the repo
+        run: python tools/check_runtime_isolation.py
+
       - name: Snapshot the contracts
         id: snapshot
         continue-on-error: true

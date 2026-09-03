@@ -6,3 +6,10 @@ venv/
 .DS_Store
 .pytest_cache/
 .spec-cache/
+
+# AgentCore scaffold build artefacts
+runtime/**/.venv/
+runtime/**/node_modules/
+runtime/**/cdk.out/
+runtime/agentcore/.cli/
+runtime/agentcore/.env.local
