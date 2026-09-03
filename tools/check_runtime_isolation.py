@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +26,27 @@ BAD_ABS = re.compile(r"""['"](/(?:root|home|Users)/[^'"]*)['"]""")
 IMPORT = re.compile(r"^\s*(?:from\s+([\w.]+)\s+import|import\s+([\w.]+))", re.M)
 
 
+def source_files() -> list[str]:
+    """The Python files WE wrote and ship, and nothing else.
+
+    Asking git rather than walking the tree. The first version walked runtime/ with a
+    hand-maintained exclusion list and scanned 2,325 files, because `agentcore deploy`
+    stages every vendored dependency under agentcore/.cache/. It reached the right verdict
+    about the four files that matter by also reading 2,321 files of somebody else's code.
+
+    A check that examines the wrong thing and passes is the exact failure this check
+    exists to prevent, so it now asks the only question with a precise answer: what is
+    tracked in this repository under runtime/.
+    """
+    try:
+        out = subprocess.run(["git", "ls-files", "runtime"], cwd=ROOT,
+                             capture_output=True, text=True, check=True).stdout
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        print("git not available, cannot determine tracked files", file=sys.stderr)
+        return []
+    return [f for f in out.splitlines() if f.endswith(".py")]
+
+
 def main() -> int:
     if not os.path.isdir(RUNTIME):
         print("runtime/ not present, nothing to check")
@@ -33,14 +55,10 @@ def main() -> int:
     problems: list[str] = []
     checked = 0
 
-    for base, dirs, files in os.walk(RUNTIME):
-        dirs[:] = [d for d in dirs
-                   if d not in {".venv", "node_modules", "__pycache__", ".git", "cdk.out"}]
-        for name in files:
-            if not name.endswith(".py"):
+    for rel in source_files():
+            path = os.path.join(ROOT, rel)
+            if not os.path.exists(path):
                 continue
-            path = os.path.join(base, name)
-            rel = os.path.relpath(path, ROOT)
             checked += 1
             with open(path, "r", encoding="utf-8") as fh:
                 src = fh.read()
@@ -61,7 +79,15 @@ def main() -> int:
             print(f"  {p}", file=sys.stderr)
         return 1
 
-    print(f"runtime isolation OK: {checked} files, no repository imports, no absolute paths")
+    if checked == 0:
+        print("runtime isolation INCONCLUSIVE: no tracked Python files found under "
+              "runtime/. That is not a pass.", file=sys.stderr)
+        return 1
+
+    print(f"runtime isolation OK: {checked} tracked files, no repository imports, "
+          "no absolute paths")
+    for rel in sorted(source_files()):
+        print(f"    {rel}")
     return 0
 
 
