@@ -32,18 +32,39 @@ from agent.model_double import ScriptedModel
 from agent.notes import MayaNote
 from tools.impact import assess, load_business
 
+# Set by tools/check_bedrock.py, which finds out which ids this account can actually
+# invoke rather than guessing from list-foundation-models.
+BEDROCK_MODEL = os.environ.get("STILL_WORKING_MODEL", "eu.anthropic.claude-sonnet-4-6")
+AWS_REGION = os.environ.get("AWS_REGION", "eu-west-2")
+
+
+def live_model():
+    """The real model. One line, and no agent code moves to get here."""
+    from strands.models.bedrock import BedrockModel
+    return BedrockModel(model_id=BEDROCK_MODEL, region_name=AWS_REGION, max_tokens=1200)
+
 SYSTEM = """You look after one person's shop. Her name is Maya.
 
-You are given a vendor change and the routine of hers it touches. Decide whether it
+You are given a supplier change and the routine of hers it touches. Decide whether it
 actually stops that routine working. If it does, tell her what stopped, what it costs her,
 and who to forward it to.
 
-Never use the words endpoint, parameter, API or version when you are talking to Maya. She
-does not have those words and does not need them. Put the technical detail in the part of
-the note addressed to her developer.
+Writing to Maya:
 
-If the mapping between her routine and the changed call is uncertain, say so plainly
-rather than sounding sure."""
+* Never use the words endpoint, parameter, API or version. She does not have those words
+  and does not need them. All of that goes in the part addressed to whoever fixes things.
+* Call each supplier what she calls it. `vendor_in_her_words` in the input is her name for
+  the one that changed. Use that, not the company's product name.
+* Address the forwarded section to the person named in `business.who_fixes_things`, by
+  name. Never write "your developer" when you have been given a name.
+* Read `business.who_fixes_things` before telling her when something will be fixed. If that
+  person is part time or not on retainer, do not promise same day.
+* `business.how_maya_finds_out_today` is how she would otherwise have learned about this.
+  It is usually worth one line, because it is the whole value of telling her now.
+* No em dashes and no en dashes. Use a comma or start a new sentence.
+
+If the mapping between her routine and the changed call is uncertain, say so plainly rather
+than sounding sure."""
 
 
 class OnlyWhenItCostsHer(InterventionHandler):
@@ -149,13 +170,19 @@ def send_to_maya(routine: str, headline: str, what_happened: str, what_it_costs:
     return note.render()
 
 
-def run(change_record: dict, script: list[dict], approve_low_confidence: bool = True):
+def run(change_record: dict, script: list[dict] | None = None, approve_low_confidence: bool = True,
+        live: bool = False):
+    """Run one day's changes through the agent.
+
+    `live=True` swaps the scripted double for Bedrock. Nothing else changes, which is the
+    point of having built against the Model interface rather than against Bedrock.
+    """
     business = load_business()
     impact = assess(business, change_record)
     handler = OnlyWhenItCostsHer(impact, approve_low_confidence)
 
     agent = Agent(
-        model=ScriptedModel(script),
+        model=live_model() if live else ScriptedModel(script or []),
         tools=[read_routine, send_to_maya],
         system_prompt=SYSTEM,
         interventions=[handler],
@@ -291,8 +318,48 @@ def demo() -> int:
     return 0
 
 
+def live_once(date: str | None = None) -> int:
+    """Run one real recorded change through the real model, and print what Maya gets."""
+    business = load_business()
+    rows = [json.loads(l) for l in open(os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "contracts", "changes.jsonl"), encoding="utf-8")]
+    reaching = [r for r in rows if assess(business, r)["reaches_maya"]]
+    if not reaching:
+        print("no recorded change reaches Maya, run tools/backfill.py first")
+        return 1
+    row = next((r for r in reaching if r["date"] == date), reaching[-1])
+
+    print(f"model  {BEDROCK_MODEL} in {AWS_REGION}")
+    print(f"event  {row['date']} {row['vendor']}, {row['total_count']} changes that day\n")
+
+    impact, handler, agent = run(row, live=True)
+    notes = [b["toolResult"] for m in agent.messages for b in m.get("content", [])
+             if isinstance(b, dict) and "toolResult" in b]
+
+    print("WHAT MAYA SEES")
+    print("-" * 70)
+    if handler.sent and notes:
+        print(notes[-1]["content"][0]["text"])
+    else:
+        print(MayaNote(still_working=True, routine="", headline="", what_happened="",
+                       what_it_costs="", how_late_normally="", what_to_do="",
+                       forward_to="").render())
+    print("-" * 70)
+    print()
+    print(f"sent                : {handler.sent}")
+    print(f"carrying doubt      : {handler.flagged_uncertain}")
+    print(f"held for a person   : {handler.asked}")
+    print(f"blocked             : {handler.denied}")
+    return 0
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--demo", action="store_true")
+    ap.add_argument("--demo", action="store_true", help="four scripted days, no credentials")
+    ap.add_argument("--live", action="store_true", help="one real recorded change, via Bedrock")
+    ap.add_argument("--date", default=None, help="which recorded change to use with --live")
     args = ap.parse_args()
-    raise SystemExit(demo() if args.demo else demo())
+    if args.live:
+        raise SystemExit(live_once(args.date))
+    raise SystemExit(demo())
