@@ -166,3 +166,44 @@ def test_the_page_speaks_to_maya_in_the_second_person(page):
     visible = re.sub(r"<style>.*?</style>", "", body, flags=re.S)
     visible = re.sub(r"<[^>]+>", " ", visible)
     assert " her shop " not in visible, "third person on a page addressed to her"
+
+
+@pytest.mark.parametrize("with_note", [True, False])
+def test_recent_breaking_change_keeps_the_note_and_marks_its_supplier(tmp_path, monkeypatch, with_note):
+    """The redesigned quiet view must still become an actionable alert, including
+    when the judgement layer has not written its note yet."""
+    import datetime as dt
+    import importlib
+    import json
+    from pathlib import Path
+
+    render = importlib.import_module("tools.render_page")
+    source = Path(ROOT) / "contracts"
+    rows = [json.loads(line) for line in (source / "changes.jsonl").read_text().splitlines()]
+    change = next(row for row in rows
+                  if render.assess(render.load_business(), row)["reaches_maya"])
+    change["date"] = dt.date.today().isoformat()
+    (tmp_path / "vendors.json").write_text((source / "vendors.json").read_text())
+    (tmp_path / "changes.jsonl").write_text(json.dumps(change) + "\n")
+    if with_note:
+        (tmp_path / "notes").mkdir()
+        (tmp_path / "notes" / f"{change['date']}-{change['vendor']}.md").write_text(
+            "Your routine needs attention.\nForward this to Priya.\n<script>alert(1)</script>")
+    output = tmp_path / "index.html"
+    monkeypatch.setattr(render, "CONTRACTS", str(tmp_path))
+    monkeypatch.setattr(render, "OUT", str(output))
+    assert render.main() == 0
+    result = output.read_text()
+    assert 'class="state warn">Something broke.</h1>' in result
+    assert 'class="hero-art warning"' in result
+    assert "Get on with your day" not in result
+    cards = re.findall(r'<li class="vendor-card">.*?</li>', result, flags=re.S)
+    assert sum("Needs your attention" in card for card in cards) == 1
+    label = render.vendor_labels()[change["vendor"]]["address_as"].capitalize()
+    assert any(label in card and "Needs your attention" in card for card in cards)
+    if with_note:
+        assert "Forward this to Priya." in result
+        assert "&lt;script&gt;alert(1)&lt;/script&gt;" in result
+        assert "<script>" not in result
+    else:
+        assert "The full note has not been written yet" in result
