@@ -874,11 +874,566 @@ th {
 .demo-feature{display:grid;grid-template-columns:1.7fr 1fr;gap:50px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:34px;margin:32px 0 4px;box-shadow:var(--shadow)}.demo-feature h2{font:normal 30px/1.2 Georgia,serif;letter-spacing:-.7px;max-width:530px}.demo-feature p{font-size:14px;color:var(--muted)}.demo-feature .eyebrow{font-size:10px;margin-bottom:16px}.demo-feature a{font-size:14px;color:var(--green)}.demo-feature aside{border-left:1px solid var(--line);padding-left:30px}.feature-number{font:50px/1 Georgia,serif;color:var(--green);letter-spacing:-2px}.demo-feature aside>strong{font-size:15px}.demo-feature .feature-caveat{font-size:12px}.build-stamp{text-align:center;font-size:12px;color:var(--muted);margin:0 20px 26px}
 @media(max-width:650px){.demo-feature{grid-template-columns:1fr;gap:25px;padding:24px}.demo-feature aside{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.demo-feature h2{font-size:27px}.product-nav{gap:20px;font-size:12px;flex-wrap:wrap}.hero-actions>span{max-width:150px}.identity{font-size:10px;max-width:140px}}
 
+/* The same quiet identity, with a visible sense of the work happening behind it. */
+body {
+  background-image:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 42%)
+}
+.hero {
+  grid-template-columns:minmax(0,1fr) 400px;
+  padding-top:65px;
+  padding-bottom:45px;
+  gap:36px
+}
+.hero-art {
+  width:400px;
+  height:360px;
+  isolation:isolate
+}
+.hero-art::before {
+  inset:47px 67px;
+  opacity:.65
+}
+.hero-art::after {
+  inset:72px 92px;
+  animation:orbit 70s linear infinite
+}
+.hero-art .art-grid {
+  inset:-20px;
+  background-size:17px 17px
+}
+.orbit-ring {
+  position:absolute;
+  width:280px;
+  height:280px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  opacity:.45;
+  transform:rotateX(58deg) rotate(-25deg)
+}
+.signal-paths {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  stroke:var(--line);
+  stroke-width:1.2
+}
+.signal-paths .signal-trace {
+  stroke:var(--green);
+  stroke-dasharray:9 170;
+  animation:signal-travel 8s linear infinite;
+  opacity:.5
+}
+.seal {
+  height:126px;
+  width:126px;
+  box-shadow:0 0 0 10px var(--mint),0 24px 65px -26px #173b3870
+}
+.seal svg {
+  width:75px;
+  height:75px
+}
+.seal path {
+  stroke-dasharray:180;
+  animation:draw-mark 1.8s ease both
+}
+.supplier-node {
+  position:absolute;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 14px;
+  box-shadow:var(--shadow);
+  z-index:2;
+  font-size:12px;
+  font-weight:600;
+  animation:node-drift 7s ease-in-out infinite
+}
+.supplier-node svg {
+  width:23px;
+  height:23px;
+  color:var(--green)
+}
+.supplier-node small {
+  display:block;
+  font-size:9px;
+  font-weight:400;
+  color:var(--muted);
+  letter-spacing:.025em
+}
+.node-stripe {
+  left:5px;
+  top:35px
+}
+.node-square {
+  right:0;
+  top:35px;
+  animation-delay:-2s
+}
+.node-xero {
+  left:0;
+  bottom:39px;
+  animation-delay:-4s
+}
+.node-shipping {
+  right:-5px;
+  bottom:39px;
+  animation-delay:-1s
+}
+.art-caption {
+  bottom:-8px;
+  font-size:9px;
+  letter-spacing:.13em
+}
+.live-dot {
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin:0 8px 1px 0;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 4px var(--mint)
+}
+.primary-link {
+  border-radius:99px;
+  padding:15px 22px;
+  box-shadow:0 7px 22px -12px var(--green)
+}
+.primary-link span {
+  transition:transform .25s
+}
+.primary-link:hover span {
+  transform:translate(2px,-2px)
+}
+.hero-actions>span {
+  max-width:190px;
+  line-height:1.5
+}
+.demo-feature {
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:linear-gradient(115deg,var(--surface) 25%,var(--mint));
+  padding:40px;
+  margin-top:36px
+}
+.demo-feature:before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:40px;
+  bottom:40px;
+  width:3px;
+  background:var(--accent)
+}
+.demo-feature h2 {
+  font-size:34px;
+  line-height:1.17;
+  margin:0 0 18px
+}
+.demo-feature aside {
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.demo-feature aside>p {
+  margin:10px 0
+}
+.feature-number {
+  font-size:66px
+}
+.signal-matrix {
+  display:grid;
+  grid-template-columns:repeat(14,1fr);
+  gap:5px;
+  max-width:225px;
+  margin:22px 0 6px
+}
+.signal-matrix i {
+  height:7px;
+  border-radius:2px;
+  background:var(--line)
+}
+.signal-matrix i.bright {
+  background:var(--green);
+  box-shadow:0 0 0 2px var(--mint);
+  animation:signal-glow 5s ease-in-out infinite
+}
+.signal-matrix i.bright:last-child {
+  animation-delay:1s
+}
+.story-section {
+  padding:40px 0 44px
+}
+.story-heading {
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:end;
+  margin:0 0 35px
+}
+.story-heading h2 {
+  font:normal 40px/1.13 Georgia,serif;
+  letter-spacing:-1px;
+  margin:0
+}
+.story-heading>.eyebrow {
+  margin-bottom:16px
+}
+.story-heading>p {
+  max-width:245px;
+  font-size:14px;
+  color:var(--muted)
+}
+.story-steps {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:34px;
+  position:relative
+}
+.story-steps:before {
+  content:"";
+  height:1px;
+  position:absolute;
+  top:20px;
+  left:20px;
+  right:20px;
+  background:var(--line)
+}
+.story-steps article {
+  position:relative
+}
+.step-number {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:50%;
+  font:11px ui-monospace,monospace;
+  position:relative;
+  transition:background .3s,color .3s
+}
+.story-steps article:hover .step-number {
+  background:var(--green);
+  color:var(--bg)
+}
+.story-steps h3 {
+  margin:24px 0 10px;
+  font-size:18px;
+  font-weight:550;
+  letter-spacing:-.3px
+}
+.story-steps p {
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:300px
+}
+.step-detail {
+  display:inline-block;
+  font-size:11px;
+  color:var(--green);
+  margin-top:12px
+}
+.built-strip {
+  display:flex;
+  gap:25px;
+  align-items:center;
+  flex-wrap:wrap;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:38px;
+  border-top:1px solid var(--line);
+  padding-top:20px
+}
+.built-strip span:first-child {
+  font-style:italic;
+  font-family:Georgia,serif;
+  font-size:15px;
+  color:var(--green)
+}
+.built-strip a {
+  margin-left:auto
+}
+.demo-method>summary {
+  display:flex;
+  justify-content:space-between;
+  padding:0;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:500;
+  color:var(--ink)
+}
+.demo-method>div {
+  padding:18px 0 5px;
+  max-width:580px;
+  font-size:12px
+}
+.demo-method p+p {
+  margin-top:12px
+}
+.demo-method a {
+  display:inline-block;
+  margin-top:12px
+}
+.motion-control {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  margin-top:20px;
+  cursor:pointer
+}
+.motion-control input {
+  accent-color:var(--green)
+}
+body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body:has(#pause-motion:checked) *::after {
+  animation-play-state:paused!important
+}
+.fine-print {
+  grid-template-columns:1fr 1fr;
+  gap:70px
+}
+@keyframes signal-travel {
+  to {
+    stroke-dashoffset:-358
+  }
+}
+@keyframes node-drift {
+  0%,100% {
+    transform:translateY(0)
+  }
+  50% {
+    transform:translateY(-5px)
+  }
+}
+@keyframes orbit {
+  to {
+    transform:rotate(360deg)
+  }
+}
+@keyframes draw-mark {
+  from {
+    stroke-dashoffset:180;
+    opacity:0
+  }
+  to {
+    stroke-dashoffset:0;
+    opacity:1
+  }
+}
+@keyframes signal-glow {
+  0%,100% {
+    opacity:.65
+  }
+  50% {
+    opacity:1
+  }
+}
+@media(max-width:1000px) {
+  .hero {
+    grid-template-columns:minmax(0,1fr) 330px;
+    gap:20px
+  }
+  .hero-art {
+    width:330px;
+    height:320px
+  }
+  .supplier-node {
+    font-size:11px;
+    padding:9px 10px
+  }
+  .supplier-node svg {
+    width:19px;
+    height:19px
+  }
+  .seal {
+    width:105px;
+    height:105px
+  }
+  .seal svg {
+    width:65px;
+    height:65px
+  }
+  .hero-art::before {
+    inset:48px
+  }
+  .hero-art::after {
+    inset:70px
+  }
+  .orbit-ring {
+    width:240px;
+    height:240px
+  }
+  .demo-feature {
+    gap:30px;
+    padding:32px
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .feature-number {
+    font-size:55px
+  }
+}
+@media(max-width:760px) {
+  .hero {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding-top:45px
+  }
+  .hero-art {
+    display:grid;
+    width:330px;
+    height:295px;
+    justify-self:center;
+    margin:12px 0 10px
+  }
+  .hero-art::before {
+    inset:35px 52px
+  }
+  .hero-art::after {
+    inset:58px 76px
+  }
+  .state {
+    font-size:clamp(54px,10vw,76px)
+  }
+  .hero-copy {
+    max-width:540px
+  }
+  .hero-actions {
+    margin-top:24px
+  }
+  .node-stripe,.node-square {
+    top:22px
+  }
+  .node-xero,.node-shipping {
+    bottom:30px
+  }
+  .art-caption {
+    font-size:8px;
+    bottom:-2px
+  }
+  .story-heading {
+    display:block
+  }
+  .story-heading h2 {
+    font-size:34px
+  }
+  .story-heading>p {
+    max-width:340px
+  }
+  .story-steps {
+    gap:20px
+  }
+  .story-steps h3 {
+    font-size:16px
+  }
+  .story-steps p {
+    font-size:13px
+  }
+  .built-strip {
+    gap:15px
+  }
+  .built-strip a {
+    margin-left:0
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .fine-print {
+    gap:30px
+  }
+}
+@media(max-width:520px) {
+  .hero-art {
+    width:100%;
+    max-width:330px
+  }
+  .hero-actions>span {
+    max-width:none;
+    flex-basis:100%;
+    font-size:11px
+  }
+  .demo-feature {
+    padding:26px;
+    gap:20px
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .feature-number {
+    font-size:60px
+  }
+  .demo-feature aside {
+    padding-top:22px
+  }
+  .signal-matrix {
+    max-width:100%;
+    grid-template-columns:repeat(14,1fr)
+  }
+  .story-steps {
+    grid-template-columns:1fr;
+    gap:27px
+  }
+  .story-steps:before {
+    top:20px;
+    bottom:60px;
+    left:19px;
+    width:1px;
+    height:auto;
+    right:auto
+  }
+  .story-steps article {
+    padding-left:61px
+  }
+  .step-number {
+    position:absolute;
+    left:0;
+    top:0
+  }
+  .story-steps h3 {
+    margin:6px 0 9px
+  }
+  .story-steps p {
+    max-width:none;
+    margin:0
+  }
+  .step-detail {
+    margin-top:10px
+  }
+  .fine-print {
+    grid-template-columns:1fr
+  }
+  .story-heading h2 {
+    font-size:33px
+  }
+  .story-section {
+    padding-top:28px
+  }
+  .built-strip {
+    font-size:10px
+  }
+  .demo-feature aside>p {
+    font-size:13px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .motion-control {
+    display:none
+  }
+}
+
 
 .review-nav{display:flex;gap:25px;padding:20px 0;font-size:14px}.review-head{padding:30px 0;max-width:760px}.review-head h1{font:normal clamp(38px,5vw,60px)/1.1 Georgia,serif;letter-spacing:-1.8px;margin:10px 0 20px}.review-head p{font-size:16px;color:var(--muted)}.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}.review-card{padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:16px}.review-card h2{font-size:22px;margin-bottom:20px}.review-card h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:25px 0 8px}.review-card p{margin:12px 0}.review-card pre{font:12px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--soft);padding:16px;border-radius:8px}.review-tag{font-size:12px;color:var(--warn);letter-spacing:.08em;text-transform:uppercase}.review-card fieldset{border:0;padding:0;margin:0}.review-card legend{font-size:16px;font-weight:600;margin-bottom:14px}.review-choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:8px;padding:14px;margin:10px 0;cursor:pointer;font-size:14px}.review-choice:has(input:checked){border-color:var(--green);background:var(--mint)}.review-choice input{margin-top:5px;accent-color:var(--green)}.review-choice small{display:block;color:var(--muted);font-size:13px;margin-top:4px}.review-field{display:block;margin-top:20px;font-size:14px}.review-field input,.review-field textarea{display:block;margin-top:7px;width:100%;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg);color:var(--ink);font:inherit}.review-field textarea{min-height:100px;resize:vertical}.review-card button,.download-review{display:inline-block;margin-top:22px;padding:13px 20px;background:var(--green);color:var(--bg);border:0;border-radius:8px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none}.review-card button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:3px}.review-result{margin-top:22px;border-top:1px solid var(--line);padding-top:20px}.review-result h3{margin-top:0;text-transform:none;font-size:20px;color:var(--green);letter-spacing:0}.review-result .receipt-note{font-size:14px;white-space:pre-line}.review-result details{margin-top:18px}.review-result summary{padding:12px 0;font-size:14px}.review-footer{margin:35px 0;border-top:1px solid var(--line);padding-top:25px;color:var(--muted);font-size:13px}.review-footer a{margin-right:18px}.case-queue{margin:30px 0}.case-queue a{display:block;padding:18px;border:1px solid var(--line);border-radius:8px;margin:12px 0}#error{color:var(--warn);font-size:14px}[hidden]{display:none!important}@media(max-width:760px){.review-grid{grid-template-columns:1fr}.review-card{padding:23px}.review-head{padding-top:20px}.review-nav{gap:20px}.identity{display:none}}
 </style></head><body><div class="wrap"><header class="masthead"><a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/></svg><span>still working.</span></a><span class="identity">A decision for the person who knows the integration.</span></header><nav class="review-nav"><a href="../">Daily check-in</a><a href="../replay/">Recorded warnings</a><a href="live.html">Pending queue</a></nav>
-    <main><section class="review-head"><span class="review-tag">Recorded review example</span><h1>A question before<br>another interruption.</h1><p>This is a recorded test of the review gate. The supplier change is real; its mapping confidence was deliberately lowered. Try either developer decision and inspect the captured cloud result.</p></section>
-    <div class="review-grid"><section class="review-card"><span class="review-tag">Waiting for a person · No note sent</span><h2>Stock moving between the counter and the website</h2><h3>What is known</h3><p>Square published a potentially breaking change on 14 July 2026.</p><pre>endpoint_removed: GET /v2/inventory/transfers/{transfer_id}</pre><h3>What is uncertain</h3><p>Does this routine actually use the affected call? The mapping has <strong>low confidence</strong>.</p><h3>Why it could matter</h3><p>A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.</p><p class="section-meta">The business consequence is an illustrative assumption, not an observed outage.</p></section>
+    <main><section class="review-head"><span class="review-tag">Recorded review example</span><h1>A question before<br>another interruption.</h1><p>An uncertain match pauses the agent. Confirm it, dismiss it, or leave the question open. Explore the recorded outcomes.</p></section>
+    <div class="review-grid"><section class="review-card"><span class="review-tag">Waiting for a person · No note sent</span><h2>Stock moving between the counter and the website</h2><h3>What is known</h3><p>Square published a potentially breaking change on 14 July 2026.</p><pre>endpoint_removed: GET /v2/inventory/transfers/{transfer_id}</pre><h3>What is uncertain</h3><p>Does this routine actually use the affected call? The mapping has <strong>low confidence</strong>.</p><h3>Why it could matter</h3><p>A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.</p></section>
     <section class="review-card"><h2>Check the dependency.</h2><form id="review-form"><fieldset><legend>What did the integration check show?</legend><label class="review-choice"><input type="radio" name="decision" value="approve" required><span>This routine uses the affected call.<small>Permit the agent to assess and write a note. Its delivery controls still apply.</small></span></label><label class="review-choice"><input type="radio" name="decision" value="dismiss"><span>This change does not affect this routine.<small>Close this case without invoking a model or sending a note.</small></span></label><label class="review-choice"><input type="radio" name="decision" value="unsure"><span>I still cannot establish the dependency.<small>Keep it pending. An unanswered question is not an approval.</small></span></label></fieldset><label class="review-field">Reviewer<input id="reviewer" minlength="2" maxlength="120" required value="Example reviewer" autocomplete="off"></label><label class="review-field">What did you check?<textarea id="reason" minlength="2" maxlength="1200" required>Demonstration decision. No real integration or customer was checked.</textarea></label><button type="submit">Try this review decision</button><p id="error" role="alert"></p></form>
     <div id="review-result" class="review-result" aria-live="polite" hidden><h3 id="result-title"></h3><p id="result-copy"></p><p id="result-metrics"></p><details id="note-details" hidden><summary>Read the captured note</summary><div id="result-note" class="receipt-note"></div></details><a id="download" class="download-review" hidden>Download example review file</a></div></section></div></main>
-    <footer class="review-footer"><p>Example decisions are for demonstration only and cannot be imported into the live queue. The selected branch shows a saved AWS response, not a fresh browser invocation.</p><p>Each review is bound to the exact date, supplier and assessed routine. Changing the case invalidates the decision.</p><a href="proof.json">Inspect the source record</a><a href="https://github.com/iamrobertmoore/still-working/blob/main/docs/REVIEW.md">How the review reaches the agent</a></footer></div><script id="review-data" type="application/json">{"mode": "example", "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "proof": {"held": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": []}, "result": {"state": "held_for_a_person", "reason": "a mapping or note needs a person to check it", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "held_for_a_person"}], "pending_routines": ["stock-between-counter-and-website"]}}, "approved": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "something_broke", "reason": "a note passed the controls and was rendered", "routine": "Stock moving between the counter and the website", "note": "Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}", "notes": ["Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}"], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 1, "stop_reason": "end_turn", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "delivered", "dates_stamped": true, "refused_attempts": 0, "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}], "pending_routines": []}}, "dismissed": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "dismissed_by_reviewer", "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}], "pending_routines": []}}, "repeat": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "repeat_held", "days_since": 0}], "pending_routines": []}}}}</script><script src="review.js"></script></body></html>
+    <footer class="review-footer"><p><a href="proof.json">Inspect the source record</a><a href="https://github.com/iamrobertmoore/still-working/blob/main/docs/REVIEW.md">How the review reaches the agent</a></p><details class="demo-method"><summary>About this example <span aria-hidden="true">+</span></summary><div><p>This uses a historical Square change with deliberately lowered mapping confidence and simulated reviewer choices. Each branch is a saved AWS response. Maya’s shop and its business consequences are illustrative. Example files cannot be imported into the live queue.</p><p>Each review covers the exact date, supplier and assessed routine. Changing the case invalidates the decision.</p></div></details></footer></div><script id="review-data" type="application/json">{"mode": "example", "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "proof": {"held": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": []}, "result": {"state": "held_for_a_person", "reason": "a mapping or note needs a person to check it", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "held_for_a_person"}], "pending_routines": ["stock-between-counter-and-website"]}}, "approved": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "something_broke", "reason": "a note passed the controls and was rendered", "routine": "Stock moving between the counter and the website", "note": "Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}", "notes": ["Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}"], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 1, "stop_reason": "end_turn", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "delivered", "dates_stamped": true, "refused_attempts": 0, "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}], "pending_routines": []}}, "dismissed": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "dismissed_by_reviewer", "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}], "pending_routines": []}}, "repeat": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "repeat_held", "days_since": 0}], "pending_routines": []}}}}</script><script src="review.js"></script></body></html>

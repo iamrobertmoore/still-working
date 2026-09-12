@@ -1,40 +1,33 @@
-# Still Working
+<p align="center"><img src="docs/brand/readme-banner.svg" alt="Still Working. Your business moves. Let the background stay quiet." width="1000"></p>
 
-**Maya runs a twelve-person shop. She should not have to read four suppliers' technical changes to find the one that might stop her getting paid.**
+<p align="center"><strong>Supplier changes, translated into the one thing a shop owner needs to know.</strong></p>
 
-Maya is an illustrative shop owner, not a customer. Still Working watches real published supplier contracts, matches changes to the routines in her shop profile, and writes a plain-English note she can act on. Most mornings it has nothing new to tell her.
+<p align="center"><a href="https://iamrobertmoore.github.io/still-working/">Open the daily page</a> · <a href="https://iamrobertmoore.github.io/still-working/replay/">See what it catches</a> · <a href="https://iamrobertmoore.github.io/still-working/review/">Try a review decision</a></p>
 
-**[Open the daily page](https://iamrobertmoore.github.io/still-working/)** ·
-**[Replay the real cloud responses](https://iamrobertmoore.github.io/still-working/replay/)** ·
-[Review a match](https://iamrobertmoore.github.io/still-working/review/) · [Architecture](ARCHITECTURE.md) · [Submission](DEVPOST.md)
+Most mornings, Still Working has two words for you. When a supplier change deserves attention, it explains the business consequence and gives you something to do about it. The technical detail is already written for the developer who can help.
 
-![Public supplier contracts through matching, controlled judgement and a daily page](docs/architecture.svg)
+The demo follows Maya's twelve-person shop: card payments, payroll, stock between the counter and website, orders into the accounts, shipping labels. Four suppliers keep those routines moving. Still Working keeps an eye on what they change.
 
-## Try it in one minute
+Built with **Strands Agents** and **Amazon Bedrock AgentCore** for **AWS Agents for Humans**, Professional Agents.
 
-1. Open [the stock warning](https://iamrobertmoore.github.io/still-working/replay/2026-07-14-square.html). A real Square publication change becomes a possible consequence for Maya's shop, followed by something her developer can check.
-2. Open [the repeat held](https://iamrobertmoore.github.io/still-working/replay/2026-04-29-xero.html). The payroll routine was already flagged five days earlier. Its delivery ledger prevents another note, before a model is constructed.
-3. [Review an uncertain match](https://iamrobertmoore.github.io/still-working/review/). Try confirming, dismissing or leaving it pending. These branches are captured from the actual runtime with explicitly simulated reviewer decisions.
-4. Expand “Every decision in the replay” to inspect all 23 captured AgentCore responses. The [raw evidence](docs/replay/recordings.json) includes input, output, ledger and source hashes. These are recordings, not live inference in your browser.
+## A minute inside the product
 
-## The person and the problem
+| Try this | Watch what happens |
+|---|---|
+| [The stock warning](https://iamrobertmoore.github.io/still-working/replay/2026-07-14-square.html) | A Square change becomes a warning about selling stock twice, with a section ready to forward to Priya. |
+| [The repeat held](https://iamrobertmoore.github.io/still-working/replay/2026-04-29-xero.html) | The payroll routine was flagged five days earlier. Its delivery ledger prevents another interruption before a model is built. |
+| [Review a match](https://iamrobertmoore.github.io/still-working/review/) | Confirm the dependency, dismiss the case or stay unsure. Inspect the captured AWS result for each decision. |
 
-Maya sells homeware online and at one counter. She has a freelance developer, Priya, for two days a month. An integration can stop copying orders into the accounts while the shop keeps taking payments. The first visible symptom might be her bookkeeper trying to reconcile the numbers weeks later.
+Every historical decision is available in the [23-record cloud replay](https://iamrobertmoore.github.io/still-working/replay/). Open a note, follow its source, inspect its ledger. No AWS login required.
 
-That is the scenario I designed for, not an incident reported by a real customer. The [shop profile](business/maya.yaml) contains eight illustrative routines, their possible costs, and how late someone might notice a failure. Those delays and costs are assumptions, not measured savings.
+## That ratio is the product
 
-The profile separates the business language from the inferred supplier calls, with a confidence level for each mapping. Setup can propose a mapping, but code rejects a call absent from the supplier's published catalogue. A person still needs to verify that the shop's actual integration uses it.
-
-The result is addressed to the owner: what might be affected, what the consequence could be, and what to do next. Technical detail sits below a clear line addressed to Priya.
-
-## The measurement
-
-I reconstructed daily contract states from four suppliers' public git histories. The matcher is deterministic; the notes in the browser replay were generated by the deployed Strands agent on AWS Bedrock AgentCore.
+I reconstructed five months of public supplier history and ran every recorded change through the deployed agent. The result is small enough to read in a coffee break.
 
 <!-- measurement:start -->
 **150 days. 23 supplier-change records across 22 calendar days. 56 individual changes. 9 potentially breaking changes.**
 
-7 supplier-change records touched calls in Maya's illustrative profile.
+7 supplier-change records touched calls in Maya's shop profile.
 
 **3 records contained a potentially breaking change to a mapped routine. The replay would interrupt her twice.**
 
@@ -44,57 +37,63 @@ I reconstructed daily contract states from four suppliers' public git histories.
 | 29 April | Your accounts | Paying the twelve of us | held, she was told 5 days earlier |
 | 14 July | Your till and bookings | Stock moving between the counter and the website | sent |
 
-Two interruptions in 5 months of replay, from 56 supplier changes. That is **3.6%**. That ratio is the product. It measures notification volume for this profile, not accuracy, prevented outages or money saved for a real customer.
+Two interruptions in 5 months of replay, from 56 supplier changes. That is **3.6%**. **That ratio is the product.** [Method and scope](#evidence-and-scope).
 
 _Window 2026-04-07 to 2026-09-04. Regenerated by the scheduled job on every run, never typed by hand. Re-run it with `python tools/impact.py --measure`._
 <!-- measurement:end -->
 
-The repeat window is a design choice prompted by the April sequence, not an independently validated optimum. The profile was also widened after inspecting this history. This is an inspectable retrospective demonstration, not a held-out accuracy evaluation.
+## From small print to the next step
 
-The runtime replay independently produced two rendered notes from two agent runs using a model. A note being rendered is the delivery boundary in this prototype. No email was sent to Maya, and no real business outcome was observed.
+![Still Working architecture: collect, match, judge, control, persist and read](docs/architecture.svg)
 
-## How it works
+**Collect what changed.** The daily job compares the contracts published by Stripe, Square, Xero and ShipEngine. It recognises structural changes that can break an existing caller.
 
-| Layer | Job | Model needed? |
-|---|---|---|
-| [Collector](tools/snapshot.py) | Fetch public contracts, normalise them, classify changes | No |
-| [Matcher](tools/impact.py) | Find the routines that depend on changed calls | No |
-| [Judgement and delivery](agent/still_working.py) | Explain a possible consequence and propose a useful note | Only for an eligible change |
-| [Daily delivery](tools/deliver.py) | Call the deployed runtime, persist approved notes and the ledger, publish the page | Uses the judgement layer |
+**Know which routine matters.** The shop profile connects supplier calls to eight routines, each with a business consequence and mapping confidence. Setup checks proposed calls against the published catalogue before saving them.
 
-The scheduled GitHub Actions job authenticates to AgentCore using OIDC. Its role can invoke this runtime only, from this repository's main branch. There are no stored AWS access keys. A missing role or failed invocation fails the job; it does not silently publish an all-clear.
+**Use judgement where it earns its place.** Strands runs on Bedrock AgentCore for eligible changes. The owner gets plain English; the developer gets the affected call and the check to make. Quiet and repeated cases never build a model.
 
-The agent cannot bypass the one tool that renders the note. Strands interventions stamp known dates and routine identifiers, deny irrelevant or repeated notifications, and require review for low-confidence mappings. Medium-confidence notes carry visible uncertainty. A rejected tool call is not counted as a delivery. A detected risk without a usable note stays pending.
+**Keep control of delivery.** Interventions surround the only tool that can render a note. Code stamps known facts, holds repeats, and sends uncertain matches through case-specific human review. The caller persists successful notes and their ledger for the next run.
 
-[The deployed bundle](runtime/app/StillWorking/main.py) uses generated copies of the canonical controls. [A drift check](tools/sync_runtime.py) fails when the deployable and local implementation disagree. Each invocation has its own date validation and delivery state. The authenticated caller persists the returned ledger; a warm container is not treated as durable memory.
+The [daily workflow](.github/workflows/contract-watch.yml) reaches AWS through temporary, repository-scoped OIDC access and publishes the notes, ledger and page together. Shared generated controls keep the local and deployed agent in sync. [Explore the architecture](ARCHITECTURE.md).
 
-## The mistakes that changed the build
+## A warning with somewhere to go
 
-- **The first profile returned zero.** It omitted stock and payroll routines. I widened it, then documented that this was informed by the same history used in the measurement. That makes setup quality a limitation to test, not a solved problem.
-- **Three invented calls survived the other checks.** Comparing every mapping against published supplier history exposed them. Setup now drops unsupported calls before saving a profile.
-- **The model put the wrong date under FACT.** It subtracted a relative age from the supplied change date. Known facts are now stamped by code, and contradictory dates in prose make the tool refuse the note. Tests cover a wrong year as well as a wrong day.
-- **The local controls had outgrown the deployed bundle.** I replaced handwritten copies with generated controls and exercised all 23 historical records against the actual deployed runtime. Tests now cover refused deliveries, repeat state across invocations and independent concurrent dates.
-- **The daily collector did not invoke the cloud agent.** It does now: the workflow owns the ledger, calls the runtime for relevant records, and publishes the returned notes with the page.
+The owner gets the consequence first. The next action is explicit. Priya gets a separate technical handoff, ready to forward. This is the actual stock note captured from AgentCore:
 
-## What the note looks like
-
-This is a **scripted formatting fixture**, not a real outage or the output of the historical cloud replay. The [recorded model notes](https://iamrobertmoore.github.io/still-working/replay/) show the observed publication separately from its inferred business consequence.
+<details>
+<summary><strong>Read the recorded warning and developer handoff</strong></summary>
 
 ```
-Your orders stopped going into the accounts on Tuesday.
+The website might keep selling after the counter sells the last one.
 
-The till software removed the way it hands over a single order, and the nightly hand-off to your accounts no longer picks up your shop. The shop is fine. Money is still arriving. It is only the copy into the accounts that stopped.
+Your till and bookings removed a way to check inventory transfers on 14 July. If your stock routine relies on that check, it will have stopped updating when something sells at the counter.
 
-When it happened: yesterday, 2 September 2026
-What it costs you: Ines reconciles from this, so she is doing it by hand from Tuesday onward, and the VAT return is built on it.
-How late you would normally find out: three weeks, which is what happened last time
+When it happened: today, 14 July 2026
+What it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.
+How late you would normally find out: A few days, when the second customer complains.
 
-What to do: Forward the part below to Priya. It is about an hour of her time.
+What to do: Forward this to Priya to check whether the routine uses the removed transfer check, and if it does, to rebuild it with what your till and bookings offers now.
 
 --- forward this part to Priya ---
-  square: GET /v2/orders/{order_id} removed
-  the nightly sync reads each order through it before writing to Xero
+  Priya,
+  FACT: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.
+  INFERENCE: The stock-between-counter-and-website routine is mapped to this endpoint with high confidence. If the routine uses this call to verify or track inventory transfers between locations, it will have broken.
+  Check whether the routine depends on GET /v2/inventory/transfers/{transfer_id}.
+  If it does, find the current Square method for tracking inventory movement between the counter and website stock, and update the integration.
 ```
+
+</details>
+
+When a dependency needs checking, the [review flow](docs/REVIEW.md) turns the question into a decision. An imported approval applies to the exact supplier, date and routine. Dismissal closes the case without a model run. An unanswered question stays pending.
+
+## The failures that made it better
+
+- **The first profile returned zero.** Stock and payroll were missing. That exposed how much the result depends on setup, so I widened the profile and kept the evaluation history visible.
+- **Three invented calls survived the other checks.** Comparing every mapping against supplier history exposed them. Setup now drops unsupported calls before saving a profile.
+- **The model put the wrong date under FACT.** It did arithmetic on a date it had already been given. Code now stamps the known date and refuses contradictory dates in the prose.
+- **The local controls outgrew the deployed copy.** I replaced handwritten copies with generated controls, added a drift check, and replayed every historical record against the actual runtime.
+
+Each failure changed the implementation. The [tests](tests/) and [captured responses](docs/replay/recordings.json) make those changes inspectable.
 
 ## Suppliers
 
@@ -111,6 +110,8 @@ Three of those stamp a version that moves. Square's remains `2.0` across meaning
 
 ## Run it
 
+The local demonstration and tests need no AWS credentials:
+
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
@@ -122,7 +123,8 @@ python agent/still_working.py --demo
 python tools/impact.py --measure
 ```
 
-Those checks use a scripted Strands model and require no AWS credentials. To reconstruct public history or collect current contracts:
+<details>
+<summary>Collect current contracts or record your own cloud replay</summary>
 
 ```bash
 python tools/backfill.py --since 2026-04-01
@@ -130,7 +132,7 @@ python tools/setup.py --verify
 python tools/snapshot.py
 ```
 
-To make new real cloud recordings, use AWS credentials authorised to invoke your deployed runtime:
+With AWS credentials authorised to invoke your deployed runtime:
 
 ```bash
 export STILL_WORKING_RUNTIME_ARN="<your AgentCore runtime ARN>"
@@ -138,18 +140,20 @@ python tools/replay.py
 python tools/render_replay.py
 ```
 
-This invokes the deployed agent and can incur AWS charges. Rendering the existing saved replay does not call AWS. Deployment instructions are in [runtime/README.md](runtime/README.md).
+Cloud invocation can incur AWS charges. Rendering the saved replay does not call AWS. Deployment instructions are in [runtime/README.md](runtime/README.md).
 
-## Limits and next decisions
+</details>
 
-This reads what suppliers **publish**, not their deployed behaviour or a shop's traffic. It detects three potentially breaking shapes: removed calls, removed parameters, and existing optional parameters becoming required. It does not cover every response-schema or behavioural change. Daily sampling can miss changes reverted within a day.
+## Evidence and scope
 
-The mapping is inferred. High confidence is not proof of an actual dependency. Low-confidence cases have a [review flow](docs/REVIEW.md): a developer records a case-specific decision, an operator imports it, and the daily caller applies it. The public page does not authenticate reviewers or change shared state directly. The five-day rule can suppress a distinct problem affecting the same routine. There is no customer validation, measured recall, production deployment in a shop, or evidence of savings.
+The supplier publications and captured AWS execution are real. Maya, Priya and the shop are illustrative; their dependencies and business consequences are assumptions. The profile and five-day repeat rule were informed by the replay history. The ratio measures retrospective notification volume, not accuracy, prevented outages or savings. Customer testing and validation against a real integration remain the next evaluation step.
 
-The next valuable step is validating the mappings against a real integration, followed by private storage and reviewer authentication. Another dashboard would add less than knowing the match is right.
+The detector reads published contracts, rather than deployed behaviour or shop traffic. It covers removed calls, removed parameters and optional parameters becoming required; other structural or behavioural changes and within-day reversions can be missed. Repeat suppression can hold a distinct issue in the same routine. Generated notes still need their inferences assessed.
+
+Browser replays show saved responses, and delivery means a successfully rendered note. The separate review example uses deliberately lowered confidence and simulated reviewer decisions. Real reviews require operator import; the public page neither authenticates reviewers nor changes shared state. Private storage and reviewer authentication are the next product steps.
 
 ## Disclosure and licence
 
-I previously built a CI job comparing a generated artifact with a live vendor API. No code from it is in this repository. The earlier experience informed the choice to compare against third parties and to separate a detector finding from a failed job. The implementation here uses Strands Agents and AWS Bedrock AgentCore.
+I previously built a CI job comparing a generated artifact with a live vendor API. No code from it is in this repository. That experience informed the choice to compare against third parties and distinguish a detected change from a failed job.
 
-MIT. See [LICENSE](LICENSE).
+Built by [Robert Moore](https://github.com/iamrobertmoore). **MIT**. See [LICENSE](LICENSE). [Submission description](DEVPOST.md).

@@ -32,7 +32,7 @@ reviewForm.addEventListener('submit', event => {
   details.hidden = true;download.hidden = true;metrics.textContent = '';
   if (previousDownload) { URL.revokeObjectURL(previousDownload);previousDownload = null; }
   title.textContent = unsure ? 'Still waiting for a person.' : approved ? 'Dependency confirmed for this case.' : 'This case can be closed.';
-  copy.textContent = unsure ? 'No approval has been created. Keep the case pending until the dependency can be checked.' : data.mode === 'example' ? 'The saved AWS response below shows what this review decision allowed. Your click has not contacted AWS or changed the live queue.' : 'Your review is ready to download. It takes effect only after the project operator imports it and the daily caller processes this pending case.';
+  copy.textContent = unsure ? 'No approval has been created. Keep the case pending until the dependency can be checked.' : data.mode === 'example' ? 'Recorded AWS result for this decision. This example does not change the live queue.' : 'Your review is ready to download. It takes effect only after the project operator imports it and the daily caller processes this pending case.';
   if (data.mode === 'example') {
     const response = data.proof[unsure ? 'held' : approved ? 'approved' : 'dismissed'].result;
     metrics.textContent = `${count(response.agent_runs, 'agent run')} using a model · ${count(response.notes.length, 'note')} rendered · ${count(response.pending_routines.length, 'routine')} pending`;

@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
-"""Render Maya's screen.
+"""Render the daily check-in and the public product story from repository evidence.
 
-This is the whole product surface. Most mornings it says two words.
-
-It is also the live demo link, which means it has two readers: Maya, who wants one
-sentence, and a judge, who wants the evidence. The page resolves that by being Maya's
-screen, with the evidence folded away behind one control. If the evidence were on the
-front it would not be her screen any more.
-
-Static output, no build step, no JavaScript framework, no external requests. The daily
-job regenerates it and commits it, so what you are looking at is the real state of the
-four contracts as of the last run rather than a mock.
+The current state and notes come first. Historical examples, supplier coverage and the
+review journey make the product explorable; one disclosure holds the demonstration's
+scope. Everything works without JavaScript or external requests.
 """
 from __future__ import annotations
 
@@ -128,21 +121,28 @@ def main() -> int:
              '<span>still working<span class="brand-dot">.</span></span></a>',
              '<span class="brand-caption">A quiet eye on the things you count on.</span>',
              '<div class="identity"><span class="avatar" aria-hidden="true">M</span>'
-             '<span>Maya’s shop · Illustrative</span></div></header>',
+             '<span>Maya’s shop · Demo</span></div></header>',
              '<nav class="product-nav" aria-label="Explore Still Working"><span>Today’s check-in</span><a href="replay/">Recorded warnings</a><a href="review/">Review a match</a></nav>',
              '<main id="main"><section class="hero" aria-labelledby="daily-state">',
-             '<div class="hero-copy"><p class="eyebrow">Your daily check-in</p>',
+             '<div class="hero-copy"><p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Your daily check-in</p>',
              f'<h1 id="daily-state" class="state {state_class}">{html.escape(state)}</h1>',
              f'<p class="sub">{html.escape(sub)}</p>',
              '<p class="reassurance">' + ('The details below will help you take the next step.'
-                if outstanding or pending else 'One less thing to think about. Get on with your day.') + '</p>'
+                if outstanding or pending else 'Four suppliers. One less thing to think about. Get on with your day.') + '</p>'
              '<div class="hero-actions"><a class="primary-link" href="replay/">See what it catches <span aria-hidden="true">↗</span></a>'
-             '<span>Real supplier history. Saved cloud responses.</span></div></div>',
+             '<span>Five months of supplier history. See the two notes that mattered.</span></div></div>',
              f'<div class="hero-art {"warning" if outstanding or pending else ""}" aria-hidden="true">'
-             '<div class="art-grid"></div>'
+             '<div class="art-grid"></div><div class="orbit-ring"></div>'
+             '<svg class="signal-paths" viewBox="0 0 400 360" fill="none" aria-hidden="true">'
+             '<path d="M75 65C75 170 140 180 200 180M325 65C325 170 260 180 200 180M62 290C62 195 145 180 200 180M338 290C338 195 255 180 200 180"/>'
+             '<path class="signal-trace" d="M75 65C75 170 140 180 200 180M325 65C325 170 260 180 200 180M62 290C62 195 145 180 200 180M338 290C338 195 255 180 200 180"/></svg>'
+             '<span class="supplier-node node-stripe">' + icon("stripe") + '<span>Stripe<small>Payments</small></span></span>'
+             '<span class="supplier-node node-square">' + icon("square") + '<span>Square<small>Your counter</small></span></span>'
+             '<span class="supplier-node node-xero">' + icon("xero") + '<span>Xero<small>The accounts</small></span></span>'
+             '<span class="supplier-node node-shipping">' + icon("shipengine") + '<span>ShipEngine<small>Shipping</small></span></span>'
              f'<div class="seal">{mark(bool(outstanding or pending))}</div>'
-             '<span class="satellite"></span><span class="art-caption">'
-             + ('Let’s take a look' if outstanding or pending else 'Quietly looking out for you') + '</span></div></section>',
+             '<span class="art-caption">'
+             + ('Let’s take a look' if outstanding or pending else 'The background, taken care of.') + '</span></div></section>',
              '<div class="check-strip"><span class="checked">' + icon("clock") +
              f'<span>Checked {html.escape(checked)}</span></span>'
              '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>']
@@ -151,10 +151,10 @@ def main() -> int:
     replay_measure = replay_data["measurement"]
     parts.append('<section class="demo-feature" aria-labelledby="demo-title"><div><p class="eyebrow">When a change deserves your attention</p>'
                  '<h2 id="demo-title">The website might keep selling after the counter sells the last one.</h2>'
-                 '<p>A real Square publication becomes a possible consequence, a next step, and a note for the developer who can check it.</p>'
+                 '<p>A change to your stock connection deserves more than a technical bulletin. You get the business consequence, the next step, and a ready-to-forward note for your developer.</p>'
                  '<a href="replay/2026-07-14-square.html">Open the recorded warning <span aria-hidden="true">↗</span></a></div>'
                  f'<aside><span class="feature-number">{replay_measure["changes"]} → {replay_data["delivered_notes"]}</span><p>Supplier changes to rendered notes.</p><strong>That ratio is the product.</strong>'
-                 f'<p class="feature-caveat">An illustrative shop across {replay_measure["span"]} days of real history. Notification volume, not measured accuracy or savings.</p></aside></section>')
+                 f'<div class="signal-matrix" aria-hidden="true">{"<i></i>" * (replay_measure["changes"] - replay_data["delivered_notes"])}{"<i class=bright></i>" * replay_data["delivered_notes"]}</div><p class="feature-caveat">{replay_measure["span"]}-day historical replay · <a href="#demo-method">About this demo</a></p></aside></section>')
 
     # ---- the note itself, if there is one. Saying "something broke" and not saying what
     #      is worse than saying nothing.
@@ -198,6 +198,12 @@ def main() -> int:
             parts.append('<p class="attention">Needs your attention</p>')
         parts.append('</li>')
     parts.append('</ul></section>')
+
+    parts.append('<section class="story-section" aria-labelledby="story-title"><div class="story-heading"><div><p class="eyebrow">A little judgement goes a long way</p><h2 id="story-title">The change is technical.<br>The next step shouldn’t be.</h2></div><p>From the supplier’s small print to the one thing you need to know.</p></div>'
+                 '<div class="story-steps"><article><span class="step-number">01</span><h3>Spot the change.</h3><p>Read what your suppliers publish. Find the changes that could break an existing connection.</p><span class="step-detail">Four suppliers, checked daily</span></article>'
+                 '<article><span class="step-number">02</span><h3>Know what matters.</h3><p>Connect the change to your payments, payroll, stock or shipping. Keep the noise out of your morning.</p><span class="step-detail">Your routines set the priorities</span></article>'
+                 '<article><span class="step-number">03</span><h3>Make the next move.</h3><p>Get a useful note. Give your developer the detail. If the match needs a person, review it before it becomes an interruption.</p><a class="step-detail" href="review/">Try a review decision <span aria-hidden="true">↗</span></a></article></div>'
+                 '<div class="built-strip"><span>Quiet by design.</span><span>Strands Agents</span><span>Amazon Bedrock AgentCore</span><a href="architecture.svg">Explore the architecture ↗</a></div></section>')
 
     # ---- the evidence, folded away
     total_changes = sum(r["total_count"] for r in rows)
@@ -244,8 +250,7 @@ def main() -> int:
         "<p><strong>That ratio is the product.</strong> The rest did not need another interruption: changes that were additive, did not "
         "affect your routines, or had already been brought to your attention. A tool that forwarded all "
         f"{total_changes} would demand attention without knowing your shop.</p>")
-    parts.append('<p>Maya is an illustrative shop owner. The supplier history is real; the business consequences are inferred. These counts measure notification volume, not accuracy or proven savings.</p>'
-                 '<p><a class="replay-link" href="replay/">Replay the recorded changes <span aria-hidden="true">↗</span></a></p>')
+    parts.append('<p><a class="replay-link" href="replay/">Replay the recorded changes <span aria-hidden="true">↗</span></a></p>')
     parts.append("</div></details></section></main>")
 
     parts.append(
@@ -254,11 +259,16 @@ def main() -> int:
         'View the project <span aria-hidden="true">↗</span></a></div>'
         '<div class="fine-print"><p><span class="footer-motto">Less noise. More peace of mind.</span>'
         'Still Working · A quiet eye on your business.</p>'
-        '<p>This reads what each company <strong>publishes</strong>, not what they have '
-        'deployed, so a company whose documentation lags its rollout will not be caught. '
-        'The link between your routines and the calls they rely on was worked out at '
-        'setup and can be wrong, so low-confidence matches wait for a person to review '
-        'the dependency before a note can reach you.</p></div></footer></div>')
+        '<div><details id="demo-method" class="demo-method"><summary>About this demo <span aria-hidden="true">+</span></summary><div>'
+        '<p>Maya is an illustrative shop owner. The supplier history and captured AWS responses are real. '
+        'The 56-to-2 result measures notification volume for this profile, not accuracy or customer savings. '
+        'The profile was refined using this history.</p>'
+        '<p>This reads what companies publish, not what they have deployed. The inferred link to your routines can be wrong; '
+        'uncertain matches wait for a person. The review example uses simulated decisions and saved cloud responses. '
+        'Live reviews take effect after operator import. No customer deployment or customer testing is claimed.</p>'
+        '<a href="https://github.com/iamrobertmoore/still-working#evidence-and-scope">Evidence and scope in the README ↗</a></div></details>'
+        '<label class="motion-control"><input id="pause-motion" type="checkbox"> Pause animation</label></div></div></footer></div>')
+
 
     try:
         revision = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()

@@ -869,6 +869,566 @@ th {
   }
 }
 
+.product-nav{display:flex;gap:28px;padding:18px 0 0;font-size:13px;color:var(--muted)}.product-nav span{color:var(--green);font-weight:600}.product-nav a{text-decoration:none}.product-nav a:hover{text-decoration:underline}
+.hero-actions{margin-top:28px;display:flex;gap:15px;align-items:center;flex-wrap:wrap}.primary-link{padding:13px 20px;background:var(--green);color:var(--bg);border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;gap:16px;align-items:center;transition:transform .2s}.primary-link:hover{transform:translateY(-2px)}.hero-actions>span{font-size:12px;max-width:170px;color:var(--muted)}
+.demo-feature{display:grid;grid-template-columns:1.7fr 1fr;gap:50px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:34px;margin:32px 0 4px;box-shadow:var(--shadow)}.demo-feature h2{font:normal 30px/1.2 Georgia,serif;letter-spacing:-.7px;max-width:530px}.demo-feature p{font-size:14px;color:var(--muted)}.demo-feature .eyebrow{font-size:10px;margin-bottom:16px}.demo-feature a{font-size:14px;color:var(--green)}.demo-feature aside{border-left:1px solid var(--line);padding-left:30px}.feature-number{font:50px/1 Georgia,serif;color:var(--green);letter-spacing:-2px}.demo-feature aside>strong{font-size:15px}.demo-feature .feature-caveat{font-size:12px}.build-stamp{text-align:center;font-size:12px;color:var(--muted);margin:0 20px 26px}
+@media(max-width:650px){.demo-feature{grid-template-columns:1fr;gap:25px;padding:24px}.demo-feature aside{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.demo-feature h2{font-size:27px}.product-nav{gap:20px;font-size:12px;flex-wrap:wrap}.hero-actions>span{max-width:150px}.identity{font-size:10px;max-width:140px}}
+
+/* The same quiet identity, with a visible sense of the work happening behind it. */
+body {
+  background-image:radial-gradient(ellipse at 85% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 42%)
+}
+.hero {
+  grid-template-columns:minmax(0,1fr) 400px;
+  padding-top:65px;
+  padding-bottom:45px;
+  gap:36px
+}
+.hero-art {
+  width:400px;
+  height:360px;
+  isolation:isolate
+}
+.hero-art::before {
+  inset:47px 67px;
+  opacity:.65
+}
+.hero-art::after {
+  inset:72px 92px;
+  animation:orbit 70s linear infinite
+}
+.hero-art .art-grid {
+  inset:-20px;
+  background-size:17px 17px
+}
+.orbit-ring {
+  position:absolute;
+  width:280px;
+  height:280px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  opacity:.45;
+  transform:rotateX(58deg) rotate(-25deg)
+}
+.signal-paths {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  stroke:var(--line);
+  stroke-width:1.2
+}
+.signal-paths .signal-trace {
+  stroke:var(--green);
+  stroke-dasharray:9 170;
+  animation:signal-travel 8s linear infinite;
+  opacity:.5
+}
+.seal {
+  height:126px;
+  width:126px;
+  box-shadow:0 0 0 10px var(--mint),0 24px 65px -26px #173b3870
+}
+.seal svg {
+  width:75px;
+  height:75px
+}
+.seal path {
+  stroke-dasharray:180;
+  animation:draw-mark 1.8s ease both
+}
+.supplier-node {
+  position:absolute;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 14px;
+  box-shadow:var(--shadow);
+  z-index:2;
+  font-size:12px;
+  font-weight:600;
+  animation:node-drift 7s ease-in-out infinite
+}
+.supplier-node svg {
+  width:23px;
+  height:23px;
+  color:var(--green)
+}
+.supplier-node small {
+  display:block;
+  font-size:9px;
+  font-weight:400;
+  color:var(--muted);
+  letter-spacing:.025em
+}
+.node-stripe {
+  left:5px;
+  top:35px
+}
+.node-square {
+  right:0;
+  top:35px;
+  animation-delay:-2s
+}
+.node-xero {
+  left:0;
+  bottom:39px;
+  animation-delay:-4s
+}
+.node-shipping {
+  right:-5px;
+  bottom:39px;
+  animation-delay:-1s
+}
+.art-caption {
+  bottom:-8px;
+  font-size:9px;
+  letter-spacing:.13em
+}
+.live-dot {
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin:0 8px 1px 0;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 4px var(--mint)
+}
+.primary-link {
+  border-radius:99px;
+  padding:15px 22px;
+  box-shadow:0 7px 22px -12px var(--green)
+}
+.primary-link span {
+  transition:transform .25s
+}
+.primary-link:hover span {
+  transform:translate(2px,-2px)
+}
+.hero-actions>span {
+  max-width:190px;
+  line-height:1.5
+}
+.demo-feature {
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:linear-gradient(115deg,var(--surface) 25%,var(--mint));
+  padding:40px;
+  margin-top:36px
+}
+.demo-feature:before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:40px;
+  bottom:40px;
+  width:3px;
+  background:var(--accent)
+}
+.demo-feature h2 {
+  font-size:34px;
+  line-height:1.17;
+  margin:0 0 18px
+}
+.demo-feature aside {
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.demo-feature aside>p {
+  margin:10px 0
+}
+.feature-number {
+  font-size:66px
+}
+.signal-matrix {
+  display:grid;
+  grid-template-columns:repeat(14,1fr);
+  gap:5px;
+  max-width:225px;
+  margin:22px 0 6px
+}
+.signal-matrix i {
+  height:7px;
+  border-radius:2px;
+  background:var(--line)
+}
+.signal-matrix i.bright {
+  background:var(--green);
+  box-shadow:0 0 0 2px var(--mint);
+  animation:signal-glow 5s ease-in-out infinite
+}
+.signal-matrix i.bright:last-child {
+  animation-delay:1s
+}
+.story-section {
+  padding:40px 0 44px
+}
+.story-heading {
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:end;
+  margin:0 0 35px
+}
+.story-heading h2 {
+  font:normal 40px/1.13 Georgia,serif;
+  letter-spacing:-1px;
+  margin:0
+}
+.story-heading>.eyebrow {
+  margin-bottom:16px
+}
+.story-heading>p {
+  max-width:245px;
+  font-size:14px;
+  color:var(--muted)
+}
+.story-steps {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:34px;
+  position:relative
+}
+.story-steps:before {
+  content:"";
+  height:1px;
+  position:absolute;
+  top:20px;
+  left:20px;
+  right:20px;
+  background:var(--line)
+}
+.story-steps article {
+  position:relative
+}
+.step-number {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:50%;
+  font:11px ui-monospace,monospace;
+  position:relative;
+  transition:background .3s,color .3s
+}
+.story-steps article:hover .step-number {
+  background:var(--green);
+  color:var(--bg)
+}
+.story-steps h3 {
+  margin:24px 0 10px;
+  font-size:18px;
+  font-weight:550;
+  letter-spacing:-.3px
+}
+.story-steps p {
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:300px
+}
+.step-detail {
+  display:inline-block;
+  font-size:11px;
+  color:var(--green);
+  margin-top:12px
+}
+.built-strip {
+  display:flex;
+  gap:25px;
+  align-items:center;
+  flex-wrap:wrap;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:38px;
+  border-top:1px solid var(--line);
+  padding-top:20px
+}
+.built-strip span:first-child {
+  font-style:italic;
+  font-family:Georgia,serif;
+  font-size:15px;
+  color:var(--green)
+}
+.built-strip a {
+  margin-left:auto
+}
+.demo-method>summary {
+  display:flex;
+  justify-content:space-between;
+  padding:0;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:500;
+  color:var(--ink)
+}
+.demo-method>div {
+  padding:18px 0 5px;
+  max-width:580px;
+  font-size:12px
+}
+.demo-method p+p {
+  margin-top:12px
+}
+.demo-method a {
+  display:inline-block;
+  margin-top:12px
+}
+.motion-control {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  margin-top:20px;
+  cursor:pointer
+}
+.motion-control input {
+  accent-color:var(--green)
+}
+body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body:has(#pause-motion:checked) *::after {
+  animation-play-state:paused!important
+}
+.fine-print {
+  grid-template-columns:1fr 1fr;
+  gap:70px
+}
+@keyframes signal-travel {
+  to {
+    stroke-dashoffset:-358
+  }
+}
+@keyframes node-drift {
+  0%,100% {
+    transform:translateY(0)
+  }
+  50% {
+    transform:translateY(-5px)
+  }
+}
+@keyframes orbit {
+  to {
+    transform:rotate(360deg)
+  }
+}
+@keyframes draw-mark {
+  from {
+    stroke-dashoffset:180;
+    opacity:0
+  }
+  to {
+    stroke-dashoffset:0;
+    opacity:1
+  }
+}
+@keyframes signal-glow {
+  0%,100% {
+    opacity:.65
+  }
+  50% {
+    opacity:1
+  }
+}
+@media(max-width:1000px) {
+  .hero {
+    grid-template-columns:minmax(0,1fr) 330px;
+    gap:20px
+  }
+  .hero-art {
+    width:330px;
+    height:320px
+  }
+  .supplier-node {
+    font-size:11px;
+    padding:9px 10px
+  }
+  .supplier-node svg {
+    width:19px;
+    height:19px
+  }
+  .seal {
+    width:105px;
+    height:105px
+  }
+  .seal svg {
+    width:65px;
+    height:65px
+  }
+  .hero-art::before {
+    inset:48px
+  }
+  .hero-art::after {
+    inset:70px
+  }
+  .orbit-ring {
+    width:240px;
+    height:240px
+  }
+  .demo-feature {
+    gap:30px;
+    padding:32px
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .feature-number {
+    font-size:55px
+  }
+}
+@media(max-width:760px) {
+  .hero {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding-top:45px
+  }
+  .hero-art {
+    display:grid;
+    width:330px;
+    height:295px;
+    justify-self:center;
+    margin:12px 0 10px
+  }
+  .hero-art::before {
+    inset:35px 52px
+  }
+  .hero-art::after {
+    inset:58px 76px
+  }
+  .state {
+    font-size:clamp(54px,10vw,76px)
+  }
+  .hero-copy {
+    max-width:540px
+  }
+  .hero-actions {
+    margin-top:24px
+  }
+  .node-stripe,.node-square {
+    top:22px
+  }
+  .node-xero,.node-shipping {
+    bottom:30px
+  }
+  .art-caption {
+    font-size:8px;
+    bottom:-2px
+  }
+  .story-heading {
+    display:block
+  }
+  .story-heading h2 {
+    font-size:34px
+  }
+  .story-heading>p {
+    max-width:340px
+  }
+  .story-steps {
+    gap:20px
+  }
+  .story-steps h3 {
+    font-size:16px
+  }
+  .story-steps p {
+    font-size:13px
+  }
+  .built-strip {
+    gap:15px
+  }
+  .built-strip a {
+    margin-left:0
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .fine-print {
+    gap:30px
+  }
+}
+@media(max-width:520px) {
+  .hero-art {
+    width:100%;
+    max-width:330px
+  }
+  .hero-actions>span {
+    max-width:none;
+    flex-basis:100%;
+    font-size:11px
+  }
+  .demo-feature {
+    padding:26px;
+    gap:20px
+  }
+  .demo-feature h2 {
+    font-size:29px
+  }
+  .feature-number {
+    font-size:60px
+  }
+  .demo-feature aside {
+    padding-top:22px
+  }
+  .signal-matrix {
+    max-width:100%;
+    grid-template-columns:repeat(14,1fr)
+  }
+  .story-steps {
+    grid-template-columns:1fr;
+    gap:27px
+  }
+  .story-steps:before {
+    top:20px;
+    bottom:60px;
+    left:19px;
+    width:1px;
+    height:auto;
+    right:auto
+  }
+  .story-steps article {
+    padding-left:61px
+  }
+  .step-number {
+    position:absolute;
+    left:0;
+    top:0
+  }
+  .story-steps h3 {
+    margin:6px 0 9px
+  }
+  .story-steps p {
+    max-width:none;
+    margin:0
+  }
+  .step-detail {
+    margin-top:10px
+  }
+  .fine-print {
+    grid-template-columns:1fr
+  }
+  .story-heading h2 {
+    font-size:33px
+  }
+  .story-section {
+    padding-top:28px
+  }
+  .built-strip {
+    font-size:10px
+  }
+  .demo-feature aside>p {
+    font-size:13px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .motion-control {
+    display:none
+  }
+}
+
 
 .replay-head{padding:55px 0 32px;max-width:790px}.replay-head h1{font:normal clamp(40px,5vw,65px)/1.08 Georgia,serif;letter-spacing:-.04em;margin:12px 0 24px}.replay-head p{color:var(--muted)}
 .replay-label{color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:.13em}.replay-nav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 32px}.replay-nav a,.replay-link{padding:11px 17px;background:var(--surface);border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:12px}.replay-nav a:hover,.replay-nav a[aria-current=page]{background:var(--green);color:var(--bg)}
@@ -877,15 +1437,15 @@ th {
 @media(max-width:750px){.case-grid{grid-template-columns:1fr}.replay-head{padding-top:35px}.case-note{padding:24px}.masthead .identity{display:none}.replay-nav a{flex:1 1 calc(50% - 10px);text-align:center}.receipt{padding:22px}}
 </style></head><body><a class="skip" href="#main">Skip to the recorded decision</a><div class="wrap">
     <header class="masthead"><a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/></svg><span>still working.</span></a><span class="brand-caption">Less noise. More peace of mind.</span><a href="../" class="identity">Today’s check-in ↗</a></header>
-    <main id="main"><div class="replay-head"><span class="replay-label">Historical replay · Real cloud responses</span><h1>Nothing to interrupt you for.</h1><p>Maya’s shop is illustrative. The supplier history is real. These are saved responses from the deployed agent, replaying each change as if it had just arrived.</p></div>
+    <main id="main"><div class="replay-head"><span class="replay-label">Historical replay · Real cloud responses</span><h1>Nothing to interrupt you for.</h1><p>A supplier changed. Here is what the agent decided, the note it wrote, and the evidence behind it.</p></div>
     <nav class="replay-nav" aria-label="Choose a recorded moment"><a href="2026-07-14-square.html">The stock warning</a><a href="2026-04-24-xero.html">The payroll warning</a><a href="2026-04-29-xero.html">The repeat held</a><a href="2026-08-26-stripe.html">A quiet day</a></nav><div class="case-grid"><article class="case-note"><span class="replay-label">23 May 2026 · Maya’s screen</span><div class="empty-note"><h2>Still working.</h2><p>These published changes do not match a potentially breaking change to a routine in the shop profile. No note. No model invocation.</p></div></article><aside class="receipt"><span class="delivery">Captured from AWS AgentCore</span><h2>The decision receipt</h2><dl>
     <dt>Published change</dt><dd>23 May 2026 · Stripe</dd>
     <dt>Matched routine</dt><dd>None requiring a note</dd>
     <dt>Decision</dt><dd>No relevant breaking change</dd><dt>Mapping confidence</dt><dd>No affected routine</dd>
     <dt>Agent runs using a model</dt><dd>0</dd><dt>Notes rendered</dt><dd>0</dd></dl>
-    <p>Publication is observed. Dependence on these calls and the business consequence are inferred from the illustrative profile.</p>
     <details><summary>Inspect the supplier changes</summary><pre>param_added: GET /v1/payment_method_configurations / active
 version_string_changed</pre></details>
     <p><a href="recordings.json">Full input, response and delivery ledger</a></p></aside></div>
     <section class="record-list"><details><summary><span>Every decision in the replay</span><span>23 records · 2 notes</span></summary><div class="scroll"><table><thead><tr><th>Date</th><th>Supplier</th><th>Changes</th><th>Outcome</th><th>Agent runs</th></tr></thead><tbody><tr><td><a href="2026-04-07-shipengine.html">7 April 2026</a></td><td>Shipengine</td><td>3</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-04-20-xero.html">20 April 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-04-21-xero.html">21 April 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-04-22-xero.html">22 April 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-04-24-xero.html">24 April 2026</a></td><td>Xero</td><td>5</td><td>Note rendered</td><td>1</td></tr><tr><td><a href="2026-04-28-xero.html">28 April 2026</a></td><td>Xero</td><td>5</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-04-29-xero.html">29 April 2026</a></td><td>Xero</td><td>4</td><td>Repeat held</td><td>0</td></tr><tr><td><a href="2026-05-06-xero.html">6 May 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-05-17-xero.html">17 May 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-05-19-xero.html">19 May 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-05-23-stripe.html">23 May 2026</a></td><td>Stripe</td><td>2</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-06-03-xero.html">3 June 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-06-23-stripe.html">23 June 2026</a></td><td>Stripe</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-07-13-xero.html">13 July 2026</a></td><td>Xero</td><td>4</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-07-14-square.html">14 July 2026</a></td><td>Square</td><td>8</td><td>Note rendered</td><td>1</td></tr><tr><td><a href="2026-07-14-xero.html">14 July 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-07-21-xero.html">21 July 2026</a></td><td>Xero</td><td>3</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-07-29-stripe.html">29 July 2026</a></td><td>Stripe</td><td>3</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-08-09-xero.html">9 August 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-08-12-xero.html">12 August 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-08-26-stripe.html">26 August 2026</a></td><td>Stripe</td><td>6</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-08-30-xero.html">30 August 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr><tr><td><a href="2026-09-04-xero.html">4 September 2026</a></td><td>Xero</td><td>1</td><td>No note</td><td>0</td></tr></tbody></table></div></details></section>
-    </main><footer class="replay-footer"><p><strong>56 supplier changes. 2 notes. That ratio is the product.</strong><br>Notification volume in this replay, not measured accuracy, prevented outages or customer savings.</p><p>Captured 2026-09-12. 23 supplier-day records across 22 calendar dates, spanning 150 days. Relative dates in the notes are anchored to each historical event. The original model wording is preserved, including its limitations. One agent run can include several model requests. “Delivered” means the tool rendered a note; no email or message was sent to a real person.</p><p><a href="recordings.json">Download the evidence</a> · <a href="https://github.com/iamrobertmoore/still-working/blob/main/tools/replay.py">Reproduce it</a> · <a href="../">Back to the daily page</a></p></footer></div></body></html>
+    </main><footer class="replay-footer"><p><strong>56 supplier changes. 2 notes. That ratio is the product.</strong></p><p><a href="../review/">Try a review decision ↗</a> · <a href="recordings.json">Download the evidence</a> · <a href="https://github.com/iamrobertmoore/still-working/blob/main/tools/replay.py">Reproduce it</a></p>
+    <details class="demo-method"><summary>About this replay <span aria-hidden="true">+</span></summary><div><p>Captured 2026-09-12 from AgentCore: 23 supplier-day records across 22 dates, spanning 150 days. These are saved responses. Maya’s shop and its dependencies are illustrative; supplier publications are real. The profile was informed by this history.</p><p>The ratio measures notification volume, not measured accuracy or customer savings. Relative dates refer to each historical event. Original model wording is preserved. A held repeat is not proof the issue is resolved. One agent run may include several model requests; delivery means a rendered note, not an email to a customer.</p><a href="https://github.com/iamrobertmoore/still-working#evidence-and-scope">Full evidence and scope ↗</a></div></details></footer></div></body></html>

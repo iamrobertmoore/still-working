@@ -101,7 +101,7 @@ def test_the_architecture_diagram_is_valid_and_referenced():
 def test_the_readme_links_that_point_into_the_repository_all_exist():
     text = read("README.md") + read("ARCHITECTURE.md") + read("DEVPOST.md")
     for target in set(re.findall(r"\]\((?!https?:|#)([^)#]+)", text)):
-        assert os.path.exists(os.path.join(ROOT, target.lstrip("./"))), target
+        assert os.path.exists(os.path.join(ROOT, os.path.normpath(target))), target
 
 
 def test_the_deployed_bundle_and_the_local_agent_agree_on_the_house_style():
@@ -170,16 +170,11 @@ def test_the_documents_say_how_many_suppliers_publish_a_moving_version():
             assert f"{word} of those stamp a version that moves" not in text, (word, moving)
 
 
-def test_the_sample_note_in_the_readme_is_what_the_agent_actually_renders():
-    """It stopped matching the moment the note started carrying its own date line."""
-    from agent.still_working import SEND, BRIEF_CHANGE, run
-    _, handler, _ = run(BRIEF_CHANGE, [SEND, {"text": "ok"}], today="2026-09-03")
-    rendered = handler.delivered[-1]
-    text = read("README.md")
-    blocks = re.findall(r"```\n(.*?)```", text, re.S)
-    sample = next((b for b in blocks if "forward this part to Priya" in b), None)
-    assert sample, "the README no longer shows a sample note"
-    for line in rendered.splitlines():
-        line = line.strip()
-        if line and not line.startswith("When it happened"):
-            assert line in sample, line
+def test_the_readme_note_matches_the_actual_cloud_recording():
+    """The public example must preserve the captured response, including its wording."""
+    import json
+    data = json.loads(read("docs/replay/recordings.json"))
+    note = next(c["result"]["note"] for c in data["cases"]
+                if c["record"]["date"] == "2026-07-14" and c["record"]["vendor"] == "square")
+    blocks = re.findall(r"```\n(.*?)```", read("README.md"), re.S)
+    assert note.strip() in [b.strip() for b in blocks]
