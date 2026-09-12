@@ -37,7 +37,7 @@ def main():
              "Condition": {"StringEquals": {"token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
                                             "token.actions.githubusercontent.com:sub": prefix + ":ref:refs/heads/main"}}}]}
     policy = {"Version": "2012-10-17", "Statement": [{"Effect": "Allow",
-              "Action": ["bedrock-agentcore:InvokeAgentRuntime"], "Resource": [args.runtime_arn]}]}
+              "Action": ["bedrock-agentcore:InvokeAgentRuntime"], "Resource": [args.runtime_arn, args.runtime_arn + "/runtime-endpoint/DEFAULT"]}]}
     name = "StillWorkingGitHubDelivery"
     print(json.dumps({"role": name, "trust": trust, "permissions": policy}, indent=2))
     if not args.apply:
