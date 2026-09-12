@@ -40,7 +40,11 @@ routines:
         payments into the accounts.
       depends_on:
         - vendor: square
-          calls: ["GET /v2/orders", "POST /v2/orders/search", "GET /v2/locations"]
+          # Corrected 2026-09-11 by tools/setup.py --verify, which checks every call in
+          # this file against what the supplier publishes today. "GET /v2/orders" sat here
+          # for a fortnight and Square has never published it. A watch on a call that does
+          # not exist can never fire, and nothing would ever have told me.
+          calls: ["POST /v2/orders/search", "GET /v2/orders/{order_id}", "GET /v2/locations"]
         - vendor: xero
           calls: ["POST /Invoices", "PUT /Invoices", "POST /Payments", "GET /Contacts"]
 
@@ -156,9 +160,15 @@ routines:
         stock count read and written on both sides, plus the transfers when a pallet moves.
       depends_on:
         - vendor: square
-          calls: ["GET /v2/inventory/counts", "POST /v2/inventory/counts/batch-retrieve",
+          # Also corrected 2026-09-11. "GET /v2/inventory/counts" and
+          # "POST /v2/inventory/transfers" were never published by Square either.
+          # "GET /v2/inventory/transfers/{transfer_id}" stays, because that one was real
+          # and Square removed it on 14 July. That is the difference the verifier reports:
+          # a call the supplier took away is the thing this project exists to catch, and a
+          # call that was never there is my own mistake.
+          calls: ["POST /v2/inventory/counts/batch-retrieve", "GET /v2/inventory/{catalog_object_id}",
                   "POST /v2/inventory/changes/batch-create", "GET /v2/inventory/transfers/{transfer_id}",
-                  "POST /v2/inventory/transfers", "POST /v2/catalog/batch-upsert"]
+                  "POST /v2/catalog/batch-upsert"]
 
   - id: paying-the-team
     what_maya_calls_it: Paying the twelve of us

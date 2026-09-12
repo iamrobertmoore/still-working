@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import sys
 import time
 
 # Verified by running this script against eu-west-2 on 2 September 2026. The prefix rule
@@ -133,7 +132,7 @@ def preflight(region: str) -> bool:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--region", default="eu-west-2")
+    ap.add_argument("--region", default=os.environ.get("AWS_REGION", "us-east-1"))
     ap.add_argument("--models", nargs="*", default=CANDIDATES)
     ap.add_argument("--skip-preflight", action="store_true")
     args = ap.parse_args()

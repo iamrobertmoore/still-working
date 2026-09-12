@@ -46,7 +46,9 @@ jobs:
       # seconds on `import yaml`. The self tests below never executed. Worth keeping
       # the note: a workflow that has never been run is not a workflow.
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install pytest bedrock-agentcore
 
       - name: Prove the detector still detects
         run: python tools/snapshot.py --self-test
@@ -54,11 +56,31 @@ jobs:
       - name: Prove the right things still reach Maya
         run: python tools/impact.py --self-test
 
+      - name: Prove setup cannot invent a call into Maya's profile
+        run: python tools/setup.py --self-test
+
+      - name: Prove a quiet morning builds no agent at all
+        run: python agent/morning.py --self-test
+
       - name: Prove the agent still runs end to end
         run: python agent/still_working.py --demo
 
+      - name: Prove the note still streams
+        run: python agent/still_working.py --stream
+
       - name: Prove the deployed bundle does not reach into the repo
         run: python tools/check_runtime_isolation.py
+
+      # The self tests above are the narrative ones: each prints what it proved, and each
+      # exists because something went wrong once. This is the rest of it.
+      - name: Run the test suite
+        run: python -m pytest tests/ -q
+
+      # Every call in Maya's profile, against what the supplier publishes this morning.
+      # This does not fail the run when a supplier has removed a call, because that is the
+      # product working. It fails when a call in her profile was never published at all.
+      - name: Prove nothing in Maya's profile is a call that does not exist
+        run: python tools/setup.py --verify
 
       - name: Snapshot the contracts
         id: snapshot
@@ -68,11 +90,16 @@ jobs:
       - name: Regenerate Maya's screen
         run: python tools/render_page.py
 
+      # Same reason as the line above. A number typed into a document by hand is a number
+      # that was true on the day it was typed. The README's measurement block is generated.
+      - name: Regenerate the measurement in the README
+        run: python tools/impact.py --readme
+
       - name: Commit today's snapshot
         run: |
           git config user.name  "still-working (scheduled)"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add contracts/ docs/
+          git add contracts/ docs/ README.md
           if git diff --cached --quiet; then
             echo "nothing to commit"
           else

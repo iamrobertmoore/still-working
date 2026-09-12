@@ -218,7 +218,8 @@ def self_test() -> int:
         print("SELF TEST FAILED, reported changes against an identical snapshot:", quiet, file=sys.stderr)
         return 1
 
-    print("self test OK: detector fires on all six kinds, marks exactly two as breaking,")
+    print("self test OK: detector fires on every kind this fixture can produce, marks")
+    print("exactly two of them as breaking,")
     print("distinguishes optional-to-required, and stays silent on an unchanged contract.")
     return 0
 

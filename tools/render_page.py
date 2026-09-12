@@ -22,7 +22,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from tools.impact import assess, load_business, vendor_labels
+from tools.impact import assess, figures, load_business, vendor_labels
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTRACTS = os.path.join(ROOT, "contracts")
@@ -88,6 +88,10 @@ def human_date(iso: str) -> str:
     except ValueError:
         return iso
     return f"{d.day} {d.strftime('%B')} {d.year}"
+
+
+def _times(n: int) -> str:
+    return {0: "never", 1: "once", 2: "twice", 3: "three times"}.get(n, f"{n} times")
 
 
 def human_gap(days: int | None) -> str:
@@ -172,24 +176,29 @@ def main() -> int:
         span = 0
 
     parts.append("<details><summary>What this has caught, and what it stayed quiet about</summary>")
+    # The same suppression the agent applies, so this page and the README agree. Without
+    # it the page said three days reached her while everything else said two.
+    told = figures(business)
     parts.append(
         f"<p>Over <strong>{span} days</strong> the four companies above made "
         f"<strong>{total_changes} changes</strong> to what their software accepts. "
         f"<strong>{total_breaking}</strong> of those could break somebody. "
-        f"<strong>{len(reaching)}</strong> would have reached Maya.</p>")
-    if reaching:
-        parts.append('<div class="scroll"><table><tr><th>When</th><th>What she would have been told</th></tr>')
-        for r in reaching:
-            a = assess(business, r)
-            names = ", ".join(x["what_maya_calls_it"] for x in a["routines_touched"]
-                              if x["has_breaking_change"])
-            parts.append(f"<tr><td class=\"when\">{html.escape(human_date(r['date']))}</td>"
-                         f"<td>{html.escape(names)}</td></tr>")
+        f"<strong>{told['reaching']}</strong> broke something you rely on, and you would "
+        f"have been interrupted <strong>{_times(told['interruptions'])}</strong>.</p>")
+    if told["rows"]:
+        parts.append('<div class="scroll"><table><tr><th>When</th>'
+                     "<th>What you would have been told</th><th></th></tr>")
+        for date, _who, names, state, gap in told["rows"]:
+            aside = ("" if state == "sent"
+                     else f"you had just been told, {gap} days before" if gap is not None
+                     else "you had just been told")
+            parts.append(f"<tr><td class=\"when\">{html.escape(human_date(date))}</td>"
+                         f"<td>{html.escape(names)}</td>"
+                         f'<td class="n">{html.escape(aside)}</td></tr>')
         parts.append("</table></div>")
     parts.append(
-        "<p>Everything else was additive: new things her shop does not use, which an "
-        "integration that already works can ignore. That ratio is the product. A tool that "
-        "forwarded all "
+        "<p>Everything else was additive: new things you do not use, which software that "
+        "already works can ignore. That ratio is the product. A tool that forwarded all "
         f"{total_changes} would have been switched off in a fortnight.</p>")
     parts.append("</details>")
 
@@ -217,7 +226,9 @@ def main() -> int:
         fh.write(doc)
 
     print(f"wrote {os.path.relpath(OUT, ROOT)}  ({len(doc):,} bytes)")
-    print(f"state: {state}   outstanding: {len(outstanding)}   caught in {span} days: {len(reaching)}")
+    print(f"state: {state}   outstanding: {len(outstanding)}   "
+          f"in {span} days: {told['reaching']} broke a routine, "
+          f"{told['interruptions']} would have interrupted her")
     return 0
 
 
