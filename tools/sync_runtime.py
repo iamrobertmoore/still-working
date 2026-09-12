@@ -44,7 +44,7 @@ def expected_files() -> dict[str, str]:
         raise RuntimeError(f"canonical definitions missing: {sorted(NAMES - found)}")
     files = {"controls.py": HEADER + "\n\n\n".join(pieces) + "\n",
              "__init__.py": '"""The same delivery controls as the local agent, packaged for AgentCore."""\n'}
-    for name in ("memory.py", "notes.py"):
+    for name in ("memory.py", "notes.py", "review.py"):
         files[name] = (f"# Generated from agent/{name} by tools/sync_runtime.py.\n" +
                        (ROOT / "agent" / name).read_text())
     return files

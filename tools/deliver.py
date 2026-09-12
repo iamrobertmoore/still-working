@@ -20,7 +20,7 @@ from tools.cloud import runtime_client
 from tools.impact import assess, load_business
 
 
-def process(records, business, state, invoke):
+def process(records, business, state, invoke, reviews=None):
     state = json.loads(json.dumps(state))
     state.setdefault("history", [])
     state.setdefault("processed", [])
@@ -36,6 +36,7 @@ def process(records, business, state, invoke):
             state["processed"].append(key)
             continue
         impact["delivery_history"] = state["history"]
+        impact["human_reviews"] = reviews or {}
         result = invoke(impact)
         state["history"] = result["delivery_history"]
         outcomes.append({"date": record["date"], "vendor": record["vendor"], "result": result})
@@ -46,7 +47,7 @@ def process(records, business, state, invoke):
                 raise ValueError("unsafe vendor id")
             notes[f"{record['date']}-{vendor}.md"] = result["note"]
         if result.get("pending_routines") or result["state"] == "held_for_a_person":
-            state["pending"][key] = {"record": record, "reason": result["reason"]}
+            state["pending"][key] = {"record": record, "reason": result["reason"], "routine_ids": result.get("pending_routines")}
         else:
             state["pending"].pop(key, None)
             state["processed"].append(key)
@@ -71,7 +72,9 @@ def main():
     records = [json.loads(line) for line in (contracts / "changes.jsonl").read_text().splitlines() if line.strip()]
     records = [r for r in records if r["date"] == args.date]
     # Constructing a client does not invoke a model. Missing configuration fails loudly.
-    state, notes, outcomes = process(records, load_business(), state, runtime_client(args.runtime_arn))
+    reviews_path = contracts / "reviews.json"
+    reviews = json.loads(reviews_path.read_text()) if reviews_path.exists() else {}
+    state, notes, outcomes = process(records, load_business(), state, runtime_client(args.runtime_arn), reviews)
     for name, text in notes.items():
         dest = contracts / "notes" / name
         dest.parent.mkdir(parents=True, exist_ok=True)

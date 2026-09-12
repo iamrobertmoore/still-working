@@ -26,7 +26,7 @@ Still Working reads the public contracts of Stripe, Square, Xero and ShipEngine.
 
 The owner's note leads with a possible business consequence. Technical evidence sits below “forward this part to Priya”. On quiet days there is no model invocation. Repeated notices are held by a delivery ledger, and uncertain mappings can wait for a person.
 
-The daily page is deliberately calm. A separate browser replay lets a judge inspect the warning, the held repeat, and every captured decision without signing into AWS.
+The daily page is deliberately calm. A browser replay exposes the warning, the held repeat, and every captured decision without an AWS login. A review workbench lets someone who knows the integration confirm, dismiss or leave an uncertain match pending. Case-specific files are accepted only after operator import; the public example cannot mutate the live queue.
 
 ## How I built it
 
@@ -54,7 +54,7 @@ The final audit exposed another gap: the local controls had advanced beyond the 
 
 ## What is next
 
-Validate the mappings against an actual shop integration, build the owner/developer review flow, and evaluate missed changes on fresh history. Published contracts cannot prove deployed behaviour, and the detector covers a limited set of structural changes. I have not conducted customer testing.
+Validate the mappings against an actual shop integration, add private reviewer authentication, and evaluate missed changes on fresh history. Published contracts cannot prove deployed behaviour, and the detector covers a limited set of structural changes. I have not conducted customer testing.
 
 ## Disclosure
 

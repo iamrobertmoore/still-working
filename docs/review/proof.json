@@ -1,0 +1,333 @@
+{
+  "mode": "example",
+  "captured_at": "2026-09-12T12:45:25.606708+00:00",
+  "method": "Real AgentCore responses to a controlled review scenario. Historical Square change; mapping confidence deliberately lowered from high to low. Reviewer decisions are simulated, not customer validation.",
+  "case": {
+    "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+    "date": "2026-07-14",
+    "vendor": "square",
+    "routine": {
+      "routine_id": "stock-between-counter-and-website",
+      "what_maya_calls_it": "Stock moving between the counter and the website",
+      "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+      "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+      "how_late_would_she_notice": "a few days, when the second customer complains",
+      "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+      "mapping_confidence": "low",
+      "changes": [
+        {
+          "breaking": true,
+          "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+          "kind": "endpoint_removed"
+        }
+      ],
+      "has_breaking_change": true
+    }
+  },
+  "steps": {
+    "held": {
+      "input": {
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "vendor_address_as": "your till and bookings",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 8,
+        "ignored_count": 7,
+        "routines_touched": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "what_maya_calls_it": "Stock moving between the counter and the website",
+            "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+            "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+            "how_late_would_she_notice": "a few days, when the second customer complains",
+            "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+            "mapping_confidence": "low",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "held_for_a_person",
+        "reason": "a mapping or note needs a person to check it",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "changes_that_day": 8,
+        "delivery_history": [],
+        "agent_runs": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "outcome": "held_for_a_person"
+          }
+        ],
+        "pending_routines": [
+          "stock-between-counter-and-website"
+        ]
+      }
+    },
+    "approved": {
+      "input": {
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "vendor_address_as": "your till and bookings",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 8,
+        "ignored_count": 7,
+        "routines_touched": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "what_maya_calls_it": "Stock moving between the counter and the website",
+            "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+            "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+            "how_late_would_she_notice": "a few days, when the second customer complains",
+            "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+            "mapping_confidence": "low",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": [],
+        "human_reviews": {
+          "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {
+            "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+            "decision": "approve",
+            "reviewer": "Example reviewer",
+            "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."
+          }
+        }
+      },
+      "result": {
+        "state": "something_broke",
+        "reason": "a note passed the controls and was rendered",
+        "routine": "Stock moving between the counter and the website",
+        "note": "Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}",
+        "notes": [
+          "Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}"
+        ],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "changes_that_day": 8,
+        "delivery_history": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "agent_runs": 1,
+        "stop_reason": "end_turn",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "outcome": "delivered",
+            "dates_stamped": true,
+            "refused_attempts": 0,
+            "review": {
+              "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+              "decision": "approve",
+              "reviewer": "Example reviewer",
+              "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."
+            }
+          }
+        ],
+        "pending_routines": []
+      }
+    },
+    "dismissed": {
+      "input": {
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "vendor_address_as": "your till and bookings",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 8,
+        "ignored_count": 7,
+        "routines_touched": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "what_maya_calls_it": "Stock moving between the counter and the website",
+            "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+            "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+            "how_late_would_she_notice": "a few days, when the second customer complains",
+            "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+            "mapping_confidence": "low",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": [],
+        "human_reviews": {
+          "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {
+            "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+            "decision": "dismiss",
+            "reviewer": "Example reviewer",
+            "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."
+          }
+        }
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "no new note: each routine was already flagged or dismissed by its reviewer",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "changes_that_day": 8,
+        "delivery_history": [],
+        "agent_runs": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "outcome": "dismissed_by_reviewer",
+            "review": {
+              "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+              "decision": "dismiss",
+              "reviewer": "Example reviewer",
+              "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."
+            }
+          }
+        ],
+        "pending_routines": []
+      }
+    },
+    "repeat": {
+      "input": {
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "vendor_address_as": "your till and bookings",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 8,
+        "ignored_count": 7,
+        "routines_touched": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "what_maya_calls_it": "Stock moving between the counter and the website",
+            "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+            "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+            "how_late_would_she_notice": "a few days, when the second customer complains",
+            "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+            "mapping_confidence": "low",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "human_reviews": {
+          "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {
+            "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4",
+            "decision": "approve",
+            "reviewer": "Example reviewer",
+            "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."
+          }
+        }
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "no new note: each routine was already flagged or dismissed by its reviewer",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "changes_that_day": 8,
+        "delivery_history": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "agent_runs": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "outcome": "repeat_held",
+            "days_since": 0
+          }
+        ],
+        "pending_routines": []
+      }
+    }
+  }
+}

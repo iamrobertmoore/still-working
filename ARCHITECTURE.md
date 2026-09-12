@@ -20,7 +20,7 @@ This is a single illustrative shop. The committed ledger and notes are suitable 
 
 `StampTheFacts` uses Strands `Transform` to replace routine identifiers, the publication date and relative age with values from the deterministic assessment. Medium-confidence notes receive an uncertainty statement even when the model omits one.
 
-`OnlyWhenItCostsHer` applies `Deny` to irrelevant and repeated notes, `Proceed` to eligible confident mappings, and `Confirm` to low-confidence ones in the local agent. Live execution requires explicit approval; only scripted tests auto-answer. In AgentCore there is no interactive reviewer, so low confidence returns `held_for_a_person` without constructing a model.
+`OnlyWhenItCostsHer` applies `Deny` to irrelevant and repeated notes, `Proceed` to eligible confident mappings, and `Confirm` to low-confidence ones in the local agent. Live execution requires explicit approval; only scripted tests auto-answer. In AgentCore, low confidence returns `held_for_a_person` without constructing a model unless the authenticated caller supplies a valid case-specific human approval. A dismissal closes the case without a model. Reviews are scoped to the exact supplier, date and assessed routine, and cannot be authored by the model.
 
 The formatter rejects contradictory dates in prose. Refusal is a tool result the model can correct. The ledger updates only after a successful rendered tool result, not on an attempted call. If the model finishes without a usable note, the case remains pending. Runtime merges approved notes verbatim, so a second model cannot silently drop one.
 
@@ -30,7 +30,7 @@ Each invocation owns its date guard and state. The tests exercise concurrent req
 
 The local demonstration uses `AgentState` and `FileSessionManager`. The deployed runtime accepts `delivery_history` from its authenticated caller and returns the updated ledger. It does not pretend its process memory survives a restart.
 
-The scheduled caller stores history, processed record hashes and pending records in `contracts/delivery-state.json`. Notes are published with that state. A failed cloud call aborts publication, so an unrendered message is not silently marked as delivered. Pending records are retried even on a morning with no new changes. Low-confidence mappings must be checked and corrected in the profile by a maintainer; the prototype has no completed human-review interface.
+The scheduled caller stores history, processed record hashes and pending records in `contracts/delivery-state.json`. Notes are published with that state. A failed cloud call aborts publication, so an unrendered message is not silently marked as delivered. Pending records are retried even on a morning with no new changes. The [review page](docs/REVIEW.md) exports a case-specific decision for operator import. The daily caller attaches accepted reviews to the next pending assessment. A confirmation can release a low-confidence case; a dismissal uses no model. The page does not authenticate reviewers or mutate shared state directly.
 
 The repeat rule is five days for the same routine. It reduces duplicate notices but can also hide a distinct change to that routine. It is a chosen tradeoff, not a proven ideal interval.
 
@@ -57,7 +57,7 @@ The local scripts also demonstrate `stream_async`, telemetry spans, structured s
 | Supplier unreachable | Fail the collection run; do not publish a fresh reassuring page |
 | Missing AWS role or failed invocation | Fail delivery; do not commit a new delivery state |
 | Unsupported mapping | Setup rejects invented calls; verification flags unsupported existing ones |
-| Low-confidence mapping | Keep pending for a person |
+| Low-confidence mapping | Keep pending until a case-specific human review |
 | Model invents a date | Stamp known fields; reject contradictory prose |
 | Model produces no usable note | Return a review state, not an all-clear |
 | Supplier documentation lags deployment | Not detected |

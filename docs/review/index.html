@@ -1,0 +1,884 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review a match | Still Working</title><link rel="icon" href="../brand/mark.svg"><style>:root {
+  color-scheme:light dark;
+  --bg:#f7f8f2;
+  --surface:#fffefa;
+  --ink:#243d33;
+  --muted:#657269;
+  --line:#dfe5db;
+  --green:#255a43;
+  --mint:#e8efdf;
+  --soft:#f0f3eb;
+  --accent:#bdcf91;
+  --warn:#a05232;
+  --warn-bg:#f6e9dd;
+  --shadow:0 16px 45px -32px #243d3340;
+}
+* {
+  box-sizing:border-box;
+}
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:2rem;
+}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a {
+  color:inherit;
+  text-underline-offset:4px;
+}
+button,summary,a {
+  -webkit-tap-highlight-color:transparent;
+}
+a:focus-visible,summary:focus-visible {
+  outline:3px solid var(--green);
+  outline-offset:6px;
+  border-radius:4px;
+}
+.wrap {
+  max-width:1200px;
+  padding:0 48px;
+  margin:0 auto;
+}
+.skip {
+  position:absolute;
+  top:-70px;
+  left:24px;
+  padding:10px 20px;
+  background:var(--surface);
+  z-index:9;
+}
+.skip:focus {
+  top:12px;
+}
+.masthead {
+  min-height:112px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  gap:24px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-decoration:none;
+  font-size:21px;
+  font-weight:650;
+  letter-spacing:-.8px;
+}
+.brand svg {
+  width:40px;
+  height:40px;
+  color:var(--green);
+}
+.brand-dot {
+  color:var(--green);
+}
+.brand-caption {
+  border-left:1px solid var(--line);
+  padding-left:24px;
+  margin-left:24px;
+  font-size:12px;
+  letter-spacing:.01em;
+  color:var(--muted);
+  font-weight:400;
+}
+.identity {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+}
+.avatar {
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:var(--mint);
+  display:grid;
+  place-items:center;
+  color:var(--green);
+  font-family:Georgia,serif;
+  font-size:17px;
+}
+.eyebrow {
+  font-size:10px;
+  letter-spacing:.17em;
+  font-weight:650;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 22px;
+}
+.hero {
+  position:relative;
+  padding:74px 0 52px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  align-items:center;
+  gap:28px;
+}
+.hero-copy {
+  animation:arrive .8s ease both;
+}
+.status-label {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--green);
+  font-size:11px;
+  margin-bottom:22px;
+  letter-spacing:.04em;
+}
+.status-dot {
+  height:6px;
+  width:6px;
+  background:currentColor;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.state {
+  font:normal clamp(48px,6.9vw,84px)/1.05 Georgia,"Times New Roman",serif;
+  letter-spacing:-.055em;
+  margin:0 0 22px;
+  color:var(--green);
+}
+.state.warn {
+  color:var(--warn);
+}
+.sub {
+  font-size:17px;
+  color:var(--ink);
+  margin:0 0 4px;
+  letter-spacing:-.2px;
+}
+.reassurance {
+  color:var(--muted);
+  font-size:14px;
+  margin:0;
+}
+.hero-art {
+  position:relative;
+  width:280px;
+  height:280px;
+  display:grid;
+  place-items:center;
+  justify-self:end;
+  animation:arrive 1.2s ease both;
+}
+.hero-art::before,.hero-art::after {
+  content:"";
+  position:absolute;
+  border:1px solid var(--line);
+  border-radius:50%;
+  inset:10px;
+}
+.hero-art::after {
+  inset:37px;
+  border-style:dashed;
+  animation:breathe 6s ease-in-out infinite;
+}
+.art-grid {
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(var(--line) .8px,transparent .8px);
+  background-size:14px 14px;
+  mask-image:radial-gradient(ellipse,#000 20%,transparent 69%);
+}
+.seal {
+  position:relative;
+  height:142px;
+  width:142px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--green);
+  color:#f7faed;
+  box-shadow:0 0 0 12px var(--mint),0 15px 45px -25px #12372590;
+}
+.seal svg {
+  width:84px;
+  height:84px;
+}
+.satellite {
+  position:absolute;
+  right:27px;
+  top:60px;
+  width:12px;
+  height:12px;
+  background:var(--accent);
+  border:3px solid var(--bg);
+  border-radius:50%;
+}
+.art-caption {
+  position:absolute;
+  bottom:3px;
+  background:var(--bg);
+  padding:4px 12px;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero-art.warning .seal {
+  background:var(--warn);
+  box-shadow:0 0 0 12px var(--warn-bg);
+}
+.check-strip {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:16px 0 28px;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+  color:var(--muted);
+}
+.checked {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.checked svg {
+  width:14px;
+  height:14px;
+}
+.check-strip a {
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.check-strip a:hover {
+  color:var(--green);
+}
+.arrow {
+  display:inline-block;
+  transition:transform .2s;
+}
+.check-strip a:hover .arrow {
+  transform:translateY(3px);
+}
+.watch-section {
+  padding:40px 0 36px;
+  animation:arrive .9s .1s ease both;
+}
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:20px;
+}
+h2 {
+  font-size:18px;
+  letter-spacing:-.4px;
+  font-weight:550;
+  line-height:1.4;
+  margin:0;
+}
+.section-meta {
+  font-size:11px;
+  color:var(--muted);
+}
+.vendor-grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.vendor-card {
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:22px 20px 17px;
+  box-shadow:var(--shadow);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.vendor-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--accent);
+  box-shadow:0 14px 30px -23px #23463066;
+}
+.vendor-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+.vendor-icon {
+  width:35px;
+  height:35px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+}
+.vendor-icon svg {
+  height:19px;
+  width:19px;
+}
+.vendor-name {
+  font-size:10px;
+  color:var(--muted);
+}
+.vendor-card h3 {
+  font-size:14px;
+  font-weight:550;
+  letter-spacing:-.2px;
+  margin:0 0 18px;
+}
+.vendor-bottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+  font-size:10px;
+  color:var(--muted);
+  padding-top:13px;
+  border-top:1px solid var(--line);
+}
+.vendor-bottom strong {
+  font-weight:500;
+  color:var(--ink);
+}
+.attention {
+  color:var(--warn);
+  font-size:11px;
+  margin:12px 0 0;
+}
+.evidence-wrap {
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--soft);
+  margin:0 0 34px;
+  overflow:hidden;
+  animation:arrive 1s .2s ease both;
+}
+details>summary {
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:24px 26px;
+}
+summary::-webkit-details-marker {
+  display:none;
+}
+.evidence-icon {
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border:1px solid var(--line);
+  color:var(--green);
+}
+.evidence-icon svg {
+  width:19px;
+  height:19px;
+}
+.summary-copy {
+  flex:1;
+}
+.summary-title {
+  font-size:14px;
+  font-weight:550;
+  display:block;
+  letter-spacing:-.1px;
+}
+.summary-sub {
+  font-size:12px;
+  color:var(--muted);
+  display:block;
+  margin-top:2px;
+}
+.toggle {
+  width:28px;
+  height:28px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  transition:transform .25s;
+  background:var(--surface);
+}
+.toggle svg {
+  display:block;
+  width:16px;
+  height:16px;
+}
+details[open] .toggle {
+  transform:rotate(45deg);
+}
+details[open]>summary {
+  border-bottom:1px solid var(--line);
+}
+.evidence-content {
+  padding:26px;
+  font-size:13px;
+}
+.evidence-content>p {
+  max-width:800px;
+  color:var(--muted);
+  margin:22px 0 0;
+}
+.evidence-content strong {
+  color:var(--ink);
+}
+.metrics {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-bottom:25px;
+}
+.metric {
+  border-left:1px solid var(--line);
+  padding-left:18px;
+}
+.metric:first-child {
+  border:0;
+  padding-left:0;
+}
+.metric-value {
+  font:38px/1.2 Georgia,serif;
+  letter-spacing:-1px;
+  display:block;
+  color:var(--green);
+}
+.metric-label {
+  font-size:11px;
+  color:var(--muted);
+}
+.scroll {
+  overflow-x:auto;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:26px;
+  text-align:left;
+  font-size:12px;
+}
+th,td {
+  padding:14px 16px 14px 0;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+th {
+  font-size:10px;
+  color:var(--muted);
+  font-weight:500;
+}
+.when {
+  white-space:nowrap;
+}
+.n {
+  color:var(--muted);
+}
+.delivery {
+  display:inline-block;
+  border-radius:20px;
+  background:var(--mint);
+  color:var(--green);
+  font-size:10px;
+  padding:3px 9px;
+  white-space:nowrap;
+}
+.delivery.held {
+  background:var(--bg);
+  color:var(--muted);
+}
+.note {
+  border:1px solid var(--line);
+  border-left:3px solid var(--warn);
+  background:var(--surface);
+  border-radius:12px;
+  padding:26px;
+  margin:26px 0 30px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  font:14px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.footer-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:26px;
+  font-size:11px;
+  color:var(--muted);
+}
+.footer-top p {
+  margin:0;
+}
+.source-link {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.source-link:hover {
+  text-decoration:underline;
+}
+.source-link svg {
+  width:14px;
+  height:14px;
+}
+.fine-print {
+  border-top:1px solid var(--line);
+  padding:23px 0 34px;
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:55px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.8;
+}
+.fine-print p {
+  margin:0;
+}
+.footer-motto {
+  font:italic 17px/1.5 Georgia,serif;
+  color:var(--ink);
+  display:block;
+  margin-bottom:5px;
+}
+.sr-only {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+@keyframes arrive {
+  from {
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+@keyframes breathe {
+  0%,100% {
+    opacity:.45;
+    transform:scale(.98);
+  }
+  50% {
+    opacity:1;
+    transform:scale(1.04);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#15251f;
+    --surface:#1c2e26;
+    --ink:#e6e9dc;
+    --muted:#a1b0a4;
+    --line:#34463a;
+    --green:#c0d6a7;
+    --mint:#2b4031;
+    --soft:#1b2b23;
+    --accent:#8faa6d;
+    --warn:#edb38c;
+    --warn-bg:#44372b;
+    --shadow:0 16px 45px -32px #0009;
+  }
+  .seal {
+    background:#c0d6a7;
+    color:#244631;
+  }
+  .hero-art.warning .seal {
+    color:#443020;
+  }
+  .brand-dot {
+    color:var(--green);
+  }
+}
+@media(min-width:1400px) {
+  .hero {
+    padding-top:90px;
+    padding-bottom:65px;
+  }
+}
+@media(max-width:950px) {
+  .wrap {
+    padding:0 30px;
+  }
+  .brand-caption {
+    display:none;
+  }
+  .hero {
+    grid-template-columns:minmax(0,1fr) 230px;
+    gap:0;
+  }
+  .hero-art {
+    width:220px;
+    height:220px;
+  }
+  .seal {
+    width:114px;
+    height:114px;
+  }
+  .seal svg {
+    width:68px;
+    height:68px;
+  }
+  .satellite {
+    top:40px;
+    right:25px;
+  }
+  .vendor-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .vendor-card h3 {
+    font-size:16px;
+  }
+  .vendor-name,.vendor-bottom {
+    font-size:11px;
+  }
+  .state {
+    font-size:clamp(48px,7.4vw,75px);
+  }
+}
+@media(max-width:600px) {
+  .wrap {
+    padding:0 22px;
+  }
+  .masthead {
+    min-height:86px;
+    gap:12px;
+  }
+  .brand {
+    font-size:18px;
+    gap:7px;
+  }
+  .brand svg {
+    width:34px;
+    height:34px;
+  }
+  .identity {
+    font-size:11px;
+    gap:7px;
+  }
+  .avatar {
+    width:28px;
+    height:28px;
+    font-size:14px;
+  }
+  .hero {
+    padding:44px 0 28px;
+    grid-template-columns:1fr;
+  }
+  .hero-art {
+    display:none;
+  }
+  .eyebrow {
+    margin-bottom:20px;
+    font-size:9px;
+  }
+  .status-label {
+    margin-bottom:18px;
+  }
+  .state {
+    font-size:clamp(44px,11.5vw,68px);
+    margin-bottom:20px;
+  }
+  .sub {
+    font-size:15px;
+  }
+  .reassurance {
+    font-size:13px;
+  }
+  .check-strip {
+    font-size:10px;
+    padding:12px 0 22px;
+    align-items:flex-start;
+  }
+  .check-strip a {
+    white-space:nowrap;
+  }
+  .checked {
+    max-width:215px;
+    align-items:flex-start;
+    gap:6px;
+  }
+  .checked svg {
+    flex-shrink:0;
+    margin-top:1px;
+  }
+  .watch-section {
+    padding:28px 0;
+  }
+  .section-heading {
+    align-items:flex-start;
+  }
+  h2 {
+    font-size:16px;
+  }
+  .section-meta {
+    font-size:10px;
+  }
+  .vendor-grid {
+    gap:10px;
+  }
+  .vendor-card {
+    padding:16px 13px 13px;
+  }
+  .vendor-top {
+    margin-bottom:17px;
+    gap:6px;
+  }
+  .vendor-name {
+    font-size:9px;
+  }
+  .vendor-icon {
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    flex-shrink:0;
+  }
+  .vendor-icon svg {
+    width:16px;
+    height:16px;
+  }
+  .vendor-card h3 {
+    font-size:13px;
+    min-height:40px;
+    margin-bottom:10px;
+  }
+  .vendor-bottom {
+    font-size:9px;
+    flex-wrap:wrap;
+    gap:0 6px;
+  }
+  .evidence-wrap {
+    margin-bottom:24px;
+  }
+  details>summary {
+    padding:20px 16px;
+    gap:12px;
+  }
+  .evidence-icon {
+    display:none;
+  }
+  .summary-title {
+    font-size:13px;
+  }
+  .summary-sub {
+    font-size:11px;
+  }
+  .toggle {
+    flex-shrink:0;
+  }
+  .evidence-content {
+    padding:20px 16px;
+  }
+  .metrics {
+    gap:10px;
+  }
+  .metric {
+    padding-left:10px;
+  }
+  .metric-value {
+    font-size:30px;
+  }
+  .metric-label {
+    font-size:10px;
+  }
+  .footer-top {
+    align-items:flex-start;
+    font-size:10px;
+    gap:20px;
+  }
+  .footer-top p {
+    max-width:210px;
+  }
+  .fine-print {
+    grid-template-columns:1fr;
+    gap:16px;
+    padding-top:20px;
+  }
+  .footer-motto {
+    font-size:16px;
+  }
+  .note {
+    padding:20px;
+    font-size:13px;
+  }
+  .when {
+    white-space:normal;
+    min-width:90px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+  }
+}
+@media print {
+  body {
+    background:white;
+    color:#243d33;
+  }
+  .wrap {
+    max-width:none;
+    padding:0;
+  }
+  .hero {
+    padding:28px 0;
+  }
+  .hero-art {
+    display:none;
+  }
+  .hero {
+    grid-template-columns:1fr;
+  }
+  .vendor-card {
+    box-shadow:none;
+  }
+  .skip {
+    display:none;
+  }
+  details>summary {
+    padding:16px;
+  }
+  .fine-print {
+    padding-bottom:0;
+  }
+}
+
+.product-nav{display:flex;gap:28px;padding:18px 0 0;font-size:13px;color:var(--muted)}.product-nav span{color:var(--green);font-weight:600}.product-nav a{text-decoration:none}.product-nav a:hover{text-decoration:underline}
+.hero-actions{margin-top:28px;display:flex;gap:15px;align-items:center;flex-wrap:wrap}.primary-link{padding:13px 20px;background:var(--green);color:var(--bg);border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;gap:16px;align-items:center;transition:transform .2s}.primary-link:hover{transform:translateY(-2px)}.hero-actions>span{font-size:12px;max-width:170px;color:var(--muted)}
+.demo-feature{display:grid;grid-template-columns:1.7fr 1fr;gap:50px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:34px;margin:32px 0 4px;box-shadow:var(--shadow)}.demo-feature h2{font:normal 30px/1.2 Georgia,serif;letter-spacing:-.7px;max-width:530px}.demo-feature p{font-size:14px;color:var(--muted)}.demo-feature .eyebrow{font-size:10px;margin-bottom:16px}.demo-feature a{font-size:14px;color:var(--green)}.demo-feature aside{border-left:1px solid var(--line);padding-left:30px}.feature-number{font:50px/1 Georgia,serif;color:var(--green);letter-spacing:-2px}.demo-feature aside>strong{font-size:15px}.demo-feature .feature-caveat{font-size:12px}.build-stamp{text-align:center;font-size:12px;color:var(--muted);margin:0 20px 26px}
+@media(max-width:650px){.demo-feature{grid-template-columns:1fr;gap:25px;padding:24px}.demo-feature aside{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.demo-feature h2{font-size:27px}.product-nav{gap:20px;font-size:12px;flex-wrap:wrap}.hero-actions>span{max-width:150px}.identity{font-size:10px;max-width:140px}}
+
+
+.review-nav{display:flex;gap:25px;padding:20px 0;font-size:14px}.review-head{padding:30px 0;max-width:760px}.review-head h1{font:normal clamp(38px,5vw,60px)/1.1 Georgia,serif;letter-spacing:-1.8px;margin:10px 0 20px}.review-head p{font-size:16px;color:var(--muted)}.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}.review-card{padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:16px}.review-card h2{font-size:22px;margin-bottom:20px}.review-card h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:25px 0 8px}.review-card p{margin:12px 0}.review-card pre{font:12px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--soft);padding:16px;border-radius:8px}.review-tag{font-size:12px;color:var(--warn);letter-spacing:.08em;text-transform:uppercase}.review-card fieldset{border:0;padding:0;margin:0}.review-card legend{font-size:16px;font-weight:600;margin-bottom:14px}.review-choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:8px;padding:14px;margin:10px 0;cursor:pointer;font-size:14px}.review-choice:has(input:checked){border-color:var(--green);background:var(--mint)}.review-choice input{margin-top:5px;accent-color:var(--green)}.review-choice small{display:block;color:var(--muted);font-size:13px;margin-top:4px}.review-field{display:block;margin-top:20px;font-size:14px}.review-field input,.review-field textarea{display:block;margin-top:7px;width:100%;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg);color:var(--ink);font:inherit}.review-field textarea{min-height:100px;resize:vertical}.review-card button,.download-review{display:inline-block;margin-top:22px;padding:13px 20px;background:var(--green);color:var(--bg);border:0;border-radius:8px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none}.review-card button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:3px}.review-result{margin-top:22px;border-top:1px solid var(--line);padding-top:20px}.review-result h3{margin-top:0;text-transform:none;font-size:20px;color:var(--green);letter-spacing:0}.review-result .receipt-note{font-size:14px;white-space:pre-line}.review-result details{margin-top:18px}.review-result summary{padding:12px 0;font-size:14px}.review-footer{margin:35px 0;border-top:1px solid var(--line);padding-top:25px;color:var(--muted);font-size:13px}.review-footer a{margin-right:18px}.case-queue{margin:30px 0}.case-queue a{display:block;padding:18px;border:1px solid var(--line);border-radius:8px;margin:12px 0}#error{color:var(--warn);font-size:14px}[hidden]{display:none!important}@media(max-width:760px){.review-grid{grid-template-columns:1fr}.review-card{padding:23px}.review-head{padding-top:20px}.review-nav{gap:20px}.identity{display:none}}
+</style></head><body><div class="wrap"><header class="masthead"><a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/></svg><span>still working.</span></a><span class="identity">A decision for the person who knows the integration.</span></header><nav class="review-nav"><a href="../">Daily check-in</a><a href="../replay/">Recorded warnings</a><a href="live.html">Pending queue</a></nav>
+    <main><section class="review-head"><span class="review-tag">Recorded review example</span><h1>A question before<br>another interruption.</h1><p>This is a recorded test of the review gate. The supplier change is real; its mapping confidence was deliberately lowered. Try either developer decision and inspect the captured cloud result.</p></section>
+    <div class="review-grid"><section class="review-card"><span class="review-tag">Waiting for a person · No note sent</span><h2>Stock moving between the counter and the website</h2><h3>What is known</h3><p>Square published a potentially breaking change on 14 July 2026.</p><pre>endpoint_removed: GET /v2/inventory/transfers/{transfer_id}</pre><h3>What is uncertain</h3><p>Does this routine actually use the affected call? The mapping has <strong>low confidence</strong>.</p><h3>Why it could matter</h3><p>A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.</p><p class="section-meta">The business consequence is an illustrative assumption, not an observed outage.</p></section>
+    <section class="review-card"><h2>Check the dependency.</h2><form id="review-form"><fieldset><legend>What did the integration check show?</legend><label class="review-choice"><input type="radio" name="decision" value="approve" required><span>This routine uses the affected call.<small>Permit the agent to assess and write a note. Its delivery controls still apply.</small></span></label><label class="review-choice"><input type="radio" name="decision" value="dismiss"><span>This change does not affect this routine.<small>Close this case without invoking a model or sending a note.</small></span></label><label class="review-choice"><input type="radio" name="decision" value="unsure"><span>I still cannot establish the dependency.<small>Keep it pending. An unanswered question is not an approval.</small></span></label></fieldset><label class="review-field">Reviewer<input id="reviewer" minlength="2" maxlength="120" required value="Example reviewer" autocomplete="off"></label><label class="review-field">What did you check?<textarea id="reason" minlength="2" maxlength="1200" required>Demonstration decision. No real integration or customer was checked.</textarea></label><button type="submit">Try this review decision</button><p id="error" role="alert"></p></form>
+    <div id="review-result" class="review-result" aria-live="polite" hidden><h3 id="result-title"></h3><p id="result-copy"></p><p id="result-metrics"></p><details id="note-details" hidden><summary>Read the captured note</summary><div id="result-note" class="receipt-note"></div></details><a id="download" class="download-review" hidden>Download example review file</a></div></section></div></main>
+    <footer class="review-footer"><p>Example decisions are for demonstration only and cannot be imported into the live queue. The selected branch shows a saved AWS response, not a fresh browser invocation.</p><p>Each review is bound to the exact date, supplier and assessed routine. Changing the case invalidates the decision.</p><a href="proof.json">Inspect the source record</a><a href="https://github.com/iamrobertmoore/still-working/blob/main/docs/REVIEW.md">How the review reaches the agent</a></footer></div><script id="review-data" type="application/json">{"mode": "example", "case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "proof": {"held": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": []}, "result": {"state": "held_for_a_person", "reason": "a mapping or note needs a person to check it", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "held_for_a_person"}], "pending_routines": ["stock-between-counter-and-website"]}}, "approved": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "something_broke", "reason": "a note passed the controls and was rendered", "routine": "Stock moving between the counter and the website", "note": "Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}", "notes": ["Your stock sync will stop working if it hasn't already, and you'll sell the same thing twice without knowing.\n\nYour till and bookings removed a call on 14 July 2026. A developer has reviewed this case and confirmed that your stock sync routine does use that call, so the routine will have stopped working when the call was removed.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nI am not certain about this. The original mapping had low confidence. A supplied review confirmed the dependency, but that review was not independently verified.\n\nWhat to do: Forward this to Priya to check whether the removal has reached your account yet and what repair is needed.\n\n--- forward this part to Priya ---\n  Priya,\n  Published fact: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  Supplied review: A developer confirmed that routine stock-between-counter-and-website uses the removed call. Original mapping confidence was low. This review has not been independently verified.\n  Action needed: Check whether this removal has reached Maya's Square account yet, and if so, what repair is needed. Do not repeat the dependency check already performed in the review.\n  Integration: stock-between-counter-and-website\n  Removed: GET /v2/inventory/transfers/{transfer_id}"], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 1, "stop_reason": "end_turn", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "delivered", "dates_stamped": true, "refused_attempts": 0, "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}], "pending_routines": []}}, "dismissed": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "dismissed_by_reviewer", "review": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "dismiss", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer checked and this routine does not use the affected call."}}], "pending_routines": []}}, "repeat": {"input": {"date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "vendor_address_as": "your till and bookings", "days_ago": 0, "business": {"owner": "Maya", "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer", "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."}, "vendor_total_changes": 8, "ignored_count": 7, "routines_touched": [{"routine_id": "stock-between-counter-and-website", "what_maya_calls_it": "Stock moving between the counter and the website", "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.", "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.", "how_late_would_she_notice": "a few days, when the second customer complains", "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.", "mapping_confidence": "low", "changes": [{"breaking": true, "endpoint": "GET /v2/inventory/transfers/{transfer_id}", "kind": "endpoint_removed"}], "has_breaking_change": true}], "reaches_maya": true, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "human_reviews": {"22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4": {"case_id": "22e21b289d2cf4b842d749eccf19fec41ae19c948ce651f5f4a668656259dfc4", "decision": "approve", "reviewer": "Example reviewer", "reason": "Demonstration input: assume a developer has confirmed that this routine uses the affected call. No real integration was checked."}}}, "result": {"state": "still_working", "reason": "no new note: each routine was already flagged or dismissed by its reviewer", "routine": null, "note": null, "notes": [], "carrying_doubt": false, "date": "2026-07-14", "vendor": "square", "vendor_in_her_words": "my till and my bookings", "changes_that_day": 8, "delivery_history": [{"routine_id": "stock-between-counter-and-website", "change_date": "2026-07-14", "vendor": "square", "what_maya_calls_it": "Stock moving between the counter and the website"}], "agent_runs": 0, "stop_reason": "deterministic_gate", "controls_version": "shared-v1", "decisions": [{"routine_id": "stock-between-counter-and-website", "outcome": "repeat_held", "days_since": 0}], "pending_routines": []}}}}</script><script src="review.js"></script></body></html>
