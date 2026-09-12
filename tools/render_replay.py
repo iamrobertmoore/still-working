@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.render_page import CSS, human_date, mark, icon
+from tools.render_page import CSS, human_date, mark, icon, masthead
 from tools.replay import agent_runs
 
 OUT = ROOT / 'docs' / 'replay'
@@ -59,7 +59,7 @@ def page(data, selected):
         rows.append(f'<tr><td><a href="{rr["date"]}-{rr["vendor"]}.html">{esc(human_date(rr["date"]))}</a></td><td>{esc(rr["vendor"].title())}</td><td>{rr["total_count"]}</td><td>{status}</td><td>{agent_runs(out)}</td></tr>')
     m = data['measurement']
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Still Working replay</title><meta name="description" content="Inspect real AgentCore responses to five months of supplier history, using an illustrative shop profile."><link rel="icon" href="../brand/mark.svg"><style>{CSS}\n{EXTRA}</style></head><body><a class="skip" href="#main">Skip to the recorded decision</a><div class="wrap">
-    <header class="masthead"><a class="brand" href="../">{mark()}<span>still working.</span></a><span class="brand-caption">Less noise. More peace of mind.</span><a href="../" class="identity">Today’s check-in ↗</a></header>
+    {masthead("../")}
     <main id="main"><div class="replay-head"><span class="replay-label">Historical replay · Real cloud responses</span><h1>{title}</h1><p>A supplier changed. Here is what the agent decided, the note it wrote, and the evidence behind it.</p></div>
     <nav class="replay-nav" aria-label="Choose a recorded moment">{''.join(nav)}</nav><div class="case-grid"><article class="case-note"><span class="replay-label">{esc(human_date(r['date']))} · Maya’s screen</span>{body}</article>{receipt}</div>
     <section class="record-list"><details><summary><span>Every decision in the replay</span><span>{len(data['cases'])} records · {data['delivered_notes']} notes</span></summary><div class="scroll"><table><thead><tr><th>Date</th><th>Supplier</th><th>Changes</th><th>Outcome</th><th>Agent runs</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></details></section>

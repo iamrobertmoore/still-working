@@ -1151,12 +1151,6 @@ body {
   border-top:1px solid var(--line);
   padding-top:20px
 }
-.built-strip span:first-child {
-  font-style:italic;
-  font-family:Georgia,serif;
-  font-size:15px;
-  color:var(--green)
-}
 .built-strip a {
   margin-left:auto
 }
@@ -1180,20 +1174,6 @@ body {
 .demo-method a {
   display:inline-block;
   margin-top:12px
-}
-.motion-control {
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:11px;
-  margin-top:20px;
-  cursor:pointer
-}
-.motion-control input {
-  accent-color:var(--green)
-}
-body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body:has(#pause-motion:checked) *::after {
-  animation-play-state:paused!important
 }
 .fine-print {
   grid-template-columns:1fr 1fr;
@@ -1423,8 +1403,6 @@ body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body
     font-size:13px
   }
 }
-@media(prefers-reduced-motion:reduce) {
-  .motion-control {
-    display:none
-  }
-}
+
+.fine-print { display:block; }
+.fine-print > div { max-width:580px; }

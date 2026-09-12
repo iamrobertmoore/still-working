@@ -1151,12 +1151,6 @@ body {
   border-top:1px solid var(--line);
   padding-top:20px
 }
-.built-strip span:first-child {
-  font-style:italic;
-  font-family:Georgia,serif;
-  font-size:15px;
-  color:var(--green)
-}
 .built-strip a {
   margin-left:auto
 }
@@ -1180,20 +1174,6 @@ body {
 .demo-method a {
   display:inline-block;
   margin-top:12px
-}
-.motion-control {
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:11px;
-  margin-top:20px;
-  cursor:pointer
-}
-.motion-control input {
-  accent-color:var(--green)
-}
-body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body:has(#pause-motion:checked) *::after {
-  animation-play-state:paused!important
 }
 .fine-print {
   grid-template-columns:1fr 1fr;
@@ -1423,11 +1403,9 @@ body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body
     font-size:13px
   }
 }
-@media(prefers-reduced-motion:reduce) {
-  .motion-control {
-    display:none
-  }
-}
+
+.fine-print { display:block; }
+.fine-print > div { max-width:580px; }
 
 
 .replay-head{padding:55px 0 32px;max-width:790px}.replay-head h1{font:normal clamp(40px,5vw,65px)/1.08 Georgia,serif;letter-spacing:-.04em;margin:12px 0 24px}.replay-head p{color:var(--muted)}
@@ -1436,7 +1414,7 @@ body:has(#pause-motion:checked) *,body:has(#pause-motion:checked) *::before,body
 .receipt{padding:24px;border:1px solid var(--line);border-radius:15px;background:var(--soft)}.receipt h2{margin-bottom:18px}.receipt dl{margin:0}.receipt dt{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:18px}.receipt dd{margin:4px 0;font-size:13px}.receipt p{font-size:12px;color:var(--muted)}.record-list{margin:36px 0}.record-list summary{justify-content:space-between;border:1px solid var(--line);border-radius:10px}.record-list table{font-size:12px}.replay-footer{margin:40px 0 30px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.replay-footer p{max-width:850px}.receipt .delivery{margin-bottom:12px}.empty-note{min-height:320px;display:flex;flex-direction:column;justify-content:center}.empty-note h2{font-size:40px;color:var(--green)}
 @media(max-width:750px){.case-grid{grid-template-columns:1fr}.replay-head{padding-top:35px}.case-note{padding:24px}.masthead .identity{display:none}.replay-nav a{flex:1 1 calc(50% - 10px);text-align:center}.receipt{padding:22px}}
 </style></head><body><a class="skip" href="#main">Skip to the recorded decision</a><div class="wrap">
-    <header class="masthead"><a class="brand" href="../"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/></svg><span>still working.</span></a><span class="brand-caption">Less noise. More peace of mind.</span><a href="../" class="identity">Today’s check-in ↗</a></header>
+    <header class="masthead"><a class="brand" href="../" aria-label="Still Working home"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/></svg><span>still working<span class="brand-dot">.</span></span></a></header>
     <main id="main"><div class="replay-head"><span class="replay-label">Historical replay · Real cloud responses</span><h1>Nothing to interrupt you for.</h1><p>A supplier changed. Here is what the agent decided, the note it wrote, and the evidence behind it.</p></div>
     <nav class="replay-nav" aria-label="Choose a recorded moment"><a href="2026-07-14-square.html">The stock warning</a><a href="2026-04-24-xero.html">The payroll warning</a><a href="2026-04-29-xero.html">The repeat held</a><a href="2026-08-26-stripe.html">A quiet day</a></nav><div class="case-grid"><article class="case-note"><span class="replay-label">9 August 2026 · Maya’s screen</span><div class="empty-note"><h2>Still working.</h2><p>These published changes do not match a potentially breaking change to a routine in the shop profile. No note. No model invocation.</p></div></article><aside class="receipt"><span class="delivery">Captured from AWS AgentCore</span><h2>The decision receipt</h2><dl>
     <dt>Published change</dt><dd>9 August 2026 · Xero</dd>
