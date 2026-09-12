@@ -44,7 +44,7 @@ def main():
     result = runtime_client()({'date': dt.datetime.now(dt.timezone.utc).date().isoformat(),
                                'vendor': 'healthcheck', 'routines_touched': [],
                                'vendor_total_changes': 0, 'delivery_history': []})
-    if result['state'] != 'still_working' or result['model_invocations'] != 0 or result.get('note'):
+    if result['state'] != 'still_working' or result.get('agent_runs', result.get('model_invocations')) != 0 or result.get('note'):
         raise RuntimeError('The deployed quiet gate did not return a model-free quiet result.')
     print(f"AgentCore reached through the scheduled role: {result['controls_version']}, no model, no note.")
 

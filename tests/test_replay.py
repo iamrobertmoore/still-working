@@ -2,19 +2,20 @@
 import json
 from pathlib import Path
 from tools.render_replay import page
+from tools.replay import agent_runs
 
 DATA = json.loads((Path(__file__).resolve().parents[1] / 'docs/replay/recordings.json').read_text())
 
 
 def test_recording_tallies_come_from_the_actual_responses():
     assert DATA['delivered_notes'] == sum(len(c['result']['notes']) for c in DATA['cases'])
-    assert DATA['model_invocations'] == sum(c['result']['model_invocations'] for c in DATA['cases'])
+    assert DATA.get('agent_runs', DATA.get('model_invocations')) == sum(agent_runs(c['result']) for c in DATA['cases'])
     assert DATA['measurement']['changes'] == sum(c['record']['total_count'] for c in DATA['cases'])
     for c in DATA['cases']:
         assert c['result']['date'] == c['record']['date']
         assert c['result']['controls_version'] == 'shared-v1'
         if any(d['outcome'] == 'repeat_held' for d in c['result']['decisions']):
-            assert c['result']['model_invocations'] == 0
+            assert agent_runs(c['result']) == 0
             assert not c['result']['notes']
             assert c['impact']['delivery_history']
 

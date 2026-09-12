@@ -50,7 +50,7 @@ def test_a_fresh_invocation_carries_the_returned_repeat_ledger(monkeypatch):
     assert second["note"] is None
     assert second["decisions"] == [{"routine_id": IMPACT["routines_touched"][0]["routine_id"],
                                     "outcome": "repeat_held", "days_since": 5}]
-    assert second["model_invocations"] == 0
+    assert second["agent_runs"] == 0
     assert len(second["delivery_history"]) == 1
 
 
@@ -62,13 +62,13 @@ def test_an_unconfirmed_mapping_never_constructs_a_model_or_sends(monkeypatch, c
     result = asyncio.run(deployed.invoke(impact))
     assert result["state"] == "held_for_a_person"
     assert result["note"] is None
-    assert result["model_invocations"] == 0
+    assert result["agent_runs"] == 0
 
 
 def test_a_quiet_day_constructs_no_model(monkeypatch):
     monkeypatch.setattr(deployed, "load_model", lambda: pytest.fail("quiet day constructed a model"))
     result = asyncio.run(deployed.invoke(dict(IMPACT, routines_touched=[])))
-    assert result["state"] == "still_working" and result["model_invocations"] == 0
+    assert result["state"] == "still_working" and result["agent_runs"] == 0
 
 
 def test_medium_confidence_is_visible_even_when_the_model_omits_it(monkeypatch):
