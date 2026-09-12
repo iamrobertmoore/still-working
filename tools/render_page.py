@@ -19,6 +19,7 @@ import html
 import json
 import os
 import sys
+from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -28,52 +29,34 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTRACTS = os.path.join(ROOT, "contracts")
 OUT = os.path.join(ROOT, "docs", "index.html")
 
-CSS = """
-:root{
-  --bg:#faf9f7; --ink:#16150f; --muted:#6b675c; --rule:#e0ddd4;
-  --ok:#2f6f4e; --warn:#8a3324; --card:#fffefb;
+with open(os.path.join(ROOT, "tools", "page.css"), encoding="utf-8") as fh:
+    CSS = fh.read()
+
+# One continuous, open circle and a forward-moving check: quiet continuity.
+MARK = '<path d="M52 31a21 21 0 1 1-14-20"/><path d="m22 29 9 9 22-23"/>'
+ICONS = {
+    "plus": '<path d="M6 12h12M12 6v12"/>',
+    "stripe": '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/>',
+    "square": '<rect x="4" y="3" width="16" height="13" rx="2"/><path d="M8 21h8M12 16v5M8 7h8"/>',
+    "xero": '<path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1v15"/>',
+    "shipengine": '<path d="m12 3 9 5v9l-9 5-9-5V8l9-5ZM3 8l9 5 9-5M12 13v9M7.5 5.5l9 5v5"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "quiet": '<path d="M9 18h6M10 21h4M5 15c2-2 2-3 2-6a5 5 0 0 1 10 0c0 3 0 4 2 6H5Z"/>',
+    "source": '<path d="m8 5-7 7 7 7M16 5l7 7-7 7M14 3l-4 18"/>',
+    "warning": '<path d="M32 17v20M32 45v1"/><circle cx="32" cy="32" r="23"/>',
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#14140f; --ink:#f2f0e8; --muted:#9a968a; --rule:#2e2d26;
-    --ok:#7cc79c; --warn:#e59a86; --card:#1c1b16;
-  }
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased}
-.wrap{max-width:44rem;margin:0 auto;padding:clamp(2rem,8vw,6rem) 1.5rem 4rem}
-.state{font-size:clamp(2.2rem,7vw,3.6rem);line-height:1.1;letter-spacing:-.02em;
-  font-weight:600;margin:0 0 .6rem}
-.state.ok{color:var(--ok)} .state.warn{color:var(--warn)}
-.sub{color:var(--muted);margin:0 0 3rem;font-size:1.05rem}
-.note{background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:1.5rem;margin:0 0 3rem;white-space:pre-wrap;
-  font:15px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
-  font-weight:600;margin:0 0 1rem}
-table{width:100%;border-collapse:collapse;margin:0 0 3rem;font-size:.95rem}
-th,td{text-align:left;padding:.6rem 1.25rem .6rem 0;border-bottom:1px solid var(--rule);
-  vertical-align:top}
-th:last-child,td:last-child{padding-right:0}
-th{color:var(--muted);font-weight:500;font-size:.8rem;text-transform:uppercase;
-  letter-spacing:.06em}
-td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}
-td.when{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums;width:1%}
-details{border-top:1px solid var(--rule);padding-top:1.5rem;margin-top:1rem}
-summary{cursor:pointer;color:var(--muted);font-size:.95rem;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";font-variant-numeric:tabular-nums}
-details[open] summary::before{content:"- "}
-details>*:not(summary){margin-top:1.5rem}
-footer{color:var(--muted);font-size:.85rem;line-height:1.7;border-top:1px solid var(--rule);
-  padding-top:1.5rem;margin-top:3rem}
-a{color:inherit}
-code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
-  background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:.05em .35em}
-.scroll{overflow-x:auto}
-"""
+
+
+def icon(name: str) -> str:
+    return ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" '
+            f'aria-hidden="true">{ICONS.get(name, ICONS["quiet"])}</svg>')
+
+
+def mark(warning: bool = False) -> str:
+    return ('<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" '
+            'stroke-width="4" stroke-linecap="round" stroke-linejoin="round" '
+            f'aria-hidden="true">{ICONS["warning"] if warning else MARK}</svg>')
 
 
 def load(path):
@@ -131,9 +114,28 @@ def main() -> int:
         state_class, state = "ok", "Still working."
         sub = "Nothing that matters to you changed."
 
-    parts = [f"<style>{CSS}</style>", '<div class="wrap">',
-             f'<p class="state {state_class}">{html.escape(state)}</p>',
-             f'<p class="sub">{html.escape(sub)}</p>']
+    checked = dt.datetime.now(dt.timezone.utc).strftime('%d %B %Y at %H:%M UTC')
+    parts = ['<a class="skip" href="#main">Skip to your daily check-in</a>',
+             '<div class="wrap"><header class="masthead">',
+             f'<a class="brand" href="./" aria-label="Still Working home">{mark()}'
+             '<span>still working<span class="brand-dot">.</span></span></a>',
+             '<span class="brand-caption">A quiet eye on the things you count on.</span>',
+             '<div class="identity"><span class="avatar" aria-hidden="true">M</span>'
+             '<span>Maya’s shop</span></div></header>',
+             '<main id="main"><section class="hero" aria-labelledby="daily-state">',
+             '<div class="hero-copy"><p class="eyebrow">Your daily check-in</p>',
+             f'<h1 id="daily-state" class="state {state_class}">{html.escape(state)}</h1>',
+             f'<p class="sub">{html.escape(sub)}</p>',
+             '<p class="reassurance">' + ('The details below will help you take the next step.'
+                if outstanding else 'One less thing to think about. Get on with your day.') + '</p></div>',
+             f'<div class="hero-art {"warning" if outstanding else ""}" aria-hidden="true">'
+             '<div class="art-grid"></div>'
+             f'<div class="seal">{mark(bool(outstanding))}</div>'
+             '<span class="satellite"></span><span class="art-caption">'
+             + ('Let’s take a look' if outstanding else 'Quietly looking out for you') + '</span></div></section>',
+             '<div class="check-strip"><span class="checked">' + icon("clock") +
+             f'<span>Checked {html.escape(checked)}</span></span>'
+             '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>']
 
     # ---- the note itself, if there is one. Saying "something broke" and not saying what
     #      is worse than saying nothing.
@@ -153,8 +155,10 @@ def main() -> int:
                          "</div>")
 
     # ---- what it watches, in her words
-    parts.append("<h2>What I watch for you</h2>")
-    parts.append('<div class="scroll"><table><tr><th>Thing</th><th>Last changed</th></tr>')
+    parts.append('<section class="watch-section" id="watching" aria-labelledby="watch-title">'
+                 '<div class="section-heading"><h2 id="watch-title">What I watch for you</h2>'
+                 f'<span class="section-meta">{len(vendors)} suppliers · Every day</span></div>'
+                 '<ul class="vendor-grid">')
     for v in vendors:
         latest_path = os.path.join(CONTRACTS, "latest", f"{v['id']}.json")
         vrows = [r for r in rows if r["vendor"] == v["id"]]
@@ -162,9 +166,17 @@ def main() -> int:
         gap = (today - dt.date.fromisoformat(last)).days if last else None
         label = labels.get(v["id"], {}).get("address_as", v["name"])
         seen = "watched" if os.path.exists(latest_path) else "not yet checked"
-        parts.append(f"<tr><td>{html.escape(label.capitalize())}</td>"
-                     f'<td class="n">{html.escape(human_gap(gap) if last else seen)}</td></tr>')
-    parts.append("</table></div>")
+        vendor_name = "Xero" if v["id"] == "xero" else v["name"]
+        parts.append(f'<li class="vendor-card"><div class="vendor-top">'
+                     f'<span class="vendor-icon">{icon(v["id"])}</span>'
+                     f'<span class="vendor-name">{html.escape(vendor_name)}</span></div>'
+                     f'<h3>{html.escape(label.capitalize())}</h3>'
+                     '<div class="vendor-bottom"><span>Last changed</span>'
+                     f'<strong>{html.escape(human_gap(gap) if last else seen)}</strong></div>')
+        if any(r["vendor"] == v["id"] for r in outstanding):
+            parts.append('<p class="attention">Needs your attention</p>')
+        parts.append('</li>')
+    parts.append('</ul></section>')
 
     # ---- the evidence, folded away
     total_changes = sum(r["total_count"] for r in rows)
@@ -175,10 +187,19 @@ def main() -> int:
     else:
         span = 0
 
-    parts.append("<details><summary>What this has caught, and what it stayed quiet about</summary>")
+    parts.append('<section class="evidence-wrap" aria-label="The story behind your check-in">'
+                 '<details><summary><span class="evidence-icon">' + icon("quiet") + '</span>'
+                 '<span class="summary-copy"><span class="summary-title">Only the changes that matter.</span>'
+                 '<span class="summary-sub">What this has caught, and what it stayed quiet about</span></span>'
+                 '<span class="toggle" aria-hidden="true">' + icon("plus") +
+                 '</span></summary><div class="evidence-content">')
     # The same suppression the agent applies, so this page and the README agree. Without
     # it the page said three days reached her while everything else said two.
     told = figures(business)
+    parts.append('<div class="metrics">'
+                 f'<div class="metric"><span class="metric-value">{span}</span><span class="metric-label">days of history</span></div>'
+                 f'<div class="metric"><span class="metric-value">{total_changes}</span><span class="metric-label">supplier changes</span></div>'
+                 f'<div class="metric"><span class="metric-value">{told["interruptions"]}</span><span class="metric-label">interruptions for you</span></div></div>')
     parts.append(
         f"<p>Over <strong>{span} days</strong> the four companies above made "
         f"<strong>{total_changes} changes</strong> to what their software accepts. "
@@ -187,41 +208,50 @@ def main() -> int:
         f"have been interrupted <strong>{_times(told['interruptions'])}</strong>.</p>")
     if told["rows"]:
         parts.append('<div class="scroll"><table><tr><th>When</th>'
-                     "<th>What you would have been told</th><th></th></tr>")
-        for date, _who, names, state, gap in told["rows"]:
-            aside = ("" if state == "sent"
+                     "<th>What you would have been told</th><th>Notification</th></tr>")
+        for date, _who, names, delivery_state, gap in told["rows"]:
+            aside = ("" if delivery_state == "sent"
                      else f"you had just been told, {gap} days before" if gap is not None
                      else "you had just been told")
             parts.append(f"<tr><td class=\"when\">{html.escape(human_date(date))}</td>"
                          f"<td>{html.escape(names)}</td>"
-                         f'<td class="n">{html.escape(aside)}</td></tr>')
+                         f'<td class="n"><span class="delivery {"held" if delivery_state != "sent" else ""}">'
+                         f'{"Sent" if delivery_state == "sent" else "Held back"}</span>'
+                         f'{"<br>" + html.escape(aside) if aside else ""}</td></tr>')
         parts.append("</table></div>")
     parts.append(
-        "<p>Everything else was additive: new things you do not use, which software that "
-        "already works can ignore. That ratio is the product. A tool that forwarded all "
+        "<p>The rest did not need another interruption: changes that were additive, did not "
+        "affect your routines, or had already been brought to your attention. A tool that forwarded all "
         f"{total_changes} would have been switched off in a fortnight.</p>")
-    parts.append("</details>")
+    parts.append("</div></details></section></main>")
 
     parts.append(
-        "<footer>"
-        f"<p>Checked {html.escape(dt.datetime.now(dt.timezone.utc).strftime('%d %B %Y at %H:%M UTC'))}. "
-        "Regenerated by a scheduled job, not by hand.</p>"
-        "<p>This reads what each company <strong>publishes</strong>, not what they have "
-        "deployed, so a company whose documentation lags its rollout will not be caught. "
-        "The link between Maya's routines and the calls they rely on was worked out at "
-        "setup and can be wrong, so anything uncertain is held back for a person rather "
-        "than sent to her.</p>"
-        "<p><a href=\"https://github.com/iamrobertmoore/still-working\">"
-        "github.com/iamrobertmoore/still-working</a></p>"
-        "</footer></div>")
+        '<footer><div class="footer-top"><p>Regenerated by a scheduled job, not by hand.</p>'
+        '<a class="source-link" href="https://github.com/iamrobertmoore/still-working">' + icon("source") +
+        'View the project <span aria-hidden="true">↗</span></a></div>'
+        '<div class="fine-print"><p><span class="footer-motto">Less noise. More peace of mind.</span>'
+        'Still Working · A quiet eye on your business.</p>'
+        '<p>This reads what each company <strong>publishes</strong>, not what they have '
+        'deployed, so a company whose documentation lags its rollout will not be caught. '
+        'The link between your routines and the calls they rely on was worked out at '
+        'setup and can be wrong, so anything uncertain is held back for a person rather '
+        'than sent to you.</p></div></footer></div>')
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    favicon = quote('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
+                    '<rect width="64" height="64" rx="15" fill="#255a43"/>'
+                    '<g transform="translate(5 5) scale(.84)" fill="none" stroke="#f7f8f2" '
+                    'stroke-width="4" stroke-linecap="round" stroke-linejoin="round">'
+                    + MARK + '</g></svg>', safe='')
     doc = ("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
            "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
            "<title>Still Working</title>"
+           f'<link rel="icon" href="data:image/svg+xml,{favicon}">'
+           '<meta name="theme-color" content="#f7f8f2" media="(prefers-color-scheme: light)">'
+           '<meta name="theme-color" content="#15251f" media="(prefers-color-scheme: dark)">'
            "<meta name=\"description\" content=\"An agent that tells a shop owner when one of "
            "her suppliers has broken something. Most mornings it says two words.\">"
-           "</head><body>" + "".join(parts) + "</body></html>")
+           f"<style>{CSS}</style></head><body>" + "".join(parts) + "</body></html>")
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(doc)
 
