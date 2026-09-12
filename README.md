@@ -6,7 +6,7 @@ Maya is an illustrative shop owner, not a customer. Still Working watches real p
 
 **[Open the daily page](https://iamrobertmoore.github.io/still-working/)** ·
 **[Replay the real cloud responses](https://iamrobertmoore.github.io/still-working/replay/)** ·
-[Architecture](ARCHITECTURE.md) · [Submission](DEVPOST.md)
+[Review a match](https://iamrobertmoore.github.io/still-working/review/) · [Architecture](ARCHITECTURE.md) · [Submission](DEVPOST.md)
 
 ![Public supplier contracts through matching, controlled judgement and a daily page](docs/architecture.svg)
 
@@ -14,7 +14,8 @@ Maya is an illustrative shop owner, not a customer. Still Working watches real p
 
 1. Open [the stock warning](https://iamrobertmoore.github.io/still-working/replay/2026-07-14-square.html). A real Square publication change becomes a possible consequence for Maya's shop, followed by something her developer can check.
 2. Open [the repeat held](https://iamrobertmoore.github.io/still-working/replay/2026-04-29-xero.html). The payroll routine was already flagged five days earlier. Its delivery ledger prevents another note, before a model is constructed.
-3. Expand “Every decision in the replay” to inspect all 23 captured AgentCore responses. The [raw evidence](docs/replay/recordings.json) includes input, output, ledger and source hashes. These are recordings, not live inference in your browser.
+3. [Review an uncertain match](https://iamrobertmoore.github.io/still-working/review/). Try confirming, dismissing or leaving it pending. These branches are captured from the actual runtime with explicitly simulated reviewer decisions.
+4. Expand “Every decision in the replay” to inspect all 23 captured AgentCore responses. The [raw evidence](docs/replay/recordings.json) includes input, output, ledger and source hashes. These are recordings, not live inference in your browser.
 
 ## The person and the problem
 
@@ -143,9 +144,9 @@ This invokes the deployed agent and can incur AWS charges. Rendering the existin
 
 This reads what suppliers **publish**, not their deployed behaviour or a shop's traffic. It detects three potentially breaking shapes: removed calls, removed parameters, and existing optional parameters becoming required. It does not cover every response-schema or behavioural change. Daily sampling can miss changes reverted within a day.
 
-The mapping is inferred. High confidence is not proof of an actual dependency. Low-confidence cases remain pending until a maintainer checks and corrects the profile; there is no finished review inbox yet. The five-day rule can suppress a distinct problem affecting the same routine. There is no customer validation, measured recall, production deployment in a shop, or evidence of savings.
+The mapping is inferred. High confidence is not proof of an actual dependency. Low-confidence cases have a [review flow](docs/REVIEW.md): a developer records a case-specific decision, an operator imports it, and the daily caller applies it. The public page does not authenticate reviewers or change shared state directly. The five-day rule can suppress a distinct problem affecting the same routine. There is no customer validation, measured recall, production deployment in a shop, or evidence of savings.
 
-The next valuable step is validating the mappings against a real integration, followed by an owner/developer review flow. Another dashboard would add less than knowing the match is right.
+The next valuable step is validating the mappings against a real integration, followed by private storage and reviewer authentication. Another dashboard would add less than knowing the match is right.
 
 ## Disclosure and licence
 

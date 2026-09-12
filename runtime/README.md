@@ -43,3 +43,5 @@ Run that command from the repository root. Add `--apply` to provision the dedica
 `tools/replay.py` captures real responses for every historical record. `tools/render_replay.py` publishes those saved responses without calling AWS. The optional local scripted agent, streaming and morning roundup examples are separate from the deployed daily path.
 
 The `agent_runs` response counter counts Strands agent executions that use a model. It is not a count of individual Bedrock requests inside the tool loop. Earlier replay recordings called this field `model_invocations`; those original responses are preserved with an explicit counter definition.
+
+Human reviews are accepted only through the authenticated caller, keyed to the exact assessed case. See [the review workflow](../docs/REVIEW.md). A review is supplied input, not proof of reviewer identity or customer validation.

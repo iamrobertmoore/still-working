@@ -19,6 +19,7 @@ import html
 import json
 import os
 import sys
+import subprocess
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -128,12 +129,15 @@ def main() -> int:
              '<span class="brand-caption">A quiet eye on the things you count on.</span>',
              '<div class="identity"><span class="avatar" aria-hidden="true">M</span>'
              '<span>Maya’s shop · Illustrative</span></div></header>',
+             '<nav class="product-nav" aria-label="Explore Still Working"><span>Today’s check-in</span><a href="replay/">Recorded warnings</a><a href="review/">Review a match</a></nav>',
              '<main id="main"><section class="hero" aria-labelledby="daily-state">',
              '<div class="hero-copy"><p class="eyebrow">Your daily check-in</p>',
              f'<h1 id="daily-state" class="state {state_class}">{html.escape(state)}</h1>',
              f'<p class="sub">{html.escape(sub)}</p>',
              '<p class="reassurance">' + ('The details below will help you take the next step.'
-                if outstanding or pending else 'One less thing to think about. Get on with your day.') + '</p></div>',
+                if outstanding or pending else 'One less thing to think about. Get on with your day.') + '</p>'
+             '<div class="hero-actions"><a class="primary-link" href="replay/">See what it catches <span aria-hidden="true">↗</span></a>'
+             '<span>Real supplier history. Saved cloud responses.</span></div></div>',
              f'<div class="hero-art {"warning" if outstanding or pending else ""}" aria-hidden="true">'
              '<div class="art-grid"></div>'
              f'<div class="seal">{mark(bool(outstanding or pending))}</div>'
@@ -142,6 +146,15 @@ def main() -> int:
              '<div class="check-strip"><span class="checked">' + icon("clock") +
              f'<span>Checked {html.escape(checked)}</span></span>'
              '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>']
+
+    replay_data = load(os.path.join(ROOT, "docs", "replay", "recordings.json"))
+    replay_measure = replay_data["measurement"]
+    parts.append('<section class="demo-feature" aria-labelledby="demo-title"><div><p class="eyebrow">When a change deserves your attention</p>'
+                 '<h2 id="demo-title">The website might keep selling after the counter sells the last one.</h2>'
+                 '<p>A real Square publication becomes a possible consequence, a next step, and a note for the developer who can check it.</p>'
+                 '<a href="replay/2026-07-14-square.html">Open the recorded warning <span aria-hidden="true">↗</span></a></div>'
+                 f'<aside><span class="feature-number">{replay_measure["changes"]} → {replay_data["delivered_notes"]}</span><p>Supplier changes to rendered notes.</p><strong>That ratio is the product.</strong>'
+                 f'<p class="feature-caveat">An illustrative shop across {replay_measure["span"]} days of real history. Notification volume, not measured accuracy or savings.</p></aside></section>')
 
     # ---- the note itself, if there is one. Saying "something broke" and not saying what
     #      is worse than saying nothing.
@@ -160,7 +173,7 @@ def main() -> int:
                          "</div>")
 
     if pending:
-        parts.append('<div class="note">A supplier change is waiting for someone to check the match to your routines. Ask Priya to review the pending case before treating it as resolved.</div>')
+        parts.append('<div class="note">A supplier change is waiting for someone to check the match to your routines. Ask Priya to <a href="review/live.html">review the pending case</a> before treating it as resolved.</div>')
 
     # ---- what it watches, in her words
     parts.append('<section class="watch-section" id="watching" aria-labelledby="watch-title">'
@@ -244,8 +257,15 @@ def main() -> int:
         '<p>This reads what each company <strong>publishes</strong>, not what they have '
         'deployed, so a company whose documentation lags its rollout will not be caught. '
         'The link between your routines and the calls they rely on was worked out at '
-        'setup and can be wrong, so low-confidence matches are held back for a person rather '
-        'than sent to you.</p></div></footer></div>')
+        'setup and can be wrong, so low-confidence matches wait for a person to review '
+        'the dependency before a note can reach you.</p></div></footer></div>')
+
+    try:
+        revision = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        revision = None
+    if revision:
+        parts.append('<p class="build-stamp">Source revision <a href="https://github.com/iamrobertmoore/still-working/commit/' + revision + '">' + revision + '</a> · <a href="https://github.com/iamrobertmoore/still-working/commits/main/">See the latest changes</a></p>')
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     favicon = quote('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'

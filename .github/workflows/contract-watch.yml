@@ -114,7 +114,9 @@ jobs:
 
       - name: Regenerate Maya's screen
         if: steps.snapshot.outcome == 'success'
-        run: python tools/render_page.py
+        run: |
+          python tools/render_page.py
+          python tools/render_review.py
 
       # Same reason as the line above. A number typed into a document by hand is a number
       # that was true on the day it was typed. The README's measurement block is generated.
