@@ -1,3 +1,4 @@
+# Generated from agent/notes.py by tools/sync_runtime.py.
 """The note Maya gets, and the only format she ever sees.
 
 Rules this format exists to enforce:

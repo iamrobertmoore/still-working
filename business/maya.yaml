@@ -1,14 +1,7 @@
-# Maya's shop, in Maya's words.
-#
-# This file is the whole difference between a tool for developers and a product for a
-# business owner. Everything above the line in each routine is how Maya describes her
-# own business. Everything below it was worked out by the agent during setup and she
-# has never read it.
-#
-# She did not write any of the vendor call names. She could not. She answered five
-# questions about what happens in her week, and the setup conversation turned those
-# answers into calls to watch. That mapping is recorded here so it can be checked,
-# corrected, and blamed when it is wrong.
+# Illustrative shop profile. Maya, Priya and Ines are fictional.
+# All speech, incidents, costs and notice delays below are scenario assumptions,
+# not customer interviews or observed outcomes. Mappings require real integration validation.
+# The historical cloud recording retains the assessment used at capture time.
 
 owner: Maya
 business: A twelve-person online shop. Homeware, mostly. Sells online and at one counter.
@@ -31,7 +24,7 @@ routines:
     what_it_costs: >
       Three weeks of manual reconciliation for Ines, at her hourly rate, plus a VAT return
       built on numbers nobody trusts.
-    # ---- derived by the agent during setup, 2026-08-25. Maya has not read this part. ----
+    # ---- derived by the agent during setup, 2026-08-25. Illustrative setup, not an interview. ----
     derived:
       confidence: high
       why: >

@@ -92,7 +92,7 @@ def test_the_page_opens_with_a_state_not_a_dashboard(page):
     body = page.split("<body>", 1)[1]
     first = re.search(r'class="state[^"]*">([^<]+)', body)
     assert first, body[:400]
-    assert first.group(1).strip() in ("Still working.", "Something broke.")
+    assert first.group(1).strip() in ("Still working.", "Worth a look.")
 
 
 def test_the_page_says_when_it_last_checked(page):
@@ -194,7 +194,7 @@ def test_recent_breaking_change_keeps_the_note_and_marks_its_supplier(tmp_path, 
     monkeypatch.setattr(render, "OUT", str(output))
     assert render.main() == 0
     result = output.read_text()
-    assert 'class="state warn">Something broke.</h1>' in result
+    assert 'class="state warn">Worth a look.</h1>' in result
     assert 'class="hero-art warning"' in result
     assert "Get on with your day" not in result
     cards = re.findall(r'<li class="vendor-card">.*?</li>', result, flags=re.S)

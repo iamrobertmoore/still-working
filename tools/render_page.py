@@ -106,41 +106,46 @@ def main() -> int:
     reaching.sort(key=lambda r: r["date"])
     outstanding = [r for r in reaching if (today - dt.date.fromisoformat(r["date"])).days <= 14]
 
+    delivery_path = os.path.join(CONTRACTS, "delivery-state.json")
+    pending = load(delivery_path).get("pending", {}) if os.path.exists(delivery_path) else {}
+
     # ---- the state, which is the whole point
-    if outstanding:
-        state_class, state = "warn", "Something broke."
-        sub = "One of the things your shop runs on changed, and it matters to you."
+    if outstanding or pending:
+        state_class, state = "warn", "Worth a look."
+        sub = "A supplier changed something your shop may rely on."
     else:
         state_class, state = "ok", "Still working."
-        sub = "Nothing that matters to you changed."
+        sub = "No new supplier risk found for your routines."
 
-    checked = dt.datetime.now(dt.timezone.utc).strftime('%d %B %Y at %H:%M UTC')
+    fetched = [load(os.path.join(CONTRACTS, "latest", f"{v['id']}.json")).get("fetched_at")
+               for v in vendors if os.path.exists(os.path.join(CONTRACTS, "latest", f"{v['id']}.json"))]
+    checked = (dt.datetime.fromisoformat(min(fetched)).strftime('%d %B %Y at %H:%M UTC')
+               if len(fetched) == len(vendors) and all(fetched) else "not all suppliers checked")
     parts = ['<a class="skip" href="#main">Skip to your daily check-in</a>',
              '<div class="wrap"><header class="masthead">',
              f'<a class="brand" href="./" aria-label="Still Working home">{mark()}'
              '<span>still working<span class="brand-dot">.</span></span></a>',
              '<span class="brand-caption">A quiet eye on the things you count on.</span>',
              '<div class="identity"><span class="avatar" aria-hidden="true">M</span>'
-             '<span>Maya’s shop</span></div></header>',
+             '<span>Maya’s shop · Illustrative</span></div></header>',
              '<main id="main"><section class="hero" aria-labelledby="daily-state">',
              '<div class="hero-copy"><p class="eyebrow">Your daily check-in</p>',
              f'<h1 id="daily-state" class="state {state_class}">{html.escape(state)}</h1>',
              f'<p class="sub">{html.escape(sub)}</p>',
              '<p class="reassurance">' + ('The details below will help you take the next step.'
-                if outstanding else 'One less thing to think about. Get on with your day.') + '</p></div>',
-             f'<div class="hero-art {"warning" if outstanding else ""}" aria-hidden="true">'
+                if outstanding or pending else 'One less thing to think about. Get on with your day.') + '</p></div>',
+             f'<div class="hero-art {"warning" if outstanding or pending else ""}" aria-hidden="true">'
              '<div class="art-grid"></div>'
-             f'<div class="seal">{mark(bool(outstanding))}</div>'
+             f'<div class="seal">{mark(bool(outstanding or pending))}</div>'
              '<span class="satellite"></span><span class="art-caption">'
-             + ('Let’s take a look' if outstanding else 'Quietly looking out for you') + '</span></div></section>',
+             + ('Let’s take a look' if outstanding or pending else 'Quietly looking out for you') + '</span></div></section>',
              '<div class="check-strip"><span class="checked">' + icon("clock") +
              f'<span>Checked {html.escape(checked)}</span></span>'
              '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>']
 
     # ---- the note itself, if there is one. Saying "something broke" and not saying what
     #      is worse than saying nothing.
-    if outstanding:
-        newest = outstanding[-1]
+    for newest in outstanding:
         note_path = os.path.join(CONTRACTS, "notes", f"{newest['date']}-{newest['vendor']}.md")
         if os.path.exists(note_path):
             with open(note_path, "r", encoding="utf-8") as fh:
@@ -151,8 +156,11 @@ def main() -> int:
                             if x["has_breaking_change"])
             parts.append(f'<div class="note">{html.escape(hit)}.\n\n'
                          "The full note has not been written yet. This is the deterministic "
-                         "part: a company changed something one of your routines relies on."
+                         "part: a company changed something one of your routines may rely on."
                          "</div>")
+
+    if pending:
+        parts.append('<div class="note">A supplier change is waiting for someone to check the match to your routines. Ask Priya to review the pending case before treating it as resolved.</div>')
 
     # ---- what it watches, in her words
     parts.append('<section class="watch-section" id="watching" aria-labelledby="watch-title">'
@@ -199,12 +207,12 @@ def main() -> int:
     parts.append('<div class="metrics">'
                  f'<div class="metric"><span class="metric-value">{span}</span><span class="metric-label">days of history</span></div>'
                  f'<div class="metric"><span class="metric-value">{total_changes}</span><span class="metric-label">supplier changes</span></div>'
-                 f'<div class="metric"><span class="metric-value">{told["interruptions"]}</span><span class="metric-label">interruptions for you</span></div></div>')
+                 f'<div class="metric"><span class="metric-value">{told["interruptions"]}</span><span class="metric-label">notes in this replay</span></div></div>')
     parts.append(
         f"<p>Over <strong>{span} days</strong> the four companies above made "
         f"<strong>{total_changes} changes</strong> to what their software accepts. "
         f"<strong>{total_breaking}</strong> of those could break somebody. "
-        f"<strong>{told['reaching']}</strong> broke something you rely on, and you would "
+        f"<strong>{told['reaching']}</strong> records matched a possible risk to your routines. In this replay you would "
         f"have been interrupted <strong>{_times(told['interruptions'])}</strong>.</p>")
     if told["rows"]:
         parts.append('<div class="scroll"><table><tr><th>When</th>'
@@ -220,9 +228,11 @@ def main() -> int:
                          f'{"<br>" + html.escape(aside) if aside else ""}</td></tr>')
         parts.append("</table></div>")
     parts.append(
-        "<p>The rest did not need another interruption: changes that were additive, did not "
+        "<p><strong>That ratio is the product.</strong> The rest did not need another interruption: changes that were additive, did not "
         "affect your routines, or had already been brought to your attention. A tool that forwarded all "
-        f"{total_changes} would have been switched off in a fortnight.</p>")
+        f"{total_changes} would demand attention without knowing your shop.</p>")
+    parts.append('<p>Maya is an illustrative shop owner. The supplier history is real; the business consequences are inferred. These counts measure notification volume, not accuracy or proven savings.</p>'
+                 '<p><a class="replay-link" href="replay/">Replay the recorded changes <span aria-hidden="true">↗</span></a></p>')
     parts.append("</div></details></section></main>")
 
     parts.append(
@@ -234,7 +244,7 @@ def main() -> int:
         '<p>This reads what each company <strong>publishes</strong>, not what they have '
         'deployed, so a company whose documentation lags its rollout will not be caught. '
         'The link between your routines and the calls they rely on was worked out at '
-        'setup and can be wrong, so anything uncertain is held back for a person rather '
+        'setup and can be wrong, so low-confidence matches are held back for a person rather '
         'than sent to you.</p></div></footer></div>')
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
@@ -249,8 +259,8 @@ def main() -> int:
            f'<link rel="icon" href="data:image/svg+xml,{favicon}">'
            '<meta name="theme-color" content="#f7f8f2" media="(prefers-color-scheme: light)">'
            '<meta name="theme-color" content="#15251f" media="(prefers-color-scheme: dark)">'
-           "<meta name=\"description\" content=\"An agent that tells a shop owner when one of "
-           "her suppliers has broken something. Most mornings it says two words.\">"
+           "<meta name=\"description\" content=\"An agent that tells a shop owner when a change by one of "
+           "her suppliers may affect a business routine. Most mornings it says two words.\">"
            f"<style>{CSS}</style></head><body>" + "".join(parts) + "</body></html>")
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(doc)

@@ -20,4 +20,4 @@ MODEL_ID = os.environ.get("STILL_WORKING_MODEL",
 
 def load_model() -> BedrockModel:
     """Get a Bedrock model client using the runtime's IAM credentials."""
-    return BedrockModel(model_id=MODEL_ID)
+    return BedrockModel(model_id=MODEL_ID, max_tokens=1600)

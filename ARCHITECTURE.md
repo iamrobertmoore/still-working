@@ -1,254 +1,66 @@
-# Architecture
+# Still Working: architecture
 
-![Three layers, and only the third needs a model](docs/architecture.svg)
+Maya is an illustrative shop owner. The system reads real supplier publications and proposes a consequence for her routines. It does not observe a running shop or confirm an outage.
 
-Still Working has three layers. Two of them are deterministic, cost nothing, need no
-credentials and run in CI. The third needs a model, and it is the only one deployed.
+![The full daily path](docs/architecture.svg)
 
-Keeping them apart is the whole design, so this document is mostly about the boundaries.
+## The daily path
 
----
+1. GitHub Actions runs the deterministic checks and credential-free agent tests.
+2. `tools/snapshot.py` fetches four public contracts and records structural changes.
+3. `tools/deliver.py` matches new records and outstanding pending cases against the shop profile. Unrelated records need no cloud call.
+4. A GitHub OIDC role, restricted to this repository's main branch, invokes the AgentCore runtime in `us-east-1`. The caller supplies the assessment and its persisted delivery ledger.
+5. Runtime gates irrelevant, low-confidence and repeated routines before constructing a model. Eligible routines are judged independently using Strands and Bedrock (`global.anthropic.claude-sonnet-4-5-20250929-v1:0`).
+6. The `send_to_maya` tool renders a note only after controls pass. The caller persists notes, pending cases and returned ledger in `contracts/`, then regenerates the static page and commits them together.
+7. GitHub Pages serves `docs/`. Reading the page or the recorded replay needs no AWS account and invokes no model.
 
-## Why three layers and not one agent
+This is a single illustrative shop. The committed ledger and notes are suitable for the public demonstration, not a design for storing real customers' private business data.
 
-The obvious build is one agent with tools: fetch the contracts, work out what changed,
-decide whether it matters, write to Maya. It would demo well and it would be wrong, for
-three reasons.
+## Controls around the delivery tool
 
-**Most of the work has a right answer.** "Did `GET /Employees` disappear between Tuesday
-and Wednesday" is set membership. There is nothing to judge. Putting it behind a model
-makes it slower, more expensive, non-reproducible, and harder to test, in exchange for
-nothing.
+`StampTheFacts` uses Strands `Transform` to replace routine identifiers, the publication date and relative age with values from the deterministic assessment. Medium-confidence notes receive an uncertainty statement even when the model omits one.
 
-**The expensive layer should run rarely.** Over 150 days the four suppliers made 56
-changes. Nine could break a caller. Three broke a routine of Maya's, and after the repeat
-rule she is interrupted twice. If the model sees all 56, it is being paid to say "not this
-one" 54 times.
+`OnlyWhenItCostsHer` applies `Deny` to irrelevant and repeated notes, `Proceed` to eligible confident mappings, and `Confirm` to low-confidence ones in the local agent. Live execution requires explicit approval; only scripted tests auto-answer. In AgentCore there is no interactive reviewer, so low confidence returns `held_for_a_person` without constructing a model.
 
-**The controls have to sit somewhere a prompt cannot reach.** The product is the silence.
-A system prompt that says "only tell her when it matters" is a probability, and its failure
-mode is quiet: it pings her about nothing for a fortnight and she stops opening them. That
-decision has to be code.
+The formatter rejects contradictory dates in prose. Refusal is a tool result the model can correct. The ledger updates only after a successful rendered tool result, not on an attempted call. If the model finishes without a usable note, the case remains pending. Runtime merges approved notes verbatim, so a second model cannot silently drop one.
 
----
+Each invocation owns its date guard and state. The tests exercise concurrent requests with different dates, failed delivery followed by correction, repeats carried across invocations, and a new routine arriving alongside an already-known routine.
 
-## Layer 1: collect. What changed, in the suppliers' language
+## Where memory lives
 
-`tools/snapshot.py`. Runs in GitHub Actions at 05:40 UTC, every day, on a public runner
-with no secrets of any kind.
+The local demonstration uses `AgentState` and `FileSessionManager`. The deployed runtime accepts `delivery_history` from its authenticated caller and returns the updated ledger. It does not pretend its process memory survives a restart.
 
-It fetches the OpenAPI description each supplier publishes, normalises it to a flat map of
-`METHOD /path` to `{params, required, responses}`, and diffs it against yesterday's. Every
-difference becomes one record with a `kind`.
+The scheduled caller stores history, processed record hashes and pending records in `contracts/delivery-state.json`. Notes are published with that state. A failed cloud call aborts publication, so an unrendered message is not silently marked as delivered. Pending records are retried even on a morning with no new changes. Low-confidence mappings must be checked and corrected in the profile by a maintainer; the prototype has no completed human-review interface.
 
-Nine kinds are detected. Exactly three of them can break a caller who already works:
+The repeat rule is five days for the same routine. It reduces duplicate notices but can also hide a distinct change to that routine. It is a chosen tradeoff, not a proven ideal interval.
 
-| kind | breaking | why |
-| --- | --- | --- |
-| `endpoint_removed` | yes | the call she relies on is gone |
-| `param_removed` | yes | the filter or field she passes is gone |
-| `param_became_required` | yes | a call that worked now returns an error |
-| `endpoint_added` | no | something new she does not use |
-| `param_added` | no | an optional extra |
-| `param_became_optional` | no | a constraint relaxed |
-| `response_added` / `response_removed` | no | worth recording, not worth waking her |
-| `version_string_changed` | no | suppliers bump these for nothing |
+## One source for deployed controls
 
-`breaking` is a property of the change, not of the run. That distinction is the reason the
-scheduled job's alarm is gated on `steps.snapshot.outputs.breaking` and never on
-`failure()`: a broken job must not be able to announce itself as a supplier changing their
-API.
+`tools/sync_runtime.py` generates `runtime/app/StillWorking/sw_core/` from the canonical control definitions, memory and formatter in `agent/`. Its `--check` mode fails if they drift. The deployable imports only its own bundle and installed dependencies; `tools/check_runtime_isolation.py` checks tracked files to enforce that boundary.
 
-Output: `contracts/snapshots/<vendor>/<date>.json` and one line appended to
-`contracts/changes.jsonl`.
+No generated CDK resource definitions are hand-edited. [Runtime instructions](runtime/README.md) describe syncing, checking and deploying the existing runtime in place.
 
-The 150 days of history before the job existed were reconstructed by `tools/backfill.py`,
-which reads each supplier's own public git repository and replays it one calendar day at a
-time. One revision per day, the last, because Stripe pushed and reverted inside 1 July and
-taking every commit would have invented two changes that never reached anybody.
+## Evidence a judge can inspect
 
-## Layer 2: match. Whose problem it is
+[The browser replay](https://iamrobertmoore.github.io/still-working/replay/) presents 23 responses captured from the deployed runtime. Each record is replayed as of its historical date and the ledger is carried forward. The model produced two rendered notes. Quiet and repeated cases constructed no model.
 
-`tools/impact.py`. Also deterministic, also runs in CI, also no model.
+The [recordings](docs/replay/recordings.json) contain the input, output, elapsed invocation time and source-file hashes. Timing includes runtime overhead and is not a model-performance benchmark. The replay is retrospective and uses an illustrative profile informed by the same history. Its notification ratio is not a precision or recall score.
 
-`business/maya.yaml` holds Maya's eight routines. Each is written twice. Above the line is
-what she said: what she calls it, what happens if it stops, how late she would normally
-notice, what it costs her. Below the line is a `derived` block naming the exact supplier
-calls that routine leans on, with a confidence and a reason. She has never read the second
-half, and did not write a single call name in it.
+## Optional Strands demonstrations
 
-Matching is set membership on a canonical form, so `GET /v1/payment_intents/{intent}` and
-`GET /v1/payment_intents/{payment_intent_id}` are the same call. Suppliers rename their own
-path parameters without it meaning anything, and Maya's profile was written from her
-developer's memory. Neither side should have to match the other character for character.
+The local scripts also demonstrate `stream_async`, telemetry spans, structured setup output and `Agent.as_tool()` in a morning roundup. Those are development examples. The deployed daily path is the explicit pipeline above; it does not depend on the optional model-written roundup preserving every note.
 
-The output of this layer is the only thing the judgement layer ever sees. It carries the
-change, the routines it touched, the mapping confidence, how the supplier should be named
-to Maya, who fixes things, and how many days ago it happened.
+## Failure boundaries
 
-**Nothing else reaches the model.** No contracts, no snapshots, no repository.
+| Failure | Behaviour |
+|---|---|
+| Supplier unreachable | Fail the collection run; do not publish a fresh reassuring page |
+| Missing AWS role or failed invocation | Fail delivery; do not commit a new delivery state |
+| Unsupported mapping | Setup rejects invented calls; verification flags unsupported existing ones |
+| Low-confidence mapping | Keep pending for a person |
+| Model invents a date | Stamp known fields; reject contradictory prose |
+| Model produces no usable note | Return a review state, not an all-clear |
+| Supplier documentation lags deployment | Not detected |
+| A previously flagged problem remains unresolved | A suppressed repeat does not mean it is fixed |
 
-## Layer 3: judge. Whether it actually costs her
-
-`agent/still_working.py` locally, `runtime/app/StillWorking/main.py` deployed. Strands
-Agents, on Amazon Bedrock AgentCore Runtime, us-east-1, Claude Sonnet 4.5 through
-the global inference profile.
-
-This layer has two jobs and neither of them is deciding whether Maya is interrupted.
-
-1. Decide whether a contract change that touches a routine actually stops it working. A
-   removed call she leans on does. A parameter removed from a call she uses for something
-   else may not.
-2. Write it in her language: a consequence, what it costs her, how late she would normally
-   have found out, and a section to forward to Priya.
-
----
-
-## The controls
-
-Everything that decides whether Maya hears anything lives in Strands interventions on
-`before_tool_call`, not in the system prompt. There is exactly one tool that reaches her,
-`send_to_maya`, so there is exactly one place to stand.
-
-Two handlers run in order, because they are two different jobs.
-
-### 1. `StampTheFacts`, a `Transform`
-
-Overwrites the note's factual fields with the values from the deterministic layer, whatever
-the model put there: the routine id, the date the supplier made the change, and how many
-days ago that was.
-
-This exists because of a specific failure. Given a change dated 14 July and a `days_ago` of
-51, the model subtracted one from the other, got 24 May, and wrote it under the word
-**FACT**. It had done arithmetic, got it wrong, and presented the result with more
-confidence than anything else in the note.
-
-The fix is not a firmer instruction. The fix is that the model is never the source of a
-fact the system already holds. `Transform` mutates the call in place and lets the pipeline
-continue, so the handler below sees the corrected version.
-
-### 2. `OnlyWhenItCostsHer`, the interruption rule
-
-| outcome | when |
-| --- | --- |
-| `Deny` | nothing she depends on is broken. She is never told. |
-| `Deny` | she was told about this same routine within the last five days. |
-| `Proceed` | a routine mapped at high or medium confidence is broken. Send it now. |
-| `Confirm` | the only thing broken was mapped at low confidence. A person checks first. |
-
-The ordering matters and I had it wrong first. Checking for low confidence before checking
-for a confident break meant one shaky mapping could hold a certain problem behind a human.
-Something I know is broken goes out now, and the uncertainty rides along inside the note
-instead of gating it.
-
-The repeat rule came from the data. Xero deleted the employee section on 24 April, put it
-back, and deleted it again on the 29th. Both days are real and both break the routine Maya
-calls "Paying the twelve of us". Two notes in five days about her payroll is how a person
-learns to archive the sender. The quiet window lives in one named constant in
-`agent/memory.py`, not spread across a prompt.
-
-### Where the record lives
-
-The ledger of what actually reached Maya is held in the agent's own state, persisted by a
-Strands `FileSessionManager`. The transcript records what the model asked to send; the
-ledger records what cleared the controls. Those are not the same thing, and the difference
-between them is the measurement this project rests on.
-
----
-
-## What runs where
-
-```
-GitHub Actions, 05:40 UTC daily, no secrets
-  tools/snapshot.py        --self-test    the detector still detects
-  tools/impact.py          --self-test    the right things still reach Maya
-  tools/setup.py           --self-test    setup cannot invent a call into her profile
-  agent/morning.py         --self-test    a quiet morning builds no agent at all
-  agent/still_working.py   --demo         six days, scripted model, no AWS
-  agent/still_working.py   --stream       the note still streams
-  tools/check_runtime_isolation.py        the bundle does not reach into the repo
-  pytest tests/                           325 cases, about three seconds
-  tools/setup.py           --verify       no call in her profile is one that never existed
-  tools/snapshot.py                       fetch and diff four public contracts
-  tools/render_page.py                    regenerate docs/index.html
-  tools/impact.py          --readme       regenerate the numbers in the README
-  commit, push
-
-Bedrock AgentCore Runtime, us-east-1, consumption billed
-  runtime/app/StillWorking/main.py        the judgement layer, and nothing else
-
-GitHub Pages, from docs/ on main
-  Maya's screen. One file, no JavaScript, no external requests.
-```
-
-### Why the deployed bundle carries nothing
-
-`runtime/` imports nothing from `agent/`, `tools/`, `business/` or `contracts/`, and
-contains no absolute paths. `tools/check_runtime_isolation.py` asserts it on every run,
-using `git ls-files` rather than a directory walk, because an earlier version scanned 2,325
-files of AgentCore build cache to judge four. It treats zero tracked files as a failure
-rather than a pass, because a check that passes when it finds nothing is not a check.
-
-The bundle carries its own copy of the house style formatter and its own scripted model
-double. A few lines of duplication is cheaper than coupling a deployable to a tree it will
-not be deployed with, and there is a test asserting the two copies still agree.
-
-### One behaviour differs on purpose
-
-There is no human at a console inside AgentCore Runtime, so a `Confirm` cannot be answered.
-A break that only implicates a low confidence mapping is therefore held and the caller is
-told it is waiting for a person, rather than being auto approved. Silently approving what
-the system said needed checking would make the confidence level decorative.
-
----
-
-## The Strands surface this uses, and what each one is for
-
-| Strands | where | why it is there and not just present |
-| --- | --- | --- |
-| `Agent` | everywhere | the loop |
-| `@tool` | `read_routine`, `send_to_maya` | one tool reaches Maya, so there is one place to put the control |
-| `strands.interventions` | `Transform`, `Deny`, `Confirm`, `Proceed` | the interruption rule and the fact stamping, as code |
-| `strands.hooks` | `BeforeToolCallEvent` | where the controls attach |
-| `strands.models.model.Model` | `agent/model_double.py` | the whole agent runs with no AWS account, in under a second |
-| `structured_output_model=` | `tools/setup.py` | the setup conversation returns a validated shape with a closed confidence set |
-| `strands.session.FileSessionManager` | `agent/memory.py` | "do not tell her the same thing twice" needs a record of yesterday |
-| `AgentState` | the ledger | what cleared the controls, persisted with the session |
-| `Agent.as_tool()` | `agent/morning.py` | four suppliers, one morning, one message |
-| `stream_async` | `--stream` | the note arriving as it is written |
-| `StrandsTelemetry` | `--trace` | every model call, tool call and intervention as a span |
-| `result.metrics` | `cost_of_the_morning` | the claim that the expensive layer runs rarely, audited by the framework |
-
-`agent/morning.py` deserves a note, because on its face it undoes the thesis. It uses
-`Agent.as_tool()` so that each supplier's judgement agent becomes a tool a round-up agent
-can call, and the round-up writes the single message Maya gets. The constraint is that
-
-> the round-up merges, and never selects.
-
-It is only ever handed notes that have already passed `OnlyWhenItCostsHer`. If no supplier
-produced one, the round-up is never constructed and no model runs at all, which the tests
-assert by counting model calls rather than by trusting the code to be careful. A round-up
-that could decide to stay quiet about something that got through would be a second, softer,
-prompt-shaped version of the control this whole project exists to avoid.
-
----
-
-## Failure modes, and what happens in each
-
-| what goes wrong | what happens |
-| --- | --- |
-| a supplier is unreachable | the snapshot step is `continue-on-error`, the run fails at the end with a message saying it is a job problem and not a contract change. No alarm is raised. |
-| the job itself breaks | no issue is created, because the alarm is gated on `outputs.breaking` and never on `failure()`. |
-| a mapping is wrong | it carries a confidence. Low confidence alone waits for a person. Medium sends, with the doubt stated in the note. |
-| a mapping points at a call that does not exist | `tools/setup.py --verify` catches it. It found three on 11 September, in a profile that had been in the repository for a fortnight and passed every other test. |
-| the model invents a date | Two controls. `Transform` overwrites the note's date field with the supplier's own, and the tool then refuses to render any note whose prose asserts a different date, handing the mistake back for the model to correct. Both the local agent and the deployed bundle do this. |
-| the model writes an em dash | the formatter removes it, and asserts none survived. |
-| a supplier publishes late | nothing catches it. This reads what suppliers publish, not what they have deployed, and the page says so. |
-
----
-
-## What this does not do
-
-It does not watch traffic, or instrument Maya's shop, or need access to anything of hers.
-It reads four public documents. That is also its limit: a supplier whose documentation lags
-their rollout will not be caught, and the page Maya looks at says so in as many words.
+The daily page shows recent risks and pending reviews. Its quiet state means no new matched supplier risk was found, not that the shop's integrations were tested. The publication date of the oldest checked supplier is used for the page's check timestamp.

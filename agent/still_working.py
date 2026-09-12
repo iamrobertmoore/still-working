@@ -162,6 +162,10 @@ class StampTheFacts(InterventionHandler):
             "change_date": self.impact.get("date") or "",
             "days_ago": self.impact.get("days_ago"),
         }
+        if subject and subject["mapping_confidence"] in ("medium", "low") and not payload.get("uncertainty"):
+            payload["uncertainty"] = (
+                "This depends on a link worked out during setup. The person who maintains "
+                "the connection needs to check that your routine uses the part that changed.")
         for key, value in facts.items():
             if payload.get(key) not in (None, "", value):
                 self.overwritten.append(key)
@@ -414,7 +418,7 @@ def send_to_maya(routine: str, headline: str, what_happened: str, what_it_costs:
     return note.render()
 
 
-def build(impact: dict, script: list[dict] | None = None, approve_low_confidence: bool = True,
+def build(impact: dict, script: list[dict] | None = None, approve_low_confidence: bool | None = None,
           live: bool = False, remember: bool = False, session_id: str = "maya",
           storage_dir: str | None = None, model=None):
     """Assemble the agent for one morning.
@@ -436,7 +440,9 @@ def build(impact: dict, script: list[dict] | None = None, approve_low_confidence
     thing twice" possible. It is off by default so the scripted tests stay hermetic.
     """
     stamp = StampTheFacts(impact)
-    decide = OnlyWhenItCostsHer(impact, approve_low_confidence)
+    # Scripted fixtures may model a yes. A live run needs an explicit human answer.
+    approved = not live if approve_low_confidence is None else approve_low_confidence
+    decide = OnlyWhenItCostsHer(impact, approved)
 
     kwargs = {}
     if remember:
@@ -458,7 +464,7 @@ def prompt_for(change_record: dict, impact: dict) -> str:
     return f"Today's changes from {change_record['vendor']}:\n{json.dumps(impact, indent=1)}"
 
 
-def run(change_record: dict, script: list[dict] | None = None, approve_low_confidence: bool = True,
+def run(change_record: dict, script: list[dict] | None = None, approve_low_confidence: bool | None = None,
         live: bool = False, remember: bool = False, session_id: str = "maya",
         storage_dir: str | None = None, today: str | None = None):
     """Run one day's changes through the agent.

@@ -1,0 +1,2072 @@
+{
+  "format_version": 1,
+  "captured_at": "2026-09-12T10:55:18.947941+00:00",
+  "mode": "recorded_agentcore_replay",
+  "persona": "illustrative, not a real customer",
+  "method": "Each supplier change is assessed as of its recorded date. The returned ledger is carried forward.",
+  "changes_sha256": "8a6cd76e6f05eef501f838558166297d4a93784dcbd22ce3c8f82852671fe316",
+  "profile_sha256": "523cd3b257f9f2df85168ea537435ed5f69c9a89f7ba728194f46e04c501e859",
+  "measurement": {
+    "first": "2026-04-07",
+    "last": "2026-09-04",
+    "span": 150,
+    "revisions": 23,
+    "changes": 56,
+    "breaking": 9,
+    "breaking_days": 3,
+    "touched": 7,
+    "reaching": 3,
+    "interruptions": 2,
+    "held": 1,
+    "ratio": 3.571428571428571,
+    "rows": [
+      [
+        "2026-04-24",
+        "your accounts",
+        "Paying the twelve of us",
+        "sent",
+        null
+      ],
+      [
+        "2026-04-29",
+        "your accounts",
+        "Paying the twelve of us",
+        "held",
+        5
+      ],
+      [
+        "2026-07-14",
+        "your till and bookings",
+        "Stock moving between the counter and the website",
+        "sent",
+        null
+      ]
+    ]
+  },
+  "cases": [
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "POST /v1/labels/{label_id}/cancel_refund",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /v1/labels",
+            "kind": "param_added",
+            "param": "refund_status"
+          },
+          {
+            "breaking": false,
+            "from": "1.1.202604060604",
+            "kind": "version_string_changed",
+            "to": "1.1.202604070904"
+          }
+        ],
+        "date": "2026-04-07",
+        "from_fetched_at": "2026-04-06T00:00:00+00:00",
+        "from_version": "1.1.202604060604",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-07T00:00:00+00:00",
+        "to_version": "1.1.202604070904",
+        "total_count": 3,
+        "vendor": "shipengine"
+      },
+      "impact": {
+        "date": "2026-04-07",
+        "vendor": "shipengine",
+        "vendor_in_her_words": "how I print labels",
+        "vendor_address_as": "your label printing",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 3,
+        "ignored_count": 2,
+        "routines_touched": [
+          {
+            "routine_id": "labels-and-tracking",
+            "what_maya_calls_it": "Getting parcels out and telling people where they are",
+            "in_her_words": "We print labels in the morning. The tracking number goes into the email the customer gets. If the tracking is wrong they email us and we lose an hour.",
+            "if_it_stops": "labels still print, tracking emails go out wrong or empty",
+            "how_late_would_she_notice": "two days, when the emails start coming in",
+            "what_it_costs": "an hour a day of someone answering \"where is my parcel\"",
+            "mapping_confidence": "medium",
+            "changes": [
+              {
+                "breaking": false,
+                "endpoint": "GET /v1/labels",
+                "kind": "param_added",
+                "param": "refund_status"
+              }
+            ],
+            "has_breaking_change": false
+          }
+        ],
+        "reaches_maya": false,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-07",
+        "vendor": "shipengine",
+        "vendor_in_her_words": "how I print labels",
+        "changes_that_day": 3,
+        "delivery_history": [],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.305
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "12.0.0",
+            "kind": "version_string_changed",
+            "to": "12.0.1"
+          }
+        ],
+        "date": "2026-04-20",
+        "from_fetched_at": "2026-04-02T00:00:00+00:00",
+        "from_version": "12.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-20T00:00:00+00:00",
+        "to_version": "12.0.1",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-20",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-20",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.509
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "12.0.1",
+            "kind": "version_string_changed",
+            "to": "12.0.2"
+          }
+        ],
+        "date": "2026-04-21",
+        "from_fetched_at": "2026-04-20T00:00:00+00:00",
+        "from_version": "12.0.1",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-21T00:00:00+00:00",
+        "to_version": "12.0.2",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-21",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-21",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.522
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "12.0.2",
+            "kind": "version_string_changed",
+            "to": "12.0.1"
+          }
+        ],
+        "date": "2026-04-22",
+        "from_fetched_at": "2026-04-21T00:00:00+00:00",
+        "from_version": "12.0.2",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-22T00:00:00+00:00",
+        "to_version": "12.0.1",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-22",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-22",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.548
+    },
+    {
+      "record": {
+        "breaking_count": 4,
+        "changes": [
+          {
+            "breaking": true,
+            "endpoint": "GET /Employees",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "GET /Employees/{EmployeeID}",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "POST /Employees",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "PUT /Employees",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": false,
+            "from": "12.0.1",
+            "kind": "version_string_changed",
+            "to": "15.0.0"
+          }
+        ],
+        "date": "2026-04-24",
+        "from_fetched_at": "2026-04-22T00:00:00+00:00",
+        "from_version": "12.0.1",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-24T00:00:00+00:00",
+        "to_version": "15.0.0",
+        "total_count": 5,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-24",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 5,
+        "ignored_count": 1,
+        "routines_touched": [
+          {
+            "routine_id": "paying-the-team",
+            "what_maya_calls_it": "Paying the twelve of us",
+            "in_her_words": "People are on the books. Hours go in, expenses go in, and it has to be right because it is people's wages.",
+            "if_it_stops": "somebody is not paid, or is paid the wrong amount",
+            "how_late_would_she_notice": "immediately, because a person tells her",
+            "what_it_costs": "the one on this list she cannot absorb quietly",
+            "mapping_confidence": "medium",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /Employees",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "GET /Employees/{EmployeeID}",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "POST /Employees",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "PUT /Employees",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": []
+      },
+      "result": {
+        "state": "something_broke",
+        "reason": "a note passed the controls and was rendered",
+        "routine": "Paying the twelve of us",
+        "note": "Your accounts has removed the employee records that payroll depends on.\n\nYour accounts published a change today removing the employee records system. If the payroll routine relies on those records to calculate who gets paid what, it will stop working.\n\nWhen it happened: today, 24 April 2026\nWhat it costs you: Someone is not paid, or is paid the wrong amount. You said this is the one on the list you cannot absorb quietly.\nHow late you would normally find out: Immediately, because a person tells you.\n\nI am not certain about this. The mapping between this payroll routine and the removed employee endpoints is medium confidence, so it needs verification that the routine actually uses these particular calls.\n\nWhat to do: Forward this to Priya to check whether the payroll routine actually uses these employee records, and if so, what the replacement is.\n\n--- forward this part to Priya ---\n  Fact: Xero removed these endpoints today, 24 April 2026:\n  GET /Employees\n  GET /Employees/{EmployeeID}\n  POST /Employees\n  PUT /Employees\n  Inference: The routine \"Paying the twelve of us\" is mapped to these endpoints at medium confidence. \n  Please verify whether the payroll routine actually calls these endpoints, and if it does, identify what Xero's replacement mechanism is for accessing employee data.",
+        "notes": [
+          "Your accounts has removed the employee records that payroll depends on.\n\nYour accounts published a change today removing the employee records system. If the payroll routine relies on those records to calculate who gets paid what, it will stop working.\n\nWhen it happened: today, 24 April 2026\nWhat it costs you: Someone is not paid, or is paid the wrong amount. You said this is the one on the list you cannot absorb quietly.\nHow late you would normally find out: Immediately, because a person tells you.\n\nI am not certain about this. The mapping between this payroll routine and the removed employee endpoints is medium confidence, so it needs verification that the routine actually uses these particular calls.\n\nWhat to do: Forward this to Priya to check whether the payroll routine actually uses these employee records, and if so, what the replacement is.\n\n--- forward this part to Priya ---\n  Fact: Xero removed these endpoints today, 24 April 2026:\n  GET /Employees\n  GET /Employees/{EmployeeID}\n  POST /Employees\n  PUT /Employees\n  Inference: The routine \"Paying the twelve of us\" is mapped to these endpoints at medium confidence. \n  Please verify whether the payroll routine actually calls these endpoints, and if it does, identify what Xero's replacement mechanism is for accessing employee data."
+        ],
+        "carrying_doubt": true,
+        "date": "2026-04-24",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 5,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 1,
+        "stop_reason": "end_turn",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "paying-the-team",
+            "outcome": "delivered",
+            "dates_stamped": true,
+            "refused_attempts": 0
+          }
+        ],
+        "pending_routines": []
+      },
+      "elapsed_seconds": 19.626
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "GET /Employees",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /Employees/{EmployeeID}",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /Employees",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "PUT /Employees",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "from": "15.0.0",
+            "kind": "version_string_changed",
+            "to": "12.0.2"
+          }
+        ],
+        "date": "2026-04-28",
+        "from_fetched_at": "2026-04-24T00:00:00+00:00",
+        "from_version": "15.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-28T00:00:00+00:00",
+        "to_version": "12.0.2",
+        "total_count": 5,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-28",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 5,
+        "ignored_count": 1,
+        "routines_touched": [
+          {
+            "routine_id": "paying-the-team",
+            "what_maya_calls_it": "Paying the twelve of us",
+            "in_her_words": "People are on the books. Hours go in, expenses go in, and it has to be right because it is people's wages.",
+            "if_it_stops": "somebody is not paid, or is paid the wrong amount",
+            "how_late_would_she_notice": "immediately, because a person tells her",
+            "what_it_costs": "the one on this list she cannot absorb quietly",
+            "mapping_confidence": "medium",
+            "changes": [
+              {
+                "breaking": false,
+                "endpoint": "GET /Employees",
+                "kind": "endpoint_added"
+              },
+              {
+                "breaking": false,
+                "endpoint": "GET /Employees/{EmployeeID}",
+                "kind": "endpoint_added"
+              },
+              {
+                "breaking": false,
+                "endpoint": "POST /Employees",
+                "kind": "endpoint_added"
+              },
+              {
+                "breaking": false,
+                "endpoint": "PUT /Employees",
+                "kind": "endpoint_added"
+              }
+            ],
+            "has_breaking_change": false
+          }
+        ],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-28",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 5,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.026
+    },
+    {
+      "record": {
+        "breaking_count": 4,
+        "changes": [
+          {
+            "breaking": true,
+            "endpoint": "GET /Employees",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "GET /Employees/{EmployeeID}",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "POST /Employees",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": true,
+            "endpoint": "PUT /Employees",
+            "kind": "endpoint_removed"
+          }
+        ],
+        "date": "2026-04-29",
+        "from_fetched_at": "2026-04-28T00:00:00+00:00",
+        "from_version": "12.0.2",
+        "reconstructed": true,
+        "to_fetched_at": "2026-04-29T00:00:00+00:00",
+        "to_version": "12.0.2",
+        "total_count": 4,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-04-29",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 4,
+        "ignored_count": 0,
+        "routines_touched": [
+          {
+            "routine_id": "paying-the-team",
+            "what_maya_calls_it": "Paying the twelve of us",
+            "in_her_words": "People are on the books. Hours go in, expenses go in, and it has to be right because it is people's wages.",
+            "if_it_stops": "somebody is not paid, or is paid the wrong amount",
+            "how_late_would_she_notice": "immediately, because a person tells her",
+            "what_it_costs": "the one on this list she cannot absorb quietly",
+            "mapping_confidence": "medium",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /Employees",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "GET /Employees/{EmployeeID}",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "POST /Employees",
+                "kind": "endpoint_removed"
+              },
+              {
+                "breaking": true,
+                "endpoint": "PUT /Employees",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "already told her about these routines inside the five-day quiet window",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-04-29",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 4,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "paying-the-team",
+            "outcome": "repeat_held",
+            "days_since": 5
+          }
+        ],
+        "pending_routines": []
+      },
+      "elapsed_seconds": 7.072
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "12.0.2",
+            "kind": "version_string_changed",
+            "to": "13.0.0"
+          }
+        ],
+        "date": "2026-05-06",
+        "from_fetched_at": "2026-04-29T00:00:00+00:00",
+        "from_version": "12.0.2",
+        "reconstructed": true,
+        "to_fetched_at": "2026-05-06T00:00:00+00:00",
+        "to_version": "13.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-05-06",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-05-06",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.457
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "13.0.0",
+            "kind": "version_string_changed",
+            "to": "14.0.0"
+          }
+        ],
+        "date": "2026-05-17",
+        "from_fetched_at": "2026-05-15T00:00:00+00:00",
+        "from_version": "13.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-05-17T00:00:00+00:00",
+        "to_version": "14.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-05-17",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-05-17",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.494
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "14.0.0",
+            "kind": "version_string_changed",
+            "to": "15.0.0"
+          }
+        ],
+        "date": "2026-05-19",
+        "from_fetched_at": "2026-05-17T00:00:00+00:00",
+        "from_version": "14.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-05-19T00:00:00+00:00",
+        "to_version": "15.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-05-19",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-05-19",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.028
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "GET /v1/payment_method_configurations",
+            "kind": "param_added",
+            "param": "active"
+          },
+          {
+            "breaking": false,
+            "from": "2026-04-22.dahlia",
+            "kind": "version_string_changed",
+            "to": "2026-05-27.dahlia"
+          }
+        ],
+        "date": "2026-05-23",
+        "from_fetched_at": "2026-04-20T00:00:00+00:00",
+        "from_version": "2026-04-22.dahlia",
+        "reconstructed": true,
+        "to_fetched_at": "2026-05-23T00:00:00+00:00",
+        "to_version": "2026-05-27.dahlia",
+        "total_count": 2,
+        "vendor": "stripe"
+      },
+      "impact": {
+        "date": "2026-05-23",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "vendor_address_as": "your card payments",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 2,
+        "ignored_count": 2,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-05-23",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "changes_that_day": 2,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.963
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "15.0.0",
+            "kind": "version_string_changed",
+            "to": "16.0.0"
+          }
+        ],
+        "date": "2026-06-03",
+        "from_fetched_at": "2026-05-19T00:00:00+00:00",
+        "from_version": "15.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-06-03T00:00:00+00:00",
+        "to_version": "16.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-06-03",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-06-03",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.142
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "2026-05-27.dahlia",
+            "kind": "version_string_changed",
+            "to": "2026-06-24.dahlia"
+          }
+        ],
+        "date": "2026-06-23",
+        "from_fetched_at": "2026-05-23T00:00:00+00:00",
+        "from_version": "2026-05-27.dahlia",
+        "reconstructed": true,
+        "to_fetched_at": "2026-06-23T00:00:00+00:00",
+        "to_version": "2026-06-24.dahlia",
+        "total_count": 1,
+        "vendor": "stripe"
+      },
+      "impact": {
+        "date": "2026-06-23",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "vendor_address_as": "your card payments",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-06-23",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 6.984
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "POST /BankTransfers",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /BankTransfers/{BankTransferID}",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /BankTransfers",
+            "kind": "param_added",
+            "param": "includeDeleted"
+          },
+          {
+            "breaking": false,
+            "from": "16.0.0",
+            "kind": "version_string_changed",
+            "to": "16.1.0"
+          }
+        ],
+        "date": "2026-07-13",
+        "from_fetched_at": "2026-06-03T00:00:00+00:00",
+        "from_version": "16.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-07-13T00:00:00+00:00",
+        "to_version": "16.1.0",
+        "total_count": 4,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-07-13",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 4,
+        "ignored_count": 2,
+        "routines_touched": [
+          {
+            "routine_id": "bank-matching-the-books",
+            "what_maya_calls_it": "The bank matching the books",
+            "in_her_words": "Ines matches what actually landed in the bank against what the system thinks. That is most of what she does on a Friday.",
+            "if_it_stops": "The matching stops finding things and Ines does it by hand, which is slow rather than impossible, so she may not mention it for a while.",
+            "how_late_would_she_notice": "two or three weeks, when Ines has had enough",
+            "what_it_costs": "Ines's Fridays, and a VAT return that takes twice as long",
+            "mapping_confidence": "high",
+            "changes": [
+              {
+                "breaking": false,
+                "endpoint": "POST /BankTransfers",
+                "kind": "endpoint_added"
+              },
+              {
+                "breaking": false,
+                "endpoint": "GET /BankTransfers",
+                "kind": "param_added",
+                "param": "includeDeleted"
+              }
+            ],
+            "has_breaking_change": false
+          }
+        ],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-13",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 4,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.552
+    },
+    {
+      "record": {
+        "breaking_count": 1,
+        "changes": [
+          {
+            "breaking": true,
+            "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+            "kind": "endpoint_removed"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /v2/inventory/adjustment-reasons",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v2/inventory/adjustment-reasons/create",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v2/inventory/adjustment-reasons/delete",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v2/inventory/adjustment-reasons/restore",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v2/inventory/adjustment-reasons/retrieve",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "PUT /v2/inventory/adjustment-reasons/update",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "PUT /v2/inventory/adjustments/update",
+            "kind": "endpoint_added"
+          }
+        ],
+        "date": "2026-07-14",
+        "from_fetched_at": "2026-05-19T00:00:00+00:00",
+        "from_version": "2.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-07-14T00:00:00+00:00",
+        "to_version": "2.0",
+        "total_count": 8,
+        "vendor": "square"
+      },
+      "impact": {
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "vendor_address_as": "your till and bookings",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 8,
+        "ignored_count": 7,
+        "routines_touched": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "what_maya_calls_it": "Stock moving between the counter and the website",
+            "in_her_words": "Everything is in one pile. If someone buys the last lamp in the shop the website has to know within the hour or I sell it twice and have to write to somebody and apologise. It goes the other way too when we move a pallet up from the unit.",
+            "if_it_stops": "Nothing looks wrong. The website keeps selling. I find out when two people have bought the same thing.",
+            "how_late_would_she_notice": "a few days, when the second customer complains",
+            "what_it_costs": "A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.",
+            "mapping_confidence": "high",
+            "changes": [
+              {
+                "breaking": true,
+                "endpoint": "GET /v2/inventory/transfers/{transfer_id}",
+                "kind": "endpoint_removed"
+              }
+            ],
+            "has_breaking_change": true
+          }
+        ],
+        "reaches_maya": true,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          }
+        ]
+      },
+      "result": {
+        "state": "something_broke",
+        "reason": "a note passed the controls and was rendered",
+        "routine": "Stock moving between the counter and the website",
+        "note": "The website might keep selling after the counter sells the last one.\n\nYour till and bookings removed a way to check inventory transfers on 14 July. If your stock routine relies on that check, it will have stopped updating when something sells at the counter.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nWhat to do: Forward this to Priya to check whether the routine uses the removed transfer check, and if it does, to rebuild it with what your till and bookings offers now.\n\n--- forward this part to Priya ---\n  Priya,\n  FACT: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  INFERENCE: The stock-between-counter-and-website routine is mapped to this endpoint with high confidence. If the routine uses this call to verify or track inventory transfers between locations, it will have broken.\n  Check whether the routine depends on GET /v2/inventory/transfers/{transfer_id}.\n  If it does, find the current Square method for tracking inventory movement between the counter and website stock, and update the integration.",
+        "notes": [
+          "The website might keep selling after the counter sells the last one.\n\nYour till and bookings removed a way to check inventory transfers on 14 July. If your stock routine relies on that check, it will have stopped updating when something sells at the counter.\n\nWhen it happened: today, 14 July 2026\nWhat it costs you: A refund, an apology, and a review. In December it is worse because the counter is busy and nobody is watching the numbers.\nHow late you would normally find out: A few days, when the second customer complains.\n\nWhat to do: Forward this to Priya to check whether the routine uses the removed transfer check, and if it does, to rebuild it with what your till and bookings offers now.\n\n--- forward this part to Priya ---\n  Priya,\n  FACT: Square removed endpoint GET /v2/inventory/transfers/{transfer_id} on 14 July 2026.\n  INFERENCE: The stock-between-counter-and-website routine is mapped to this endpoint with high confidence. If the routine uses this call to verify or track inventory transfers between locations, it will have broken.\n  Check whether the routine depends on GET /v2/inventory/transfers/{transfer_id}.\n  If it does, find the current Square method for tracking inventory movement between the counter and website stock, and update the integration."
+        ],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "square",
+        "vendor_in_her_words": "my till and my bookings",
+        "changes_that_day": 8,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 1,
+        "stop_reason": "end_turn",
+        "controls_version": "shared-v1",
+        "decisions": [
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "outcome": "delivered",
+            "dates_stamped": true,
+            "refused_attempts": 0
+          }
+        ],
+        "pending_routines": []
+      },
+      "elapsed_seconds": 17.45
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "16.1.0",
+            "kind": "version_string_changed",
+            "to": "16.0.0"
+          }
+        ],
+        "date": "2026-07-14",
+        "from_fetched_at": "2026-07-13T00:00:00+00:00",
+        "from_version": "16.1.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-07-14T00:00:00+00:00",
+        "to_version": "16.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-07-14",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-14",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.571
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "GET /BankTransactions",
+            "kind": "param_added",
+            "param": "References"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /Prepayments",
+            "kind": "param_added",
+            "param": "References"
+          },
+          {
+            "breaking": false,
+            "from": "16.0.0",
+            "kind": "version_string_changed",
+            "to": "16.1.0"
+          }
+        ],
+        "date": "2026-07-21",
+        "from_fetched_at": "2026-07-14T00:00:00+00:00",
+        "from_version": "16.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-07-21T00:00:00+00:00",
+        "to_version": "16.1.0",
+        "total_count": 3,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-07-21",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 3,
+        "ignored_count": 2,
+        "routines_touched": [
+          {
+            "routine_id": "bank-matching-the-books",
+            "what_maya_calls_it": "The bank matching the books",
+            "in_her_words": "Ines matches what actually landed in the bank against what the system thinks. That is most of what she does on a Friday.",
+            "if_it_stops": "The matching stops finding things and Ines does it by hand, which is slow rather than impossible, so she may not mention it for a while.",
+            "how_late_would_she_notice": "two or three weeks, when Ines has had enough",
+            "what_it_costs": "Ines's Fridays, and a VAT return that takes twice as long",
+            "mapping_confidence": "high",
+            "changes": [
+              {
+                "breaking": false,
+                "endpoint": "GET /BankTransactions",
+                "kind": "param_added",
+                "param": "References"
+              }
+            ],
+            "has_breaking_change": false
+          }
+        ],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-21",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 3,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.448
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "GET /v1/payment_records",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v1/accounts/{account}/unreject",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "from": "2026-06-24.dahlia",
+            "kind": "version_string_changed",
+            "to": "2026-07-29.dahlia"
+          }
+        ],
+        "date": "2026-07-29",
+        "from_fetched_at": "2026-07-01T00:00:00+00:00",
+        "from_version": "2026-06-24.dahlia",
+        "reconstructed": true,
+        "to_fetched_at": "2026-07-29T00:00:00+00:00",
+        "to_version": "2026-07-29.dahlia",
+        "total_count": 3,
+        "vendor": "stripe"
+      },
+      "impact": {
+        "date": "2026-07-29",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "vendor_address_as": "your card payments",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 3,
+        "ignored_count": 3,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-07-29",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "changes_that_day": 3,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.449
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "16.1.0",
+            "kind": "version_string_changed",
+            "to": "16.2.0"
+          }
+        ],
+        "date": "2026-08-09",
+        "from_fetched_at": "2026-07-31T00:00:00+00:00",
+        "from_version": "16.1.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-08-09T00:00:00+00:00",
+        "to_version": "16.2.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-08-09",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-08-09",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.598
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "16.2.0",
+            "kind": "version_string_changed",
+            "to": "17.0.0"
+          }
+        ],
+        "date": "2026-08-12",
+        "from_fetched_at": "2026-08-09T00:00:00+00:00",
+        "from_version": "16.2.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-08-12T00:00:00+00:00",
+        "to_version": "17.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-08-12",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-08-12",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 6.569
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "endpoint": "GET /v1/billing/feedback_options",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "GET /v1/billing/feedback_options/{id}",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v1/billing/feedback_options",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v1/billing/feedback_options/{id}",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "endpoint": "POST /v1/billing/feedback_options/{id}/deactivate",
+            "kind": "endpoint_added"
+          },
+          {
+            "breaking": false,
+            "from": "2026-07-29.dahlia",
+            "kind": "version_string_changed",
+            "to": "2026-08-26.dahlia"
+          }
+        ],
+        "date": "2026-08-26",
+        "from_fetched_at": "2026-07-29T00:00:00+00:00",
+        "from_version": "2026-07-29.dahlia",
+        "reconstructed": true,
+        "to_fetched_at": "2026-08-26T00:00:00+00:00",
+        "to_version": "2026-08-26.dahlia",
+        "total_count": 6,
+        "vendor": "stripe"
+      },
+      "impact": {
+        "date": "2026-08-26",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "vendor_address_as": "your card payments",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 6,
+        "ignored_count": 6,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-08-26",
+        "vendor": "stripe",
+        "vendor_in_her_words": "how customers pay me",
+        "changes_that_day": 6,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 6.993
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "17.0.0",
+            "kind": "version_string_changed",
+            "to": "18.0.0"
+          }
+        ],
+        "date": "2026-08-30",
+        "from_fetched_at": "2026-08-12T00:00:00+00:00",
+        "from_version": "17.0.0",
+        "reconstructed": true,
+        "to_fetched_at": "2026-08-30T00:00:00+00:00",
+        "to_version": "18.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-08-30",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-08-30",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 7.527
+    },
+    {
+      "record": {
+        "breaking_count": 0,
+        "changes": [
+          {
+            "breaking": false,
+            "from": "18.0.0",
+            "kind": "version_string_changed",
+            "to": "19.0.0"
+          }
+        ],
+        "date": "2026-09-04",
+        "from_fetched_at": "2026-09-03T10:05:20+00:00",
+        "from_version": "18.0.0",
+        "to_fetched_at": "2026-09-04T09:56:14+00:00",
+        "to_version": "19.0.0",
+        "total_count": 1,
+        "vendor": "xero"
+      },
+      "impact": {
+        "date": "2026-09-04",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "vendor_address_as": "your accounts",
+        "days_ago": 0,
+        "business": {
+          "owner": "Maya",
+          "who_fixes_things": "Priya, a freelance developer, two days a month, not on retainer",
+          "how_maya_finds_out_today": "Someone tells her. Usually a customer, sometimes her bookkeeper."
+        },
+        "vendor_total_changes": 1,
+        "ignored_count": 1,
+        "routines_touched": [],
+        "reaches_maya": false,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ]
+      },
+      "result": {
+        "state": "still_working",
+        "reason": "nothing she depends on is broken",
+        "routine": null,
+        "note": null,
+        "notes": [],
+        "carrying_doubt": false,
+        "date": "2026-09-04",
+        "vendor": "xero",
+        "vendor_in_her_words": "my accounts, where my bookkeeper works",
+        "changes_that_day": 1,
+        "delivery_history": [
+          {
+            "routine_id": "paying-the-team",
+            "change_date": "2026-04-24",
+            "vendor": "xero",
+            "what_maya_calls_it": "Paying the twelve of us"
+          },
+          {
+            "routine_id": "stock-between-counter-and-website",
+            "change_date": "2026-07-14",
+            "vendor": "square",
+            "what_maya_calls_it": "Stock moving between the counter and the website"
+          }
+        ],
+        "model_invocations": 0,
+        "stop_reason": "deterministic_gate",
+        "controls_version": "shared-v1",
+        "decisions": []
+      },
+      "elapsed_seconds": 5.1
+    }
+  ],
+  "delivered_notes": 2,
+  "model_invocations": 2
+}
