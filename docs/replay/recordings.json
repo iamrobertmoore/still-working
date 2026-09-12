@@ -2068,5 +2068,6 @@
     }
   ],
   "delivered_notes": 2,
-  "model_invocations": 2
+  "model_invocations": 2,
+  "counter_definition": "The legacy model_invocations field counts Strands agent runs using a model, not individual model provider API requests. Original runtime responses are preserved unchanged."
 }

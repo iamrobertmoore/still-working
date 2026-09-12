@@ -82,7 +82,7 @@ async def invoke(payload: dict, context: Any = None) -> dict:
         "date": impact.get("date"), "vendor": impact.get("vendor"),
         "vendor_in_her_words": impact.get("vendor_in_her_words"),
         "changes_that_day": impact.get("vendor_total_changes"),
-        "delivery_history": history, "model_invocations": 0,
+        "delivery_history": history, "agent_runs": 0,
         "stop_reason": "deterministic_gate", "controls_version": "shared-v1",
         "decisions": [],
     }
@@ -110,7 +110,7 @@ async def invoke(payload: dict, context: Any = None) -> dict:
                       interventions=[stamp, handler], state={memory.LEDGER: list(history)},
                       conversation_manager=NullConversationManager(), callback_handler=None)
         handler.bind(agent)
-        response["model_invocations"] += 1
+        response["agent_runs"] += 1
         result = await agent.invoke_async(
             "Assess this recorded supplier change. If the routine depends on what was removed, "
             "write one note using send_to_maya. Separate the published fact from the inferred "

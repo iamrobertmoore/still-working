@@ -41,3 +41,5 @@ python tools/configure_delivery.py --runtime-arn "<your runtime ARN>"
 Run that command from the repository root. Add `--apply` to provision the dedicated invocation-only role and set the two non-secret GitHub repository variables. The role trusts only the repository's main branch and grants invocation on the supplied runtime. It does not grant model, deployment or account administration permissions.
 
 `tools/replay.py` captures real responses for every historical record. `tools/render_replay.py` publishes those saved responses without calling AWS. The optional local scripted agent, streaming and morning roundup examples are separate from the deployed daily path.
+
+The `agent_runs` response counter counts Strands agent executions that use a model. It is not a count of individual Bedrock requests inside the tool loop. Earlier replay recordings called this field `model_invocations`; those original responses are preserved with an explicit counter definition.

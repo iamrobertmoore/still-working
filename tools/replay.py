@@ -21,6 +21,12 @@ from tools.cloud import runtime_client
 from tools.impact import assess, figures, load_business
 
 
+def agent_runs(result):
+    # Format v1 used an inaccurate name for this counter. It counted agent runs,
+    # never individual Bedrock requests. Preserve the old responses verbatim.
+    return result.get("agent_runs", result.get("model_invocations", 0))
+
+
 def replay(records, business, invoke):
     ledger, captured = [], []
     for record in sorted(records, key=lambda r: (r["date"], r["vendor"])):
@@ -34,7 +40,7 @@ def replay(records, business, invoke):
         captured.append({"record": record, "impact": impact, "result": result,
                          "elapsed_seconds": round(time.monotonic() - started, 3)})
         print(f"{record['date']}  {record['vendor']:10}  {result['state']:20}  "
-              f"model invocations: {result['model_invocations']}", flush=True)
+              f"agent runs: {agent_runs(result)}", flush=True)
     return captured
 
 
@@ -48,21 +54,21 @@ def main():
     records = [json.loads(line) for line in changelog.read_text().splitlines() if line.strip()]
     captured = replay(records, load_business(), runtime_client(args.runtime_arn))
     payload = {
-        "format_version": 1, "captured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "format_version": 2, "captured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "mode": "recorded_agentcore_replay", "persona": "illustrative, not a real customer",
         "method": "Each supplier change is assessed as of its recorded date. The returned ledger is carried forward.",
         "changes_sha256": hashlib.sha256(changelog.read_bytes()).hexdigest(),
         "profile_sha256": hashlib.sha256(profile.read_bytes()).hexdigest(),
         "measurement": figures(), "cases": captured,
         "delivered_notes": sum(len(c["result"]["notes"]) for c in captured),
-        "model_invocations": sum(c["result"]["model_invocations"] for c in captured),
+        "agent_runs": sum(agent_runs(c["result"]) for c in captured),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = args.output.with_suffix(".tmp")
     temporary.write_text(json.dumps(payload, indent=2) + "\n")
     temporary.replace(args.output)
     print(f"Saved {len(captured)} real runtime responses to {args.output}")
-    print(f"Notes rendered: {payload['delivered_notes']}; model invocations: {payload['model_invocations']}")
+    print(f"Notes rendered: {payload['delivered_notes']}; agent runs: {payload['agent_runs']}")
 
 
 if __name__ == "__main__":

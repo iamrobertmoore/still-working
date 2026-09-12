@@ -8,6 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.render_page import CSS, human_date, mark, icon
+from tools.replay import agent_runs
 
 OUT = ROOT / 'docs' / 'replay'
 EXTRA = '''
@@ -48,7 +49,7 @@ def page(data, selected):
     <dt>Published change</dt><dd>{human_date(r['date'])} · {esc(r['vendor'].title())}</dd>
     <dt>Matched routine</dt><dd>{esc(result.get('routine') or ('Paying the twelve of us' if repeat else 'None requiring a note'))}</dd>
     <dt>Decision</dt><dd>{esc(outcomes)}</dd><dt>Mapping confidence</dt><dd>{esc(confidence)}</dd>
-    <dt>Model invocations</dt><dd>{result['model_invocations']}</dd><dt>Notes rendered</dt><dd>{len(result['notes'])}</dd></dl>
+    <dt>Agent runs using a model</dt><dd>{agent_runs(result)}</dd><dt>Notes rendered</dt><dd>{len(result['notes'])}</dd></dl>
     <p>Publication is observed. Dependence on these calls and the business consequence are inferred from the illustrative profile.</p>
     <details><summary>Inspect the supplier changes</summary><pre>{esc(endpoints)}</pre></details>
     <p><a href="recordings.json">Full input, response and delivery ledger</a></p></aside>'''
@@ -56,14 +57,14 @@ def page(data, selected):
     for c in data['cases']:
         rr, out = c['record'], c['result']
         status = 'Note rendered' if out['notes'] else 'Repeat held' if any(d['outcome']=='repeat_held' for d in out['decisions']) else 'No note'
-        rows.append(f'<tr><td><a href="{rr["date"]}-{rr["vendor"]}.html">{esc(human_date(rr["date"]))}</a></td><td>{esc(rr["vendor"].title())}</td><td>{rr["total_count"]}</td><td>{status}</td><td>{out["model_invocations"]}</td></tr>')
+        rows.append(f'<tr><td><a href="{rr["date"]}-{rr["vendor"]}.html">{esc(human_date(rr["date"]))}</a></td><td>{esc(rr["vendor"].title())}</td><td>{rr["total_count"]}</td><td>{status}</td><td>{agent_runs(out)}</td></tr>')
     m = data['measurement']
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Still Working replay</title><meta name="description" content="Inspect real AgentCore responses to five months of supplier history, using an illustrative shop profile."><link rel="icon" href="../brand/mark.svg"><style>{CSS}\n{EXTRA}</style></head><body><a class="skip" href="#main">Skip to the recorded decision</a><div class="wrap">
     <header class="masthead"><a class="brand" href="../">{mark()}<span>still working.</span></a><span class="brand-caption">Less noise. More peace of mind.</span><a href="../" class="identity">Today’s check-in ↗</a></header>
     <main id="main"><div class="replay-head"><span class="replay-label">Historical replay · Real cloud responses</span><h1>{title}</h1><p>Maya’s shop is illustrative. The supplier history is real. These are saved responses from the deployed agent, replaying each change as if it had just arrived.</p></div>
     <nav class="replay-nav" aria-label="Choose a recorded moment">{''.join(nav)}</nav><div class="case-grid"><article class="case-note"><span class="replay-label">{esc(human_date(r['date']))} · Maya’s screen</span>{body}</article>{receipt}</div>
-    <section class="record-list"><details><summary><span>Every decision in the replay</span><span>{len(data['cases'])} records · {data['delivered_notes']} notes</span></summary><div class="scroll"><table><thead><tr><th>Date</th><th>Supplier</th><th>Changes</th><th>Outcome</th><th>Model calls</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></details></section>
-    </main><footer class="replay-footer"><p><strong>{m['changes']} supplier changes. {data['delivered_notes']} notes. That ratio is the product.</strong><br>Notification volume in this replay, not measured accuracy, prevented outages or customer savings.</p><p>Captured {esc(data['captured_at'][:10])}. {len(data['cases'])} supplier-day records across {len({c['record']['date'] for c in data['cases']})} calendar dates, spanning {m['span']} days. Relative dates in the notes are anchored to each historical event. The original model wording is preserved, including its limitations. “Delivered” means the tool rendered a note; no email or message was sent to a real person.</p><p><a href="recordings.json">Download the evidence</a> · <a href="https://github.com/iamrobertmoore/still-working/blob/main/tools/replay.py">Reproduce it</a> · <a href="../">Back to the daily page</a></p></footer></div></body></html>'''
+    <section class="record-list"><details><summary><span>Every decision in the replay</span><span>{len(data['cases'])} records · {data['delivered_notes']} notes</span></summary><div class="scroll"><table><thead><tr><th>Date</th><th>Supplier</th><th>Changes</th><th>Outcome</th><th>Agent runs</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></details></section>
+    </main><footer class="replay-footer"><p><strong>{m['changes']} supplier changes. {data['delivered_notes']} notes. That ratio is the product.</strong><br>Notification volume in this replay, not measured accuracy, prevented outages or customer savings.</p><p>Captured {esc(data['captured_at'][:10])}. {len(data['cases'])} supplier-day records across {len({c['record']['date'] for c in data['cases']})} calendar dates, spanning {m['span']} days. Relative dates in the notes are anchored to each historical event. The original model wording is preserved, including its limitations. One agent run can include several model requests. “Delivered” means the tool rendered a note; no email or message was sent to a real person.</p><p><a href="recordings.json">Download the evidence</a> · <a href="https://github.com/iamrobertmoore/still-working/blob/main/tools/replay.py">Reproduce it</a> · <a href="../">Back to the daily page</a></p></footer></div></body></html>'''
 
 
 def main():
