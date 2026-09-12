@@ -1,80 +1,41 @@
 # Still Working
 
-**Maya runs a twelve-person online shop. Her orders stopped going into her accounting
-software three weeks ago and she found out from her bookkeeper.**
+**Maya runs a twelve-person shop. She should not have to read four suppliers' technical changes to find the one that might stop her getting paid.**
 
-Still Working is an agent that watches the handful of companies Maya's shop depends on, and
-tells her when one of them has broken something. Not a diff. A sentence about her business.
+Maya is an illustrative shop owner, not a customer. Still Working watches real published supplier contracts, matches changes to the routines in her shop profile, and writes a plain-English note she can act on. Most mornings it has nothing new to tell her.
 
-Most mornings it says two words.
+**[Open the daily page](https://iamrobertmoore.github.io/still-working/)** ·
+**[Replay the real cloud responses](https://iamrobertmoore.github.io/still-working/replay/)** ·
+[Architecture](ARCHITECTURE.md) · [Submission](DEVPOST.md)
 
-**[See it](https://iamrobertmoore.github.io/still-working/)** ·
-[Architecture](ARCHITECTURE.md) ·
-[Submission](DEVPOST.md) ·
-[Maya's shop, in her words](business/maya.yaml)
+![Public supplier contracts through matching, controlled judgement and a daily page](docs/architecture.svg)
 
-![Three layers, and only the third needs a model](docs/architecture.svg)
+## Try it in one minute
 
----
+1. Open [the stock warning](https://iamrobertmoore.github.io/still-working/replay/2026-07-14-square.html). A real Square publication change becomes a possible consequence for Maya's shop, followed by something her developer can check.
+2. Open [the repeat held](https://iamrobertmoore.github.io/still-working/replay/2026-04-29-xero.html). The payroll routine was already flagged five days earlier. Its delivery ledger prevents another note, before a model is constructed.
+3. Expand “Every decision in the replay” to inspect all 23 captured AgentCore responses. The [raw evidence](docs/replay/recordings.json) includes input, output, ledger and source hashes. These are recordings, not live inference in your browser.
 
-## The problem
+## The person and the problem
 
-A small shop runs on four or five companies it does not control. The card processor. The
-till. The accounts. The shipping label service. Every one of them changes things whenever
-they like, and none of them writes to Maya about it.
+Maya sells homeware online and at one counter. She has a freelance developer, Priya, for two days a month. An integration can stop copying orders into the accounts while the shop keeps taking payments. The first visible symptom might be her bookkeeper trying to reconcile the numbers weeks later.
 
-When one of those changes lands, nothing looks wrong. The shop keeps taking orders. The
-money still arrives. What stops is something quiet: the nightly copy of orders into the
-accounts, the tracking number in the dispatch email, the weekly figure she makes decisions
-on. She finds out weeks later, from a bookkeeper, a customer, or a VAT return that will not
-reconcile.
+That is the scenario I designed for, not an incident reported by a real customer. The [shop profile](business/maya.yaml) contains eight illustrative routines, their possible costs, and how late someone might notice a failure. Those delays and costs are assumptions, not measured savings.
 
-The information that would have warned her exists. Every one of those companies publishes,
-in public, a machine-readable description of what their software accepts. Nobody reads it,
-because reading it is a full-time job in a language Maya does not speak.
+The profile separates the business language from the inferred supplier calls, with a confidence level for each mapping. Setup can propose a mapping, but code rejects a call absent from the supplier's published catalogue. A person still needs to verify that the shop's actual integration uses it.
 
-## Who it's for
-
-**Maya.** Twelve people. Homeware, mostly. Sells online and at one counter.
-
-She is not a developer and does not want to become one. She has Priya, a freelance
-developer, two days a month and not on retainer. Priya is who fixes things. Maya is who
-has to know there is something to fix, and right now she has no way of knowing.
-
-Her whole business is written down, in her own words, in
-[`business/maya.yaml`](business/maya.yaml). Eight routines. What she calls each one, what
-happens if it stops, how late she would normally notice, and what it costs her. She did
-not write a single vendor call name in that file and could not have. She answered five
-questions about her week and the agent worked the rest out during setup, which is recorded
-separately, with a confidence level, so it can be checked and corrected when it is wrong.
-
-This is the part that makes it hers rather than Priya's. The engine underneath compares
-published contracts. What reaches Maya is a consequence.
-
-## Why it matters
-
-Because the failure is silent, and silent failures get expensive by sitting there.
-
-Maya's nightly sync broke and cost her three weeks of manual reconciliation and a VAT
-return built on numbers nobody trusted. The change that caused it was published, in public,
-the day it happened. There was nothing secret about it. It just had nobody reading it who
-knew what her shop needed.
-
-And the reason nobody builds this for her is that the obvious version is useless. A tool
-that forwards every supplier change gets switched off in week two.
-
-So I measured it, against five months of real history rather than a demo.
+The result is addressed to the owner: what might be affected, what the consequence could be, and what to do next. Technical detail sits below a clear line addressed to Priya.
 
 ## The measurement
 
-All four of these companies publish their contract in a public git repository, so their
-change history is already there, timestamped by them. `tools/backfill.py` reads it and
-replays it through Maya's profile. Anyone can re-run it and get the same answer.
+I reconstructed daily contract states from four suppliers' public git histories. The matcher is deterministic; the notes in the browser replay were generated by the deployed Strands agent on AWS Bedrock AgentCore.
 
 <!-- measurement:start -->
-**150 days. 23 days on which a contract changed shape. 56 individual changes. 9 of those could break somebody. 7 landed on a call one of Maya's routines actually uses.**
+**150 days. 23 supplier-change records across 22 calendar days. 56 individual changes. 9 potentially breaking changes.**
 
-**3 landed on a routine of hers that was actually broken. She is interrupted twice.**
+7 supplier-change records touched calls in Maya's illustrative profile.
+
+**3 records contained a potentially breaking change to a mapped routine. The replay would interrupt her twice.**
 
 | When | Who | What she would have been told | |
 |---|---|---|---|
@@ -82,81 +43,41 @@ replays it through Maya's profile. Anyone can re-run it and get the same answer.
 | 29 April | Your accounts | Paying the twelve of us | held, she was told 5 days earlier |
 | 14 July | Your till and bookings | Stock moving between the counter and the website | sent |
 
-Two interruptions in 5 months, from 56 supplier changes. That is **3.6%**. Not zero, which would mean she does not need this. Not weekly, which is why she would turn it off. That ratio is the product.
+Two interruptions in 5 months of replay, from 56 supplier changes. That is **3.6%**. That ratio is the product. It measures notification volume for this profile, not accuracy, prevented outages or money saved for a real customer.
 
 _Window 2026-04-07 to 2026-09-04. Regenerated by the scheduled job on every run, never typed by hand. Re-run it with `python tools/impact.py --measure`._
 <!-- measurement:end -->
 
-The two in April are the same thing twice: her accounting software deleted its entire
-employee section, put it back, and deleted it again five days later. Maya has twelve people
-on the books. Nobody wrote to her about it either time. She hears about it once, because
-two notes in five days about her payroll is how a person learns to archive the sender. The
-rule that holds the second one is in [`agent/memory.py`](agent/memory.py), as a `Deny`, not
-as a line in a prompt.
+The repeat window is a design choice prompted by the April sequence, not an independently validated optimum. The profile was also widened after inspecting this history. This is an inspectable retrospective demonstration, not a held-out accuracy evaluation.
 
-The block above is rewritten by the scheduled job on every run, the same way
-Maya's screen is, so the numbers in this README cannot quietly become untrue.
-The relationships between them are asserted in
-[`tests/test_measurement.py`](tests/test_measurement.py).
+The runtime replay independently produced two rendered notes with two model invocations. A note being rendered is the delivery boundary in this prototype. No email was sent to Maya, and no real business outcome was observed.
 
----
+## How it works
 
-### What the measurement caught in my own work
-
-The first version of Maya's profile had five routines and returned **zero**. Not one of the
-nine breaking changes touched anything she was watching.
-
-That was not the suppliers being stable. It was a profile too thin to ever fire. The churn
-was concentrated in stock, in employees and in bank reconciliation, and a twelve-person shop
-selling through both a counter and a website plainly does all three. Two smaller misses in
-the same direction: she watched `POST /v1/labels` but not `GET`, so a real change to reading
-a label back went straight past her.
-
-The routines were widened with the full call set a working integration uses, not with the
-calls that happened to break, which is the difference between fixing an under-specification
-and fitting the profile to the answer. The reasoning is recorded in
-[`business/maya.yaml`](business/maya.yaml) with dates.
-
-**The real lesson is about the product, not the profile.** A hand-written profile is the
-weakest part of this system. The setup conversation that replaces it is the most valuable
-thing left to build, and now I can say why with a number.
-
-## What it does
-
-Three layers, and keeping them apart is the design.
-
-| | What it answers | How |
+| Layer | Job | Model needed? |
 |---|---|---|
-| `tools/snapshot.py` | What changed, in the vendors' language | Deterministic. Fetch, normalise, classify. |
-| `tools/impact.py` | Which of Maya's routines that touches | Deterministic. Set membership. |
-| `agent/still_working.py` | Whether it actually breaks her, and how to say it | Judgement. Strands. |
+| [Collector](tools/snapshot.py) | Fetch public contracts, normalise them, classify changes | No |
+| [Matcher](tools/impact.py) | Find the routines that depend on changed calls | No |
+| [Judgement and delivery](agent/still_working.py) | Explain a possible consequence and propose a useful note | Only for an eligible change |
+| [Daily delivery](tools/deliver.py) | Call the deployed runtime, persist approved notes and the ledger, publish the page | Uses the judgement layer |
 
-Only the last layer needs a model, and it is the only one where being wrong is a matter of
-degree rather than a bug.
+The scheduled GitHub Actions job authenticates to AgentCore using OIDC. Its role can invoke this runtime only, from this repository's main branch. There are no stored AWS access keys. A missing role or failed invocation fails the job; it does not silently publish an all-clear.
 
-**The interruption rule is a control, not an instruction.** "Only tell her when it matters"
-in a prompt is a probability, and its failure mode is silent: it pings her about nothing
-for a fortnight and she stops reading. Instead it is a Strands `InterventionHandler` on
-`before_tool_call` around the one tool that can reach her:
+The agent cannot bypass the one tool that renders the note. Strands interventions stamp known dates and routine identifiers, deny irrelevant or repeated notifications, and require review for low-confidence mappings. Medium-confidence notes carry visible uncertainty. A rejected tool call is not counted as a delivery. A detected risk without a usable note stays pending.
 
-- **Deny** when nothing she depends on is broken. She is never told.
-- **Deny** when she was told about this same routine within the last five days.
-- **Proceed** when a routine mapped at high or medium confidence is broken.
-- **Confirm** when the only thing broken is a routine the setup mapped at *low* confidence.
-  A person checks before Maya is told her Monday figure is wrong.
+[The deployed bundle](runtime/app/StillWorking/main.py) uses generated copies of the canonical controls. [A drift check](tools/sync_runtime.py) fails when the deployable and local implementation disagree. Each invocation has its own date validation and delivery state. The authenticated caller persists the returned ledger; a warm container is not treated as durable memory.
 
-A second handler runs before that one and uses **Transform** to overwrite the note's
-factual fields with the values the system already holds. It exists because of a specific
-failure: given a change dated 14 July and a `days_ago` of 51, the model subtracted one from
-the other, got 24 May, and filed it under the word **FACT**. The fix was not a firmer
-instruction. The fix is that the model is never the source of a fact the system knows.
+## The mistakes that changed the build
 
-The full picture, including why `agent/morning.py` uses `Agent.as_tool()` without undoing
-any of this, is in [ARCHITECTURE.md](ARCHITECTURE.md).
+- **The first profile returned zero.** It omitted stock and payroll routines. I widened it, then documented that this was informed by the same history used in the measurement. That makes setup quality a limitation to test, not a solved problem.
+- **Three invented calls survived the other checks.** Comparing every mapping against published supplier history exposed them. Setup now drops unsupported calls before saving a profile.
+- **The model put the wrong date under FACT.** It subtracted a relative age from the supplied change date. Known facts are now stamped by code, and contradictory dates in prose make the tool refuse the note. Tests cover a wrong year as well as a wrong day.
+- **The local controls had outgrown the deployed bundle.** I replaced handwritten copies with generated controls and exercised all 23 historical records against the actual deployed runtime. Tests now cover refused deliveries, repeat state across invocations and independent concurrent dates.
+- **The daily collector did not invoke the cloud agent.** It does now: the workflow owns the ledger, calls the runtime for relevant records, and publishes the returned notes with the page.
 
-## What she actually sees
+## What the note looks like
 
-A day where something broke:
+This is a **scripted formatting fixture**, not a real outage or the output of the historical cloud replay. The [recorded model notes](https://iamrobertmoore.github.io/still-working/replay/) show the observed publication separately from its inferred business consequence.
 
 ```
 Your orders stopped going into the accounts on Tuesday.
@@ -174,20 +95,7 @@ What to do: Forward the part below to Priya. It is about an hour of her time.
   the nightly sync reads each order through it before writing to Xero
 ```
 
-Every other day:
-
-```
-Still working.
-Nothing that matters to you changed.
-```
-
-The technical detail is in the note, complete, and clearly addressed to somebody else.
-Maya forwards it. She never reads it. Leaving it out would make the note useless to the
-person who can act on it; putting it above the line would make it useless to her.
-
-## What is being watched
-
-Four real companies, four real contracts, none of which I control.
+## Suppliers
 
 <!-- vendors:start -->
 | What Maya calls it | Company | Calls published | Contract version |
@@ -198,142 +106,49 @@ Four real companies, four real contracts, none of which I control.
 | how I print labels | ShipEngine | 97 | `1.1.202604070904` |
 <!-- vendors:end -->
 
-Three of those stamp a version that moves. Square's has said `2.0` for years. **The company
-that does not version its contract is the one you cannot watch by reading a version
-string**, which is most of the reason this reads the whole document every day instead.
-
-And a version that moves is not the same as a version that means something. Xero went from
-17.0.0 to 19.0.0 between April and September without removing anything a caller relies on,
-and deleted its entire employee section on a day the number did not move at all.
+Three of those stamp a version that moves. Square's remains `2.0` across meaningful changes, which is why I compare contract shape rather than rely on version strings.
 
 ## Run it
 
 ```bash
-python3 -m venv .venv && . .venv/bin/activate
+python3 -m venv .venv
+. .venv/bin/activate
 pip install -r requirements.txt
-
-python -m pytest tests/ -q              # 325 tests, about three seconds, no credentials
-
-python tools/snapshot.py --self-test    # prove the change detector fires
-python tools/impact.py   --self-test    # prove the right things reach Maya
-python tools/setup.py    --self-test    # prove setup cannot invent a call into her profile
-python agent/morning.py  --self-test    # prove a quiet morning builds no agent at all
-
-python agent/still_working.py --demo    # six days, end to end
-python agent/still_working.py --stream  # the same note, arriving as it is written
-python agent/still_working.py --trace   # every model call, tool call and intervention
-python agent/morning.py --demo          # four suppliers, one morning, one message
-
-python tools/backfill.py --since 2026-04-01   # reconstruct five months from vendor history
-python tools/impact.py --measure              # what would have reached Maya, and when
-python tools/setup.py --verify                # every call in her profile vs today's contracts
-
-python tools/snapshot.py                # take today's snapshot
-
-# with AWS credentials, to run the judgement layer on the real model
-python tools/check_bedrock.py --region us-east-1   # find a model id this account can invoke
-export STILL_WORKING_MODEL="<the id it prints>"
-python agent/still_working.py --live          # one real recorded change, end to end
+pip install pytest bedrock-agentcore
+python -m pytest tests/ -q
+python tools/sync_runtime.py --check
+python agent/still_working.py --demo
+python tools/impact.py --measure
 ```
 
-Everything above the divider runs with no AWS account, no key and no call to a model. The
-agent runs against a scripted model provider so the harness is testable on its own, which
-is why the CI job can run the whole thing on every push.
+Those checks use a scripted Strands model and require no AWS credentials. To reconstruct public history or collect current contracts:
 
-Below the divider is the same agent against Bedrock. `--live` swaps the model and nothing
-else moves, because the agent was written against the Strands `Model` interface rather than
-against Bedrock.
-
-## What the checks actually assert
-
-A green tick is not evidence, so being exact about this:
-
-- It reads what each company **publishes**, not their live system. A company whose
-  documentation lags its deployment will not be caught.
-- The mapping from Maya's routines to vendor calls was **inferred at setup and can be
-  wrong**. Every routine carries its confidence, and a low-confidence routine cannot reach
-  her without a person agreeing first.
-- `tools/snapshot.py --self-test` proves the detector fires on every kind its fixtures can
-  produce, marks
-  exactly the right two as breaking, tells an optional parameter becoming required apart
-  from a brand new required one, and stays silent on an identical snapshot.
-- `tools/impact.py --self-test` proves a busy day of breaking changes she does not depend
-  on stays silent, that a company renaming its own path parameter still matches her
-  profile, and that **every routine has at least one call no other routine watches**. That
-  last test exists because one did not, which made its own behaviour untestable and which
-  nothing else would have caught.
-- The reconstruction takes **one revision per calendar day**, the last one. Suppliers push
-  more than once a day and sometimes revert within the day: Stripe did exactly that on
-  1 July, forward to one version and back again. Counting both would report changes nobody
-  outside Stripe ever saw. A daily poller sees the last state of each day, so that is what
-  is reconstructed.
-- **The daily job was written and never run, and its first real run failed in twelve
-  seconds** on a missing dependency, because there was no install step. The self tests it
-  runs first had never executed. It is fixed, and the note is left in the workflow, because
-  the whole product is about failures that report nothing.
-- The scheduled job runs the self tests **first** and fails loudly if they stop passing. A
-  check that has quietly stopped checking still goes green.
-- A company being unreachable is reported as a job failure, never as a change. The alarm is
-  gated on the classification, never on the job's exit code.
-- Nothing is gated on a credential. Every contract is public. There is no secret that can
-  go missing and let the job skip its work while still passing.
-- `tools/setup.py --self-test` proves that a call the supplier does not publish **cannot
-  reach Maya's profile**, whatever the model returns. Choosing from the published list is
-  an instruction; dropping anything that is not on it is the control.
-- `tools/setup.py --verify` checks every call already in her profile against what the
-  supplier publishes today, and splits its findings in two. A call the supplier **removed**
-  is the product working. A call the supplier has **never published** is my mistake. It
-  found three of the second kind on 11 September, in a profile that had been in this
-  repository for a fortnight and passed every other test. A watch on a call that does not
-  exist can never fire, and nothing else would ever have said so.
-- `agent/morning.py --self-test` proves that on a morning where nothing reaches her, **no
-  agent is constructed and no model is called**, by counting model calls rather than by
-  trusting the code to be careful.
-- `tests/test_measurement.py` asserts the headline numbers from `contracts/changes.jsonl`.
-  When the suppliers move, it fails, and the README gets corrected instead of quietly
-  becoming untrue.
-
-## Layout
-
-```
-business/maya.yaml          Maya's shop in her words, and what setup inferred from it
-contracts/vendors.json      the four companies being watched
-contracts/snapshots/        one normalised snapshot per company per day
-contracts/latest/           the running head
-contracts/changes.jsonl     append only, one record per detected change
-tools/snapshot.py           fetch, normalise, classify. Deterministic
-tools/backfill.py           reconstruct the series from the vendors' own git history
-tools/impact.py             which routines a change touches, and --measure. Deterministic
-tools/setup.py              the setup conversation, and --verify. Structured output
-tools/render_page.py        generates docs/index.html, the screen Maya looks at
-agent/still_working.py      the Strands agent, its tools, and the interruption rule
-agent/memory.py             what she has already been told, and the quiet window
-agent/morning.py            four suppliers, one morning, one message. Agent.as_tool()
-agent/notes.py              the only format Maya ever sees
-agent/model_double.py       a scripted Strands model provider, for credential-free tests
-runtime/app/StillWorking/   the judgement layer as deployed. Imports nothing from above
-tools/check_bedrock.py      which Bedrock model ids this account can actually invoke
-tools/check_runtime_isolation.py   proves the deployed bundle does not reach into the repo
-tests/                      325 pytest cases, no credentials, about three seconds
-docs/index.html             Maya's screen, regenerated by the daily job
-docs/architecture.svg       the diagram at the top of this file
-.github/workflows/          the daily job
+```bash
+python tools/backfill.py --since 2026-04-01
+python tools/setup.py --verify
+python tools/snapshot.py
 ```
 
-Snapshots store the **normalised** map, never the raw document. The four raw files are
-about 29 MB a day between them, most of it ShipEngine, which publishes 17 MB to describe
-97 calls. The normalised map is around 210 KB and git compresses it to almost nothing,
-because on most days nothing changes.
+To make new real cloud recordings, use AWS credentials authorised to invoke your deployed runtime:
 
-## Disclosure
+```bash
+export STILL_WORKING_RUNTIME_ARN="<your AgentCore runtime ARN>"
+python tools/replay.py
+python tools/render_replay.py
+```
 
-I built a CI job earlier this year that compared a generated artifact against a live vendor
-API. **No code from it is in this repository.** What carried over is the idea that the
-interesting comparison is against a third party you do not control, and two things I got
-wrong the first time: raise the alarm on the specific failing check rather than on the job
-failing, and never gate a suite on a credential you do not have. Both are written into the
-workflow and the self tests here.
+This invokes the deployed agent and can incur AWS charges. Rendering the existing saved replay does not call AWS. Deployment instructions are in [runtime/README.md](runtime/README.md).
 
-## Licence
+## Limits and next decisions
+
+This reads what suppliers **publish**, not their deployed behaviour or a shop's traffic. It detects three potentially breaking shapes: removed calls, removed parameters, and existing optional parameters becoming required. It does not cover every response-schema or behavioural change. Daily sampling can miss changes reverted within a day.
+
+The mapping is inferred. High confidence is not proof of an actual dependency. Low-confidence cases remain pending until a maintainer checks and corrects the profile; there is no finished review inbox yet. The five-day rule can suppress a distinct problem affecting the same routine. There is no customer validation, measured recall, production deployment in a shop, or evidence of savings.
+
+The next valuable step is validating the mappings against a real integration, followed by an owner/developer review flow. Another dashboard would add less than knowing the match is right.
+
+## Disclosure and licence
+
+I previously built a CI job comparing a generated artifact with a live vendor API. No code from it is in this repository. The earlier experience informed the choice to compare against third parties and to separate a detector finding from a failed job. The implementation here uses Strands Agents and AWS Bedrock AgentCore.
 
 MIT. See [LICENSE](LICENSE).

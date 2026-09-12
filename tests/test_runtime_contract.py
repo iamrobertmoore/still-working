@@ -54,7 +54,7 @@ def note(**kw):
     base = dict(routine="Stock", headline="Stock stopped.", what_happened="It stopped.",
                 what_it_costs="Money.", how_late_normally="weeks",
                 what_to_do="Forward this.", forward_to="Priya",
-                for_the_developer="square: a call was removed")
+                for_the_developer="square: a call was removed", change_date=IMPACT["date"], days_ago=51)
     base.update(kw)
     return base
 
@@ -90,23 +90,20 @@ def test_two_different_dates_are_both_found():
 
 # ---------------------------------------------------------------- the guard
 
-def test_the_guard_is_armed_from_the_change_record():
-    words = deployed._date_guard(IMPACT)
-    assert words == "14 July 2026"
-    assert deployed._ALLOWED_DATE == (7, 14)
+def test_the_payload_accepts_a_real_calendar_date():
+    assert deployed._impact_from(IMPACT)["date"] == "2026-07-14"
 
 
-def test_a_record_with_no_date_arms_nothing_rather_than_guessing():
-    assert deployed._date_guard({"date": None}) == "an unknown date"
-    assert deployed._ALLOWED_DATE is None
+def test_a_record_with_no_date_does_not_guess():
+    assert deployed._impact_from(dict(IMPACT, date=None))["date"] is None
 
 
-def test_a_record_with_an_unparseable_date_does_not_crash():
-    assert deployed._date_guard({"date": "sometime"}) == "sometime"
+def test_an_invalid_calendar_date_is_rejected_before_a_model_can_see_it():
+    with pytest.raises(ValueError, match="calendar date"):
+        deployed._impact_from(dict(IMPACT, date="2026-13-99"))
 
 
 def test_the_real_note_is_rendered_when_the_date_is_right():
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(what_happened="It broke on 14 July."))
     assert "REJECTED" not in out
     assert "forward this part to Priya" in out
@@ -114,16 +111,14 @@ def test_the_real_note_is_rendered_when_the_date_is_right():
 
 def test_the_exact_bug_is_rejected():
     """FACT: ... on 2026-05-24 (51 days ago). The model did arithmetic and got it wrong."""
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(
         for_the_developer="FACT: square removed this on 2026-05-24 (51 days ago)"))
     assert out.startswith("REJECTED")
     assert "14 July 2026" in out
-    assert "Do not calculate dates" in out
+    assert "calculate dates" in out
 
 
 def test_the_rejection_names_the_wrong_date_it_saw():
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(headline="It broke on 24 May."))
     assert "24/05" in out
 
@@ -131,27 +126,23 @@ def test_the_rejection_names_the_wrong_date_it_saw():
 @pytest.mark.parametrize("field", ["headline", "what_happened", "what_it_costs",
                                    "how_late_normally", "what_to_do", "for_the_developer"])
 def test_a_wrong_date_in_any_field_is_rejected(field):
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(**{field: "this happened on 2026-05-24"}))
     assert out.startswith("REJECTED"), field
 
 
 def test_a_season_in_the_note_is_not_rejected():
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(
         what_it_costs="Every hour of downtime is a day of trading in December."))
     assert "REJECTED" not in out
 
 
 def test_saying_how_long_ago_in_words_is_allowed():
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(headline="Stock stopped about seven weeks ago."))
     assert "REJECTED" not in out
 
 
 def test_with_no_date_armed_nothing_is_rejected():
-    deployed._date_guard({"date": None})
-    out = deployed.send_to_maya(**note(headline="It broke on 2026-05-24."))
+    out = deployed.send_to_maya(**note(headline="It broke on 2026-05-24.", change_date=""))
     assert "REJECTED" not in out
 
 
@@ -202,7 +193,6 @@ def test_the_deployed_bundle_enforces_the_same_house_style(written):
 
 
 def test_the_deployed_note_has_no_long_dashes():
-    deployed._date_guard(IMPACT)
     out = deployed.send_to_maya(**note(headline="Stock stopped — on Tuesday."))
     assert "—" not in out
 
@@ -222,14 +212,12 @@ def result_block(text):
 
 def test_the_note_returned_is_the_last_note_not_the_last_tool_result():
     """A refusal followed by the model giving up used to come back as Maya's note."""
-    deployed._date_guard(IMPACT)
     real = deployed.send_to_maya(**note(what_happened="It broke on 14 July."))
     messages = [result_block(real), result_block("REJECTED: the note mentions 24/05, ...")]
     assert deployed.last_note(messages) == real
 
 
 def test_a_lookup_after_the_note_does_not_become_the_note():
-    deployed._date_guard(IMPACT)
     real = deployed.send_to_maya(**note())
     messages = [result_block(real), result_block('{"id": "stock", "derived": {}}')]
     assert deployed.last_note(messages) == real
@@ -241,7 +229,6 @@ def test_a_morning_with_no_note_returns_none_rather_than_a_refusal():
 
 
 def test_a_later_note_replaces_an_earlier_one():
-    deployed._date_guard(IMPACT)
     first = deployed.send_to_maya(**note(headline="First."))
     second = deployed.send_to_maya(**note(headline="Second."))
     assert deployed.last_note([result_block(first), result_block(second)]) == second

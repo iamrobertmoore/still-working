@@ -1,108 +1,43 @@
-# AgentCore Project
+# Still Working runtime
 
-This project was created with the [AgentCore CLI](https://github.com/aws/agentcore-cli).
+The deployed judgement layer accepts a deterministic assessment, not a general chat prompt. Maya is an illustrative shop owner. A note explains a potential consequence of a published change, not a confirmed production outage.
 
-## Project Structure
+## Develop and deploy
 
-```
-my-project/
-├── AGENTS.md               # AI coding assistant context
-├── agentcore/
-│   ├── agentcore.json      # Project config (agents, memories, credentials, gateways, evaluators)
-│   ├── aws-targets.json    # Deployment targets (account + region)
-│   ├── .env.local          # Secrets — API keys (gitignored)
-│   ├── .llm-context/       # TypeScript type definitions for AI assistants
-│   │   ├── agentcore.ts    # AgentCoreProjectSpec types
-│   │   └── aws-targets.ts  # Deployment target types
-│   └── cdk/                # CDK infrastructure (@aws/agentcore-cdk)
-├── app/                    # Agent application code
-└── evaluators/             # Custom evaluator code (if any)
-```
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js** 20.x or later
-- **Python 3.10+** and **uv** for Python agents ([install uv](https://docs.astral.sh/uv/getting-started/installation/))
-- **AWS credentials** configured (`aws configure` or environment variables)
-- **Docker** (only for Container build agents)
-
-### Development
-
-Run your agent locally:
+From the repository root, with the Python dependencies installed:
 
 ```bash
-agentcore dev
+python tools/sync_runtime.py
+python tools/sync_runtime.py --check
+python -m pytest tests/ -q
+python runtime/app/StillWorking/test_entrypoint.py
+cd runtime
+agentcore deploy --dry-run --yes
+agentcore deploy --yes
 ```
 
-### Validate Invocation Input
+Use the existing project configuration to update the runtime in place. Do not rename resources or edit generated CDK files. Read [the runtime instructions](AGENTS.md) before changing resource configuration. AWS credentials and the AgentCore CLI are required for deployment.
 
-Validate runtime invocation payloads before forwarding them to an agent framework. Keep user prompts typed as strings
-and pass only prompt text to the agent.
+## Invoke
 
-### Deployment
-
-Deploy to AWS:
+From `runtime/`, using the installed AgentCore CLI:
 
 ```bash
-agentcore deploy
+agentcore invoke --prompt-file app/StillWorking/sample-impact.json
 ```
 
-## Commands
+The sample is a historical assessment. Relative dates are anchored to its supplied `days_ago`; do not present it as today's live supplier change.
 
-| Command | Description |
-| --- | --- |
-| `agentcore create` | Create a new AgentCore project |
-| `agentcore add` | Add resources (agent, memory, credential, gateway, evaluator, policy) |
-| `agentcore remove` | Remove resources |
-| `agentcore dev` | Run agent locally with hot-reload |
-| `agentcore deploy` | Deploy to AWS via CDK |
-| `agentcore status` | Show deployment status |
-| `agentcore invoke` | Invoke agent (local or deployed) |
-| `agentcore logs` | View agent logs |
-| `agentcore traces` | View agent traces |
-| `agentcore eval` | Run evaluations |
-| `agentcore package` | Package agent artifacts |
-| `agentcore validate` | Validate configuration |
-| `agentcore pause` | Pause a deployed agent |
-| `agentcore resume` | Resume a paused agent |
-| `agentcore fetch` | Fetch remote resource definitions |
-| `agentcore import` | Import existing resources |
-| `agentcore update` | Check for CLI updates |
+The runtime also accepts `{"impact": <assessment>}` directly. The authenticated caller supplies `delivery_history` and must persist the returned ledger with any rendered note. Unrelated changes and repeated routines build no model. Low confidence returns `held_for_a_person`. A refused note never becomes a delivery.
 
-## Configuration
+## Daily connection
 
-Edit the JSON files in `agentcore/` to configure your project. See `agentcore/.llm-context/` for type definitions and validation constraints.
+The workflow invokes this runtime through GitHub OIDC. To inspect the exact role and policy before provisioning:
 
-The project uses a **flat resource model** — agents, memories, credentials, gateways, evaluators, and policies are top-level arrays in `agentcore.json`. Resources are independent; agents discover memories and credentials at runtime via environment variables or SDK calls.
+```bash
+python tools/configure_delivery.py --runtime-arn "<your runtime ARN>"
+```
 
-## Resources
+Run that command from the repository root. Add `--apply` to provision the dedicated invocation-only role and set the two non-secret GitHub repository variables. The role trusts only the repository's main branch and grants invocation on the supplied runtime. It does not grant model, deployment or account administration permissions.
 
-| Resource | Purpose |
-| --- | --- |
-| Agent (runtime) | HTTP, MCP, or A2A agent deployed to AgentCore Runtime |
-| Memory | Persistent context storage with configurable strategies |
-| Credential | API key or OAuth credential providers |
-| Gateway | MCP gateway that routes tool calls to targets |
-| Gateway Target | Tool implementation (Lambda, MCP server, OpenAPI, Smithy, API Gateway) |
-| Evaluator | Custom LLM-as-a-Judge or code-based evaluation |
-| Online Eval Config | Continuous evaluation pipeline for deployed agents |
-| Policy | Cedar authorization policies for gateway tools |
-
-### Agent Types
-
-- **Template agents**: Created from framework templates (Strands, LangChain/LangGraph, GoogleADK, OpenAI Agents, Autogen)
-- **BYO agents**: Bring your own code with `agentcore add agent --type byo`
-- **Import agents**: Import existing Bedrock agents with `agentcore import`
-
-### Build Types
-
-- **CodeZip**: Python source packaged as a zip and deployed directly to AgentCore Runtime
-- **Container**: Docker image built via CodeBuild (ARM64), pushed to ECR, and deployed to AgentCore Runtime
-
-## Documentation
-
-- [AgentCore CLI](https://github.com/aws/agentcore-cli)
-- [AgentCore CDK Constructs](https://github.com/aws/agentcore-l3-cdk-constructs)
-- [Amazon Bedrock AgentCore](https://aws.amazon.com/bedrock/agentcore/)
+`tools/replay.py` captures real responses for every historical record. `tools/render_replay.py` publishes those saved responses without calling AWS. The optional local scripted agent, streaming and morning roundup examples are separate from the deployed daily path.

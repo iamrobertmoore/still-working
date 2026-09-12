@@ -3,15 +3,16 @@ name: still working
 # Fetches the contracts of the four companies Maya's shop depends on, every morning,
 # records what moved, and raises an alarm only when a change can break somebody.
 #
-# This job answers "did anything change". It deliberately does not answer "does that
-# matter to Maya"; tools/impact.py and the agent do that, and they are tested separately.
+# The collector and matcher are deterministic. Relevant records now reach the deployed
+# judgement layer through a repository-scoped OIDC role. Notes, the delivery ledger and
+# Maya's page are published together.
 #
 # Two rules this workflow exists to obey, both learned by getting them wrong:
 #
 #  1. The alarm is gated on `steps.snapshot.outputs.breaking`, never on `failure()`.
 #     A broken job must never announce itself as a vendor changing their API.
-#  2. Nothing here is gated on a secret. Every spec is public. A job that skips its own
-#     work for want of a credential still goes green, and nothing draws attention to it.
+#  2. Public collection needs no key. Cloud delivery uses OIDC and fails loudly if
+#     its role is missing; a missing credential never silently skips the work.
 #  3. Dependencies are installed before anything imports them. Obvious, and it still
 #     took a red run to notice, because the workflow was written and never executed.
 #
@@ -26,6 +27,7 @@ on:
 permissions:
   contents: write
   issues: write
+  id-token: write
 
 concurrency:
   group: still-working
@@ -68,6 +70,9 @@ jobs:
       - name: Prove the note still streams
         run: python agent/still_working.py --stream
 
+      - name: Prove deployed controls match the local agent
+        run: python tools/sync_runtime.py --check
+
       - name: Prove the deployed bundle does not reach into the repo
         run: python tools/check_runtime_isolation.py
 
@@ -87,7 +92,28 @@ jobs:
         continue-on-error: true
         run: python tools/snapshot.py
 
+      - name: Authenticate this repository to the judgement runtime
+        if: steps.snapshot.outcome == 'success'
+        uses: aws-actions/configure-aws-credentials@cbe3b392738ccf3f987d68400dafcf4b0624a56c # v6.2.4
+        with:
+          role-to-assume: ${{ vars.STILL_WORKING_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: still-working-daily
+
+      - name: Prove the deployed quiet gate is reachable
+        if: steps.snapshot.outcome == 'success'
+        env:
+          STILL_WORKING_RUNTIME_ARN: ${{ vars.STILL_WORKING_RUNTIME_ARN }}
+        run: python tools/cloud.py
+
+      - name: Deliver relevant changes through AgentCore
+        if: steps.snapshot.outcome == 'success'
+        env:
+          STILL_WORKING_RUNTIME_ARN: ${{ vars.STILL_WORKING_RUNTIME_ARN }}
+        run: python tools/deliver.py
+
       - name: Regenerate Maya's screen
+        if: steps.snapshot.outcome == 'success'
         run: python tools/render_page.py
 
       # Same reason as the line above. A number typed into a document by hand is a number
@@ -97,8 +123,8 @@ jobs:
 
       - name: Commit today's snapshot
         run: |
-          git config user.name  "still-working (scheduled)"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name  "Robert Moore"
+          git config user.email "iamrobertmoore@gmail.com"
           git add contracts/ docs/ README.md
           if git diff --cached --quiet; then
             echo "nothing to commit"
