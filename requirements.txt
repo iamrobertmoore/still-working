@@ -1,3 +1,7 @@
-strands-agents==1.53.0
-strands-agents-tools==0.8.6
+# strands-agents-tools was pinned here for a fortnight and never imported once. The
+# version that was pinned, 0.8.6, deprecated eleven of its tools, so the pin was both
+# unused and wrong. A dependency nothing imports is a claim about the project that is
+# not true, so it is gone rather than bumped.
+strands-agents>=1.55.1
 PyYAML>=6.0
+pydantic>=2.7

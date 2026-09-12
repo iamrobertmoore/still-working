@@ -296,6 +296,34 @@ def _date_guard(impact: dict) -> str:
     return _ALLOWED_TEXT
 
 
+def is_a_note(text: str) -> bool:
+    """Whether this tool result is a note Maya was actually shown.
+
+    Positive recognition, not a list of known failures. MayaNote always ends with the
+    forwarding line and nothing else this service can return does.
+    """
+    return "forward this part to" in (text or "")
+
+
+def last_note(messages) -> str | None:
+    """The last tool result that is a note, not the last tool result.
+
+    This took the last one of any kind, so a note refused for asserting the wrong date,
+    followed by the model giving up, returned the refusal text to the caller as Maya's
+    note. A reply to a routine lookup would have done the same.
+    """
+    found = None
+    for message in messages or []:
+        for block in message.get("content", []) or []:
+            if not isinstance(block, dict) or "toolResult" not in block:
+                continue
+            content = block["toolResult"].get("content") or []
+            if content and isinstance(content[0], dict) and "text" in content[0]:
+                if is_a_note(content[0]["text"]):
+                    found = content[0]["text"]
+    return found
+
+
 @app.entrypoint
 async def invoke(payload: dict, context: Any = None) -> dict:
     impact = _impact_from(payload)
@@ -320,13 +348,7 @@ async def invoke(payload: dict, context: Any = None) -> dict:
         f"{impact.get('days_ago')} days ago. Both of those are given to you. Do not "
         "calculate a date from them.\n\n" + repr(impact))
 
-    note = None
-    for message in agent.messages:
-        for block in message.get("content", []):
-            if isinstance(block, dict) and "toolResult" in block:
-                content = block["toolResult"].get("content") or []
-                if content and isinstance(content[0], dict) and "text" in content[0]:
-                    note = content[0]["text"]
+    note = last_note(agent.messages)
 
     log.info("outcome=%s routine=%s", handler.outcome, handler.routine)
 
