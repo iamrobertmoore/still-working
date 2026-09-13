@@ -1,5 +1,6 @@
 {
-  "state": "pending",
-  "updated_at": "2026-09-13T20:21:53.520224+00:00",
-  "workflow_url": "https://github.com/iamrobertmoore/still-working/actions/runs/34780502531"
+  "state": "complete",
+  "updated_at": "2026-09-13T20:22:19.588546+00:00",
+  "workflow_url": "https://github.com/iamrobertmoore/still-working/actions/runs/34780502531",
+  "last_completed_at": "2026-09-13T20:22:19.588546+00:00"
 }
