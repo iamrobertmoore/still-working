@@ -92,7 +92,7 @@ def test_the_page_opens_with_a_state_not_a_dashboard(page):
     body = page.split("<body>", 1)[1]
     first = re.search(r'class="state[^"]*">([^<]+)', body)
     assert first, body[:400]
-    assert first.group(1).strip() in ("Still working.", "Worth a look.")
+    assert first.group(1).strip() in ("Still working.", "Worth a look.", "Check in progress.")
 
 
 def test_the_page_says_when_it_last_checked(page):

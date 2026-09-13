@@ -7,8 +7,8 @@ Maya is an illustrative shop owner. The system reads real supplier publications 
 ## The daily path
 
 1. GitHub Actions runs the deterministic checks and credential-free agent tests.
-2. `tools/snapshot.py` fetches four public contracts and records structural changes.
-3. `tools/deliver.py` matches new records and outstanding pending cases against the shop profile. Unrelated records need no cloud call.
+2. `tools/snapshot.py` fetches four public contracts and records structural changes. `tools/delivery_status.py collected` queues relevant changes durably, marks the agent review pending, and the credential-free collection job publishes the page.
+3. A separate delivery job checks out the collection commit. `tools/deliver.py` matches new records and outstanding pending cases against the shop profile. Unrelated records need no cloud call.
 4. A GitHub OIDC role, restricted to this repository's main branch, invokes the AgentCore runtime in `us-east-1`. The caller supplies the assessment and its persisted delivery ledger.
 5. Runtime gates irrelevant, low-confidence and repeated routines before constructing a model. Eligible routines are judged independently using Strands and Bedrock (`global.anthropic.claude-sonnet-4-5-20250929-v1:0`).
 6. The `send_to_maya` tool renders a note only after controls pass. The caller persists notes, pending cases and returned ledger in `contracts/`, then regenerates the static page and commits them together.
@@ -30,7 +30,7 @@ Each invocation owns its date guard and state. The tests exercise concurrent req
 
 The local demonstration uses `AgentState` and `FileSessionManager`. The deployed runtime accepts `delivery_history` from its authenticated caller and returns the updated ledger. It does not pretend its process memory survives a restart.
 
-The scheduled caller stores history, processed record hashes and pending records in `contracts/delivery-state.json`. Notes are published with that state. A failed cloud call aborts publication, so an unrendered message is not silently marked as delivered. Pending records are retried even on a morning with no new changes. The [review page](docs/REVIEW.md) exports a case-specific decision for operator import. The daily caller attaches accepted reviews to the next pending assessment. A confirmation can release a low-confidence case; a dismissal uses no model. The page does not authenticate reviewers or mutate shared state directly.
+The scheduled caller stores history, processed record hashes and pending records in `contracts/delivery-state.json`. Notes are published with that state. Collection commits relevant changes to the pending queue before cloud access is attempted. A failed cloud call leaves notes and the delivery ledger unchanged, publishes a failed agent-review status, and leaves the collection job successful. Queued records are retried even on a later morning with no new changes. The [review page](docs/REVIEW.md) exports a case-specific decision for operator import. The daily caller attaches accepted reviews to the next pending assessment. A confirmation can release a low-confidence case; a dismissal uses no model. The page does not authenticate reviewers or mutate shared state directly.
 
 The repeat rule is five days for the same routine. It reduces duplicate notices but can also hide a distinct change to that routine. It is a chosen tradeoff, not a proven ideal interval.
 
@@ -55,7 +55,7 @@ The local scripts also demonstrate `stream_async`, telemetry spans, structured s
 | Failure | Behaviour |
 |---|---|
 | Supplier unreachable | Fail the collection run; do not publish a fresh reassuring page |
-| Missing AWS role or failed invocation | Fail delivery; do not commit a new delivery state |
+| Missing AWS role or failed invocation | Fail the delivery job; preserve queued records and the previous notes/ledger; publish an incomplete-review status beside the fresh supplier-check time |
 | Unsupported mapping | Setup rejects invented calls; verification flags unsupported existing ones |
 | Low-confidence mapping | Keep pending until a case-specific human review |
 | Model invents a date | Stamp known fields; reject contradictory prose |
@@ -63,4 +63,4 @@ The local scripts also demonstrate `stream_async`, telemetry spans, structured s
 | Supplier documentation lags deployment | Not detected |
 | A previously flagged problem remains unresolved | A suppressed repeat does not mean it is fixed |
 
-The daily page shows recent risks and pending reviews. Its quiet state means no new matched supplier risk was found, not that the shop's integrations were tested. The publication date of the oldest checked supplier is used for the page's check timestamp.
+The daily page shows recent risks and pending reviews. Its quiet state means no new matched supplier risk was found, not that the shop's integrations were tested. The fetch time of the oldest checked supplier is used for the page's check timestamp. `contracts/agent-status.json` separately records whether cloud review is pending, complete or failed, when it last completed and the workflow URL. An unfinished agent review cannot show the quiet all-clear.

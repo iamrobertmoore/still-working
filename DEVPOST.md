@@ -36,7 +36,7 @@ The review workbench makes the human decision inspectable: confirm the dependenc
 
 Python, Strands Agents, Amazon Bedrock, Bedrock AgentCore, GitHub Actions and GitHub Pages. The collector and matcher are deterministic; the deployed agent uses Bedrock in `us-east-1` for judgement and note-writing.
 
-The daily job authenticates with temporary, repository-scoped OIDC credentials, invokes AgentCore, saves the notes and ledger, and publishes the page. The local and deployed delivery controls share canonical source code, with a check that rejects drift.
+A credential-free collection job publishes the supplier check and queues relevant changes. A separate job authenticates with temporary, repository-scoped OIDC credentials, invokes AgentCore, and publishes notes, the ledger and review status. If AWS is unavailable, collection still publishes and queued changes survive for the next run. The local and deployed delivery controls share canonical source code, with a check that rejects drift.
 
 [Architecture diagram](https://iamrobertmoore.github.io/still-working/architecture.svg) · [Technical design](https://github.com/iamrobertmoore/still-working/blob/main/ARCHITECTURE.md) · [Source](https://github.com/iamrobertmoore/still-working)
 
@@ -49,6 +49,8 @@ Xero removed employee calls from its published contract on 24 April and again on
 I replayed every record against the deployed runtime. The first payroll change produced a note. The repeat five days later was held. The Square change produced the second note. Only those two cases invoked a model.
 
 **That ratio is the product.** Every input, response and delivery decision is available in the browser replay, without an AWS login. A separate captured review scenario shows hold, approval, dismissal and repeat suppression. The fresh cloud command below generates a new stock warning and carries its returned ledger into a second invocation.
+
+**Come back during judging.** The scheduled check keeps running. The daily page shows when the suppliers were checked and when the agent review completed, with a link to the actual run.
 
 ## How to run it
 

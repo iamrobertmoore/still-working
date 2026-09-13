@@ -91,6 +91,26 @@ def human_gap(days: int | None) -> str:
     return f"{days // 30} months ago"
 
 
+def review_status():
+    path = os.path.join(CONTRACTS, "agent-status.json")
+    if os.path.exists(path):
+        status = load(path)
+    else:
+        previous = os.path.join(CONTRACTS, "last-delivery.json")
+        stamp = load(previous).get("checked_at") if os.path.exists(previous) else None
+        status = {"state": "complete" if stamp else "pending", "last_completed_at": stamp}
+    state = status.get("state", "pending")
+    label = {"complete": "Agent review complete", "pending": "Agent review pending",
+             "failed": "Agent review could not finish"}.get(state, "Agent review pending")
+    if state == "complete" and status.get("last_completed_at"):
+        stamp = dt.datetime.fromisoformat(status["last_completed_at"])
+        label += stamp.strftime(" · %d %B at %H:%M UTC")
+    link = status.get("workflow_url", "https://github.com/iamrobertmoore/still-working/actions")
+    if not link.startswith("https://github.com/iamrobertmoore/still-working/actions"):
+        link = "https://github.com/iamrobertmoore/still-working/actions"
+    return state, label, link
+
+
 def main() -> int:
     business = load_business()
     labels = vendor_labels()
@@ -108,6 +128,7 @@ def main() -> int:
 
     delivery_path = os.path.join(CONTRACTS, "delivery-state.json")
     pending = load(delivery_path).get("pending", {}) if os.path.exists(delivery_path) else {}
+    review_state, review_label, review_link = review_status()
 
     # ---- the state, which is the whole point
     if outstanding or pending:
@@ -116,6 +137,11 @@ def main() -> int:
     else:
         state_class, state = "ok", "Still working."
         sub = "No new supplier risk found for your routines."
+    if not (outstanding or pending) and review_state != "complete":
+        state_class, state = "warn", "Check in progress."
+        sub = ("Your suppliers have been checked. The agent review is next."
+               if review_state == "pending" else "Your suppliers have been checked. The agent review needs another try.")
+    needs_attention = bool(outstanding or pending or review_state != "complete")
 
     fetched = [load(os.path.join(CONTRACTS, "latest", f"{v['id']}.json")).get("fetched_at")
                for v in vendors if os.path.exists(os.path.join(CONTRACTS, "latest", f"{v['id']}.json"))]
@@ -129,10 +155,10 @@ def main() -> int:
              f'<h1 id="daily-state" class="state {state_class}">{html.escape(state)}</h1>',
              f'<p class="sub">{html.escape(sub)}</p>',
              '<p class="reassurance">' + ('The details below will help you take the next step.'
-                if outstanding or pending else 'Four suppliers. One less thing to think about. Get on with your day.') + '</p>'
+                if needs_attention else 'Four suppliers. One less thing to think about. Get on with your day.') + '</p>'
              '<div class="hero-actions"><a class="primary-link" href="replay/">See what it catches <span aria-hidden="true">↗</span></a>'
              '<span>Five months of supplier history. See the two notes that mattered.</span></div></div>',
-             f'<div class="hero-art {"warning" if outstanding or pending else ""}" aria-hidden="true">'
+             f'<div class="hero-art {"warning" if needs_attention else ""}" aria-hidden="true">'
              '<div class="art-grid"></div><div class="orbit-ring"></div>'
              '<svg class="signal-paths" viewBox="0 0 400 360" fill="none" aria-hidden="true">'
              '<path d="M75 65C75 170 140 180 200 180M325 65C325 170 260 180 200 180M62 290C62 195 145 180 200 180M338 290C338 195 255 180 200 180"/>'
@@ -141,11 +167,12 @@ def main() -> int:
              '<span class="supplier-node node-square">' + icon("square") + '<span>Square<small>Your counter</small></span></span>'
              '<span class="supplier-node node-xero">' + icon("xero") + '<span>Xero<small>The accounts</small></span></span>'
              '<span class="supplier-node node-shipping">' + icon("shipengine") + '<span>ShipEngine<small>Shipping</small></span></span>'
-             f'<div class="seal">{mark(bool(outstanding or pending))}</div>'
+             f'<div class="seal">{mark(needs_attention)}</div>'
              '</div></section>',
              '<div class="check-strip"><span class="checked">' + icon("clock") +
              f'<span>Checked {html.escape(checked)}</span></span>'
-             '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>']
+             '<a href="#watching">What’s being watched <span class="arrow" aria-hidden="true">↓</span></a></div>',
+             f'<p class="run-status">{html.escape(review_label)}. <a href="{html.escape(review_link, quote=True)}">View the run <span aria-hidden="true">↗</span></a></p>']
 
     replay_data = load(os.path.join(ROOT, "docs", "replay", "recordings.json"))
     replay_measure = replay_data["measurement"]
