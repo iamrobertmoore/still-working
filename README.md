@@ -12,6 +12,8 @@ Come back during judging: the [daily page](https://iamrobertmoore.github.io/stil
 
 Built with **Strands Agents** and **Amazon Bedrock AgentCore** for **AWS Agents for Humans**, Professional Agents.
 
+[Watch the demo](https://www.youtube.com/watch?v=0cayNMYe2pw): the homepage, two useful warnings, human review and fresh AWS execution in under five minutes.
+
 ## A minute inside the product
 
 | Try this | Watch what happens |
@@ -153,6 +155,14 @@ python tools/render_replay.py
 Cloud invocation can incur AWS charges. Rendering the saved replay does not call AWS. Deployment instructions are in [runtime/README.md](runtime/README.md).
 
 </details>
+
+## Build journal
+
+Three articles on AWS Builder Center follow the measurements, deployment and controls behind Still Working.
+
+1. [56 supplier changes, two notes for a shop owner](https://builder.aws.com/content/3JJRAyrMXkMC2Lu1LWkrVIA2uOJ/agents-for-humans-56-supplier-changes-two-notes-for-a-shop-owner-agentsforhumans)
+2. [My agent was deployed, but the daily job did not call it](https://builder.aws.com/content/3JJSOz6E2j2Lmw1hKsUFM8Af92f/agents-for-humans-my-agent-was-deployed-but-the-daily-job-did-not-call-it-agentsforhumans)
+3. [My agent invented a date and filed it under FACT](https://builder.aws.com/content/3JJShEzJy72ITitAAsHKmPL6HLe/agents-for-humans-my-agent-invented-a-date-and-filed-it-under-fact-agentsforhumans)
 
 ## Evidence and scope
 

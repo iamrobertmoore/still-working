@@ -1,5 +1,7 @@
 # Still Working
 
+[Watch the video demo](https://www.youtube.com/watch?v=0cayNMYe2pw)
+
 [See what it catches](https://iamrobertmoore.github.io/still-working/replay/) · [Try a review decision](https://iamrobertmoore.github.io/still-working/review/) · [Open the daily page](https://iamrobertmoore.github.io/still-working/)
 
 The counter sells the last item. The website keeps taking orders. Still Working turns the supplier's technical change into a warning the owner can understand and a check her developer can act on.
@@ -81,6 +83,14 @@ A final audit found that the deployed controls lagged behind the local code and 
 ## What I would do next
 
 Validate the mappings against a real shop integration, evaluate missed changes on fresh history, and add private storage and reviewer authentication. That is the next step from this inspectable build to a service an owner can rely on.
+
+## Build journal
+
+Three articles on AWS Builder Center follow the measurements, deployment and controls behind Still Working.
+
+1. [56 supplier changes, two notes for a shop owner](https://builder.aws.com/content/3JJRAyrMXkMC2Lu1LWkrVIA2uOJ/agents-for-humans-56-supplier-changes-two-notes-for-a-shop-owner-agentsforhumans)
+2. [My agent was deployed, but the daily job did not call it](https://builder.aws.com/content/3JJSOz6E2j2Lmw1hKsUFM8Af92f/agents-for-humans-my-agent-was-deployed-but-the-daily-job-did-not-call-it-agentsforhumans)
+3. [My agent invented a date and filed it under FACT](https://builder.aws.com/content/3JJShEzJy72ITitAAsHKmPL6HLe/agents-for-humans-my-agent-invented-a-date-and-filed-it-under-fact-agentsforhumans)
 
 ## Disclosure
 
