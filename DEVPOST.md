@@ -84,6 +84,10 @@ A final audit found that the deployed controls lagged behind the local code and 
 
 Validate the mappings against a real shop integration, evaluate missed changes on fresh history, and add private storage and reviewer authentication. That is the next step from this inspectable build to a service an owner can rely on.
 
+## Automated operation
+
+Daily supplier snapshots, delivery records and generated pages are published by `github-actions[bot]`, with a link to the responsible workflow run in each new automated commit. These are outputs of the running application. Changes to the agent implementation are separate development commits.
+
 ## Build journal
 
 Three articles on AWS Builder Center follow the measurements, deployment and controls behind Still Working.
