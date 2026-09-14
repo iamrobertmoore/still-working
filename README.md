@@ -180,4 +180,4 @@ Browser replays show saved responses, and delivery means a successfully rendered
 
 I previously built a CI job comparing a generated artifact with a live vendor API. No code from it is in this repository. That experience informed the choice to compare against third parties and distinguish a detected change from a failed job.
 
-Built by [Robert Moore](https://github.com/iamrobertmoore). **MIT**. See [LICENSE](LICENSE). [Submission description](DEVPOST.md).
+Built by [Robert Moore](https://github.com/iamrobertmoore). **MIT**. See [LICENSE](LICENSE).

@@ -12,7 +12,7 @@ import re
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS = ("README.md", "ARCHITECTURE.md", "DEVPOST.md")
+DOCS = ("README.md", "ARCHITECTURE.md", "runtime/README.md")
 
 
 def read(name: str) -> str:
@@ -99,9 +99,10 @@ def test_the_architecture_diagram_is_valid_and_referenced():
 
 
 def test_the_readme_links_that_point_into_the_repository_all_exist():
-    text = read("README.md") + read("ARCHITECTURE.md") + read("DEVPOST.md")
-    for target in set(re.findall(r"\]\((?!https?:|#)([^)#]+)", text)):
-        assert os.path.exists(os.path.join(ROOT, os.path.normpath(target))), target
+    for doc in DOCS:
+        base = os.path.dirname(os.path.join(ROOT, doc))
+        for target in set(re.findall(r"\]\((?!https?:|#)([^)#]+)", read(doc))):
+            assert os.path.exists(os.path.normpath(os.path.join(base, target))), (doc, target)
 
 
 def test_the_deployed_bundle_and_the_local_agent_agree_on_the_house_style():
