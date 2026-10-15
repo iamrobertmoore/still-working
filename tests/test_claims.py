@@ -1,8 +1,8 @@
 """The claims the documents make, checked against the code that has to back them.
 
-A hackathon submission is read by people who will spot a contradiction between the README
-and the source in about ten seconds, and it is the cheapest possible way to lose their
-trust. Every claim here was wrong at some point today.
+A public project is read by people who will spot a contradiction between the README and
+the source in about ten seconds, and it is the cheapest possible way to lose their trust.
+Every claim here was wrong at some point.
 """
 from __future__ import annotations
 

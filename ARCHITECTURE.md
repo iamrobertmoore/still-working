@@ -7,8 +7,8 @@ Maya is an illustrative shop owner. The system reads real supplier publications 
 ## The daily path
 
 1. GitHub Actions runs the deterministic checks and credential-free agent tests.
-2. `tools/snapshot.py` fetches four public contracts and records structural changes. `tools/delivery_status.py collected` queues relevant changes durably, marks the agent review pending, and the credential-free collection job publishes the page.
-3. A separate delivery job checks out the collection commit. `tools/deliver.py` matches new records and outstanding pending cases against the shop profile. Unrelated records need no cloud call.
+2. `tools/snapshot.py` fetches four public contracts and records structural changes. `tools/delivery_status.py collected` queues relevant changes durably, marks the agent review pending, and the credential-free collection job publishes the page. When cloud review is switched off, `tools/delivery_status.py off` queues nothing and marks the review off instead.
+3. A separate delivery job, which runs only when the repository variable `STILL_WORKING_AGENT_REVIEW` is `on`, checks out the collection commit. `tools/deliver.py` matches new records and outstanding pending cases against the shop profile. Unrelated records need no cloud call.
 4. A GitHub OIDC role, restricted to this repository's main branch, invokes the AgentCore runtime in `us-east-1`. The caller supplies the assessment and its persisted delivery ledger.
 5. Runtime gates irrelevant, low-confidence and repeated routines before constructing a model. Eligible routines are judged independently using Strands and Bedrock (`global.anthropic.claude-sonnet-4-5-20250929-v1:0`).
 6. The `send_to_maya` tool renders a note only after controls pass. The caller persists notes, pending cases and returned ledger in `contracts/`, then regenerates the static page and commits them together.
@@ -40,7 +40,7 @@ The repeat rule is five days for the same routine. It reduces duplicate notices 
 
 No generated CDK resource definitions are hand-edited. [Runtime instructions](runtime/README.md) describe syncing, checking and deploying the existing runtime in place.
 
-## Evidence a judge can inspect
+## Evidence you can inspect
 
 [The browser replay](https://iamrobertmoore.github.io/still-working/replay/) presents 23 responses captured from the deployed runtime. Each record is replayed as of its historical date and the ledger is carried forward. The model produced two rendered notes. Quiet and repeated cases constructed no model.
 
@@ -57,6 +57,7 @@ The local scripts also demonstrate `stream_async`, telemetry spans, structured s
 | Supplier unreachable | Fail the collection run; do not publish a fresh reassuring page |
 | Missing AWS role or failed invocation | Fail the delivery job; preserve queued records and the previous notes/ledger; publish an incomplete-review status beside the fresh supplier-check time |
 | Unsupported mapping | Setup rejects invented calls; verification flags unsupported existing ones |
+| Cloud review switched off | Collect, match and publish as usual; show a matched change's deterministic warning without a written note; report the review as off |
 | Low-confidence mapping | Keep pending until a case-specific human review |
 | Model invents a date | Stamp known fields; reject contradictory prose |
 | Model produces no usable note | Return a review state, not an all-clear |

@@ -47,7 +47,7 @@ def test_collection_does_not_replay_the_historical_demo_or_replace_a_human_hold(
     assert queue_changes([RECORD], business, queued, RECORD['date']) == queued
 
 
-@pytest.mark.parametrize('phase', ['pending', 'failed', 'complete'])
+@pytest.mark.parametrize('phase', ['pending', 'failed', 'complete', 'off'])
 def test_page_distinguishes_fresh_collection_from_agent_completion(tmp_path, monkeypatch, phase):
     import shutil
     shutil.copytree(ROOT / 'contracts', tmp_path / 'contracts')
@@ -64,6 +64,9 @@ def test_page_distinguishes_fresh_collection_from_agent_completion(tmp_path, mon
     assert 'Checked ' in page
     if phase == 'complete':
         assert 'class="state ok">Still working.' in page and 'Agent review complete' in page
+    elif phase == 'off':
+        # Switched off is a settled state. Nothing is waiting, so it must not look unfinished.
+        assert 'class="state ok">Still working.' in page and 'Agent review off' in page
     else:
         assert 'class="state warn">Check in progress.' in page
         assert 'Get on with your day' not in page
@@ -86,3 +89,53 @@ def test_collection_publishes_before_cloud_and_failed_cloud_publishes_its_status
     result = delivery['steps'][-1]
     assert 'always()' in result['if'] and 'failed' in result['env']['DELIVERY_PHASE']
     assert 'continue-on-error' not in next(step for step in delivery['steps'] if step.get('id') == 'deliver')
+
+
+def test_cloud_review_is_opt_in_and_switching_it_off_is_reported_not_skipped_silently():
+    import yaml
+    workflow = yaml.safe_load((ROOT / '.github/workflows/contract-watch.yml').read_text())
+    delivery = workflow['jobs']['deliver']
+    assert delivery['if'] == "vars.STILL_WORKING_AGENT_REVIEW == 'on'"
+    queue = next(step for step in workflow['jobs']['collect']['steps']
+                 if 'delivery_status.py collected' in step.get('run', ''))
+    assert 'STILL_WORKING_AGENT_REVIEW' in queue['env']['AGENT_REVIEW']
+    assert 'delivery_status.py off' in queue['run']
+
+
+def test_switched_off_review_queues_nothing_and_says_so(tmp_path, monkeypatch):
+    import shutil, sys
+    from tools import delivery_status
+    shutil.copytree(ROOT / 'contracts', tmp_path / 'contracts')
+    data = tmp_path / 'contracts'
+    record = dict(RECORD)
+    today = delivery_status.dt.datetime.now(delivery_status.dt.timezone.utc).date().isoformat()
+    record['date'] = today
+    (data / 'changes.jsonl').write_text(json.dumps(record) + '\n')
+    (data / 'delivery-state.json').write_text('{"history": [], "processed": [], "pending": {}}')
+    monkeypatch.setattr(delivery_status, 'ROOT', tmp_path)
+    monkeypatch.setattr(sys, 'argv', ['delivery_status.py', 'collected'])
+    delivery_status.main()
+    assert json.loads((data / 'delivery-state.json').read_text())['pending'], 'control: on would queue it'
+    (data / 'delivery-state.json').write_text('{"history": [], "processed": [], "pending": {}}')
+    monkeypatch.setattr(sys, 'argv', ['delivery_status.py', 'off'])
+    delivery_status.main()
+    assert json.loads((data / 'delivery-state.json').read_text())['pending'] == {}
+    assert json.loads((data / 'agent-status.json').read_text())['state'] == 'off'
+
+
+def test_a_matched_change_with_review_off_shows_the_deterministic_warning(tmp_path, monkeypatch):
+    import shutil, datetime as dt
+    shutil.copytree(ROOT / 'contracts', tmp_path / 'contracts')
+    data = tmp_path / 'contracts'
+    record = dict(RECORD)
+    record['date'] = dt.date.today().isoformat()
+    (data / 'changes.jsonl').write_text(json.dumps(record) + '\n')
+    (data / 'agent-status.json').write_text(json.dumps({'state': 'off'}))
+    (data / 'delivery-state.json').write_text('{"pending": {}}')
+    output = tmp_path / 'index.html'
+    monkeypatch.setattr(render_page, 'CONTRACTS', str(data))
+    monkeypatch.setattr(render_page, 'OUT', str(output))
+    render_page.main()
+    page = output.read_text()
+    assert 'class="state warn">Worth a look.' in page
+    assert 'switched off, so there is no written note' in page

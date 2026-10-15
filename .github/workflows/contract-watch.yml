@@ -11,8 +11,10 @@ name: still working
 #
 #  1. The alarm is gated on `steps.snapshot.outputs.breaking`, never on `failure()`.
 #     A broken job must never announce itself as a vendor changing their API.
-#  2. Public collection needs no key. Cloud delivery uses OIDC and fails loudly if
-#     its role is missing; a missing credential never silently skips the work.
+#  2. Public collection needs no key and costs nothing. Cloud review is opt-in: it runs
+#     only when the repository variable STILL_WORKING_AGENT_REVIEW is "on". When it is
+#     on, it uses OIDC and fails loudly if its role is missing; a missing credential
+#     never silently skips the work. When it is off, the page says so.
 #  3. Dependencies are installed before anything imports them. Obvious, and it still
 #     took a red run to notice, because the workflow was written and never executed.
 #
@@ -96,7 +98,14 @@ jobs:
 
       - name: Queue relevant changes before cloud delivery
         if: steps.snapshot.outcome == 'success'
-        run: python tools/delivery_status.py collected
+        env:
+          AGENT_REVIEW: ${{ vars.STILL_WORKING_AGENT_REVIEW }}
+        run: |
+          if [ "$AGENT_REVIEW" = "on" ]; then
+            python tools/delivery_status.py collected
+          else
+            python tools/delivery_status.py off
+          fi
 
       - name: Regenerate Maya's screen
         if: steps.snapshot.outcome == 'success'
@@ -177,6 +186,7 @@ jobs:
   deliver:
     name: Review changes through AgentCore
     needs: collect
+    if: vars.STILL_WORKING_AGENT_REVIEW == 'on'
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -63,7 +63,7 @@ class ScriptedModel(Model):
 
         Validating rather than trusting matters: tools/setup.py asks for a shape it then
         writes into Maya's profile, and a double that returned any old object would let a
-        schema change pass the tests and fail in front of a judge.
+        schema change pass the tests and fail in front of Maya.
         """
         self.structured_calls += 1
         if system_prompt:

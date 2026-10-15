@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Persist the collection-to-delivery queue and report both stages independently."""
+"""Persist the collection-to-delivery queue and report both stages independently.
+
+Phase `off` is for a deployment with cloud review switched off: nothing is queued for an
+agent that will not run, and the page reports the review as off rather than pending.
+"""
 from __future__ import annotations
 
 import argparse
@@ -37,7 +41,7 @@ def queue_changes(records, business, state, day):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('phase', choices=['collected', 'complete', 'failed'])
+    parser.add_argument('phase', choices=['collected', 'complete', 'failed', 'off'])
     args = parser.parse_args()
     contracts = ROOT / 'contracts'
     now = dt.datetime.now(dt.timezone.utc)

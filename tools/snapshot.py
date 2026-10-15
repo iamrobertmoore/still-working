@@ -76,7 +76,7 @@ def normalise(spec: dict) -> dict[str, dict]:
 
 
 def fetch(url: str, timeout: int = 60) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "contract-watch/0.1 (+hackathon)"})
+    req = urllib.request.Request(url, headers={"User-Agent": "still-working/1.0 (+https://github.com/iamrobertmoore/still-working)"})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return resp.read()
 

@@ -101,7 +101,8 @@ def review_status():
         status = {"state": "complete" if stamp else "pending", "last_completed_at": stamp}
     state = status.get("state", "pending")
     label = {"complete": "Agent review complete", "pending": "Agent review pending",
-             "failed": "Agent review could not finish"}.get(state, "Agent review pending")
+             "failed": "Agent review could not finish",
+             "off": "Agent review off · the daily supplier check still runs"}.get(state, "Agent review pending")
     if state == "complete" and status.get("last_completed_at"):
         stamp = dt.datetime.fromisoformat(status["last_completed_at"])
         label += stamp.strftime(" · %d %B at %H:%M UTC")
@@ -137,11 +138,13 @@ def main() -> int:
     else:
         state_class, state = "ok", "Still working."
         sub = "No new supplier risk found for your routines."
-    if not (outstanding or pending) and review_state != "complete":
+    # "off" is a settled state, not an unfinished one: nothing is waiting for an agent.
+    settled = review_state in ("complete", "off")
+    if not (outstanding or pending) and not settled:
         state_class, state = "warn", "Check in progress."
         sub = ("Your suppliers have been checked. The agent review is next."
                if review_state == "pending" else "Your suppliers have been checked. The agent review needs another try.")
-    needs_attention = bool(outstanding or pending or review_state != "complete")
+    needs_attention = bool(outstanding or pending or not settled)
 
     fetched = [load(os.path.join(CONTRACTS, "latest", f"{v['id']}.json")).get("fetched_at")
                for v in vendors if os.path.exists(os.path.join(CONTRACTS, "latest", f"{v['id']}.json"))]
@@ -194,8 +197,10 @@ def main() -> int:
             a = assess(business, newest)
             hit = ", ".join(x["what_maya_calls_it"] for x in a["routines_touched"]
                             if x["has_breaking_change"])
+            unwritten = ("The agent review is switched off, so there is no written note. "
+                         if review_state == "off" else "The full note has not been written yet. ")
             parts.append(f'<div class="note">{html.escape(hit)}.\n\n'
-                         "The full note has not been written yet. This is the deterministic "
+                         f"{unwritten}This is the deterministic "
                          "part: a company changed something one of your routines may rely on."
                          "</div>")
 
