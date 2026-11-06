@@ -1914,13 +1914,13 @@
    ]
   }
  },
- "fetched_at": "2026-11-05T13:30:07+00:00",
+ "fetched_at": "2026-11-06T13:14:09+00:00",
  "name": "Xero Accounting",
  "raw_bytes": 933379,
- "raw_sha256": "ee145b5b922c2aa478659641859c5522b4470dc93998c06e8f6245c462d211dd",
+ "raw_sha256": "bf9b7af186c56324594345a4e9e1b9ce8ff48d75c8ecfc97d36756fcacdced9c",
  "spec_title": "Xero Accounting API",
  "spec_url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_accounting.yaml",
- "spec_version": "20.0.0",
+ "spec_version": "20.0.1",
  "vendor": "xero",
  "what_maya_calls_it": "my accounts, where my bookkeeper works"
 }
