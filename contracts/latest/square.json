@@ -3348,10 +3348,10 @@
    ]
   }
  },
- "fetched_at": "2026-11-17T14:53:45+00:00",
+ "fetched_at": "2026-11-18T14:33:47+00:00",
  "name": "Square",
- "raw_bytes": 3273134,
- "raw_sha256": "8f65460732e19d7445f7a34d8a9df09163db45273df5176a1cc794890ef591fb",
+ "raw_bytes": 3279383,
+ "raw_sha256": "76e7cc8ba3fd94c162a3339531aafe798d5556ac34ae03e8253df815b49305f1",
  "spec_title": "Square",
  "spec_url": "https://raw.githubusercontent.com/square/connect-api-specification/master/api.json",
  "spec_version": "2.0",
